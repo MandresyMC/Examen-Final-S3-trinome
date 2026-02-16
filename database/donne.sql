@@ -42,3 +42,6 @@ insert into `dons` (`idVille`, `idStock`, `quantiteDonnee`) values (1, 1, 5);
 insert into `dons` (`idVille`, `idStock`, `quantiteDonnee`) values (2, 2, 3);
 
 insert into `achat` (`idVille`, `idStock`, `idDon`) values (1, 1, 1);
+
+INSERT INTO achat (idVille, idStock, idDon, quantite) VALUES
+(1, 1, 1, 10);  -- Antananarivo, Riz, Don 1, 10 unités
