@@ -5,7 +5,8 @@ document.getElementById("actualiser").addEventListener("click", function () {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             let data = JSON.parse(xhr.responseText);
-            showBesoins(data);
+            showBesoins(data["besoins"]);
+            showDons(data["dons"]);
         }
     };
 
@@ -69,5 +70,64 @@ function showBesoins(tabBesoins) {
     }
 
     totalMontantElt.textContent = "Total des besoins : " + totalMontant;
+    totalMontantElt.setAttribute("class", "alert alert-success");
+}
+
+function showDons(tabDons) {
+
+    let divMere = document.getElementById("dons");
+    let totalMontantElt = document.getElementById("totalMontantDons");
+
+    divMere.textContent = "";
+    let totalMontant = 0;
+
+    if (tabDons.length === 0) {
+        let p = document.createElement("p");
+        p.textContent = "Aucun don disponible.";
+        divMere.appendChild(p);
+        totalMontantElt.textContent = "";
+        return;
+    }
+
+    for (let i = 0; i < tabDons.length; i++) {
+
+        let dons = tabDons[i];
+
+        // Calcul du total
+        if (dons.nomProduit === "Argent") {
+            totalMontant += parseFloat(dons.quantiteDonnee);
+        } else {
+            totalMontant += parseFloat(dons.quantiteDonnee) * parseFloat(dons.prixUnitaire);
+        }
+
+        // === CARD ===
+        let card = document.createElement("div");
+        card.setAttribute("class", "card mb-3");
+
+        let cardBody = document.createElement("div");
+        cardBody.setAttribute("class", "card-body");
+
+        let titre = document.createElement("h5");
+        titre.setAttribute("class", "card-title");
+        titre.textContent = dons.nomProduit;
+
+        let ville = document.createElement("p");
+        ville.setAttribute("class", "card-text");
+        ville.textContent = "Ville : " + dons.nomVille;
+
+        let quantite = document.createElement("p");
+        quantite.setAttribute("class", "card-text");
+        quantite.textContent = "Quantité : " + dons.quantiteDonnee;
+
+        // Assemblage
+        cardBody.appendChild(titre);
+        cardBody.appendChild(ville);
+        cardBody.appendChild(quantite);
+
+        card.appendChild(cardBody);
+        divMere.appendChild(card);
+    }
+
+    totalMontantElt.textContent = "Total des dons : " + totalMontant;
     totalMontantElt.setAttribute("class", "alert alert-success");
 }

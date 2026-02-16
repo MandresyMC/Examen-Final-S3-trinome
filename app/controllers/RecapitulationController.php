@@ -4,10 +4,15 @@
 
         public function getAll() {
             $pdo  = Flight::db();
-            $repo = new BesoinRepository($pdo);
+            $repoBesoin = new BesoinRepository($pdo);
+            $repoDons = new DonsRepository($pdo);
             
-            $besoins = $repo->findAll();
+            $besoins = $repoBesoin->findAll();
+            $dons = $repoDons->findAll();
 
-            Flight::json($besoins);
+            Flight::json([
+                "besoins" => $besoins,
+                "dons" => $dons
+            ]);
         }
     }
