@@ -17,6 +17,9 @@
         <?php if ($success) { ?>
             <div class="alert alert-success"><?= $success ?></div>
         <?php } ?>
+        <?php if ($error) { ?>
+            <div class="alert alert-danger"><?= $error ?></div>
+        <?php } ?>
 
         <?php if (empty($villes) && empty($stocksDons)) { ?>
             <p class="alert alert-info">Aucune ville ni stock de dons disponible.</p>

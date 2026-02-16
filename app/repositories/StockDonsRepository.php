@@ -8,7 +8,7 @@
             $sql = "INSERT INTO stockDons(idCategorie, nomProduit, quantiteInitiale, quantiteFinale) VALUES(?, ?, ?, ?)";
             $st = $this->pdo->prepare($sql);
             try {
-                $st->execute([ (int)$idCategorie, (int)$ville_id, (string)$nomProduit, (double)$quantiteInitiale, (double)$quantiteFinale ]);
+                $st->execute([ (int)$idCategorie, (int)$ville_id, (string)$nomProduit, (float)$quantiteInitiale, (float)$quantiteFinale ]);
             } catch (PDOException $e) {
                 // Ajoute des infos utiles pour le debug
                 $info = $st->errorInfo();
@@ -21,7 +21,7 @@
             $sql = "UPDATE stockDons SET quantiteFinale = ? WHERE idStock = ?";
             $st = $this->pdo->prepare($sql);
             try {
-                $st->execute([ (double)$quantiteFinale, (int)$idStock ]);
+                $st->execute([ (float)$quantiteFinale, (int)$idStock ]);
             } catch (PDOException $e) {
                 // Ajoute des infos utiles pour le debug
                 $info = $st->errorInfo();
@@ -44,7 +44,7 @@
         }
 
         public function findById($idStock) {
-            $sql = "SELECT * FROM stockDons WHERE idStock = ?";
+            $sql = "SELECT * FROM stockDons WHERE id = ?";
             $st = $this->pdo->prepare($sql);
             try {
                 $st->execute([ (int)$idStock ]);
