@@ -32,24 +32,19 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="cat" class="form-label">Catégorie</label>
+                    <label for="cat" class="form-label">Produit</label>
                     <select name="cat" id="cat" class="form-select" required>
-                        <option value="">-- Choisir une catégorie --</option>
-                        <?php foreach ($categories as $cat) { ?>
-                            <option value="<?= $cat['id'] ?>">
-                                <?= $cat['nom'] ?>
+                        <option value="">-- Choisir un produit --</option>
+                        <?php foreach ($produits as $produit) { ?>
+                            <option value="<?= $produit['id'] ?>">
+                                <?= $produit['nom'] ?>
                             </option>
                         <?php } ?>
                     </select>
                 </div>
 
                 <div class="mb-3">
-                    <label for="nom" class="form-label">Nom du produit</label>
-                    <input type="text" class="form-control" id="nom" name="nom" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="quantite" class="form-label">Quantité demandée</label>
+                    <label for="quantite" class="form-label">Quantité demandée (en Ar ou en kg)</label>
                     <input type="number" class="form-control" id="quantite" name="quantite" min="1" required>
                 </div>
 
