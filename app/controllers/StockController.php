@@ -20,7 +20,7 @@ class StockController {
 
         $idProduit = $_POST['idProduit'];
         $quantite_initiale = $_POST['quantite_initiale'];
-        $quantite_finale   = $_POST['quantite_finale'];
+        $quantite_finale   = $quantite_initiale;;
 
         $produit = $repoProduit->findById($idProduit);
         if (!$produit) {

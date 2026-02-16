@@ -36,11 +36,6 @@
                     <input type="number" class="form-control" id="quantite_initiale" name="quantite_initiale" min="0" required>
                 </div>
 
-                <div class="mb-3">
-                    <label for="quantite_finale" class="form-label">Quantité finale</label>
-                    <input type="number" class="form-control" id="quantite_finale" name="quantite_finale" min="0" required>
-                </div>
-
                 <div class="d-flex justify-content-between">
                     <button type="submit" class="btn btn-primary w-100">Ajouter au stock</button>
                 </div>
