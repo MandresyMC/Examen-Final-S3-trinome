@@ -1,5 +1,4 @@
 <?php
-    $allProduits = $allProduits;
     $ville = $ville;
     $allStocksDons = $allStocksDons;
 ?>
@@ -13,45 +12,40 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
     </head>
     <body>
-        <h1>Formulaire d'achat pour <?= $ville['nom'] ?></h1>
+        <h1>Formulaire d'achat</h1>
 
-        <?php if ($success) { ?>
+        <?php if (isset($success)) { ?>
             <div class="alert alert-success"><?= $success ?></div>
         <?php } ?>
-        <?php if ($error) { ?>
+        <?php if (isset($error)) { ?>
             <div class="alert alert-danger"><?= $error ?></div>
         <?php } ?>
 
-        <?php if (empty($ville) || empty($allProduits) || empty($allStocksDons)) { ?>
+        <?php if (empty($ville) || empty($allStocksDons)) { ?>
             <p class="alert alert-info">Aucune ville, produit ou stock de dons disponible pour faire des achats.</p>
         <?php } else { ?>
+            <h2>Ville : <?= $ville['nom'] ?></h2>
+            <h3>Montant : <?= $ville['fond'] ?> Ar</h3>
+            
             <form action="/formulaire_achat" method="post">
-                <div class="mb-3">
-                    <label for="produit" class="form-label">Produit</label>
-                    <select name="idProduit" id="produit" class="form-select" required>
-                        <option value="">-- Choisir un produit --</option>
-                        <?php foreach ($allProduits as $produit) { ?>
-                            <option value="<?= $produit['id'] ?>">
-                                <?= $produit['nom'] ?>
-                            </option>
-                        <?php } ?>
-                    </select>
-                </div>
-
+                <input type="hidden" name="idVille" value="<?= $ville['id'] ?>">
+                
                 <div class="mb-3">
                     <label for="stock" class="form-label">Stock de dons</label>
                     <select name="idStock" id="stock" class="form-select" required>
                         <option value="">-- Choisir un stock de dons --</option>
                         <?php foreach ($allStocksDons as $stock) { ?>
-                            <option value="<?= $stock['id'] ?>">
-                                <?= $stock['nomProduit'] ?> - <?= $stock['quantiteFinale'] ?> <?= $stock['nomProduit'] != 'Argent' ? ' kg' : ' Ar' ?>
-                            </option>
+                            <?php if ($stock['nomProduit'] != 'Argent' ) { ?>
+                                <option value="<?= $stock['id'] ?>">
+                                    <?= $stock['nomProduit'] ?> - <?= $stock['quantiteFinale'] ?> kg - PU : <?= $stock['prixUnitaire'] ?> Ar/kg
+                                </option>
+                            <?php } ?>
                         <?php } ?>
                     </select>
                 </div>
 
                 <div class="mb-3">
-                    <label for="quantite" class="form-label">Quantité à acheter</label>
+                    <label for="quantite" class="form-label">Quantité à acheter (en kg)</label>
                     <input type="number" class="form-control" id="quantite" name="quantiteAchetee" min="1" required>
                 </div>
 

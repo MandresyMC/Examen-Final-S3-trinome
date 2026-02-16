@@ -5,8 +5,7 @@ require_once __DIR__ . '/controllers/DashboardController.php';
 require_once __DIR__ . '/controllers/BesoinController.php';
 require_once __DIR__ . '/controllers/StockController.php';
 require_once __DIR__ . '/controllers/TableauController.php';
-
-
+require_once __DIR__ . '/controllers/AchatController.php';
 
 require_once __DIR__ . '/repositories/BesoinRepository.php';
 require_once __DIR__ . '/repositories/DashboardRepository.php';
@@ -35,3 +34,7 @@ Flight::route('GET /formulaire_dons', ['DonsController', 'showFormulaireDons']);
 Flight::route('POST /ajout_dons', ['DonsController', 'createDon']);
 
 Flight::route('GET /tableau', ['TableauController', 'showAchats']);
+
+Flight::route('GET /achat', ['AchatController', 'showVilleAchat']);
+Flight::route('GET /formulaire_achat', ['AchatController', 'showFormulaireAchat']);
+Flight::route('POST /formulaire_achat', ['AchatController', 'saveAchat']);
