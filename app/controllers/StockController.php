@@ -8,8 +8,20 @@ class StockController {
 
         $produits = $repoProduit->findAll();
 
+        $success = null;
+        if (isset(Flight::request()->query['success'])) {
+            $success = Flight::request()->query['success'];
+        }
+
+        $error = null;
+        if (isset(Flight::request()->query['error'])) {
+            $error = Flight::request()->query['error'];
+        }
+
         Flight::render('formulaire_stock', [
-            'produits' => $produits
+            'produits' => $produits,
+            'success' => $success,
+            'error' => $error,
         ]);
     }
 
@@ -24,14 +36,18 @@ class StockController {
 
         $produit = $repoProduit->findById($idProduit);
         if (!$produit) {
-            echo "<div class='alert alert-danger text-center mt-3'>Produit introuvable.</div>";
+            $error = "Produit introuvable.";
+        }
+
+        if ($error) {
+            Flight::redirect('/formulaire_stock?error=' . urlencode($error));
             return;
         }
 
         $id = $repoStock->create($produit['idCategorie'], $idProduit, $quantite_initiale, $quantite_finale);
 
-        echo "<div class='alert alert-success text-center mt-3'>
-                Le produit '{$produit['nom']}' a été ajouté au stock avec succès ! (ID: $id)
-              </div>";
+        $success = "Le produit '{$produit['nom']}' a été ajouté au stock avec succès";
+
+        Flight::redirect('/formulaire_stock?success=' . urlencode($success));
     }
 }

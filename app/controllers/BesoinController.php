@@ -11,9 +11,21 @@ class BesoinController {
         $villes = $repoVille->findAll();
         $produits = $repoProduit->findAll();
 
+        $success = null;
+        if (isset(Flight::request()->query['success'])) {
+            $success = Flight::request()->query['success'];
+        }
+
+        $error = null;
+        if (isset(Flight::request()->query['error'])) {
+            $error = Flight::request()->query['error'];
+        }
+
         Flight::render('formulaire_besoin', [
             'villes' => $villes,
-            'produits' => $produits
+            'produits' => $produits,
+            'success' => $success,
+            'error' => $error,
         ]);
     }
 
@@ -27,15 +39,20 @@ class BesoinController {
         $quantiteDemandee = $_POST['quantite'];
 
         $produit = $repoProduit->findById($idProduit);
+        $error = null;
         if (!$produit) {
-            echo "<div class='alert alert-danger text-center mt-3'>Produit introuvable.</div>";
+            $error = "Produit introuvable.";
+        }
+
+        if ($error) {
+            Flight::redirect('/formulaire_besoin?error=' . urlencode($error));
             return;
         }
 
         $idBesoin = $repoBesoin->create($produit['idCategorie'], $ville, $idProduit, $quantiteDemandee);
 
-        echo "<div class='alert alert-success text-center mt-3'>
-            Le besoin pour '{$produit['nom']}' a été ajouté avec succès ! (ID: $idBesoin)
-              </div>";
+        $success = "Besoin ajouté avec succès";
+
+        Flight::redirect('/formulaire_besoin?success=' . urlencode($success));
     }
 }

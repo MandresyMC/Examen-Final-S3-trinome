@@ -15,8 +15,14 @@
             <h3 class="mb-0">Ajouter un besoin</h3>
         </div>
 
+        <?php if (isset($success)) { ?>
+            <div class="alert alert-success mt-3 mx-3"><?= $success ?></div>
+        <?php } ?>
+        <?php if ($error) { ?>
+            <div class="alert alert-danger mt-3 mx-3"><?= $error ?></div>
+        <?php } ?>
+        
         <div class="card-body">
-
             <form action="/formulaire_besoin" method="POST">
 
                 <div class="mb-3">
