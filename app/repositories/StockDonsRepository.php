@@ -44,7 +44,7 @@
         }
 
         public function findById($idStock) {
-            $sql = "SELECT * FROM stockDons WHERE id = ?";
+            $sql = "SELECT sd.*, p.nom AS nomProduit FROM stockDons sd JOIN produit p ON sd.idProduit = p.id WHERE sd.id = ?";
             $st = $this->pdo->prepare($sql);
             try {
                 $st->execute([ (int)$idStock ]);
