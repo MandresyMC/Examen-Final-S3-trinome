@@ -15,19 +15,19 @@
     <?php } else { ?>
         <table class="table table-striped">
             <tr>
-                <th>idCat</th>
-                <th>quantiteDemande</th>
+                <th>ville</th>
+                <th>produit acheter</th>
                 <th>produit</th>
                 <th>ville</th>
                 <th>quantiteDonne</th>
             </tr>
             <?php foreach ($allObjets as $objet) { ?>
             <tr>
-                <td><?= $objet['idVille'] ?></td>
-                <td><?= $objet['idStock'] ?></td>
-                <td><?= $objet['quantite'] ?></td>
-                <td><?= $objet['prix'] ?></td>
-                <td><?= $objet['created_at'] ?></td>
+                <td><?= $objet['villeNom'] ?></td>
+                <td><?= $objet['nomProduit'] ?></td>
+                <td><?= $objet['quantiteDemande'] ?></td>
+                <td><?= $objet['achat'] ?></td>
+                <td><?= $objet['dateAchat'] ?></td>
             </tr>
             <?php } ?>
         <?php } ?>
