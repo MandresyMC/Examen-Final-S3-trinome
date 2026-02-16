@@ -23,11 +23,11 @@
                     <label for="cat" class="form-label">Catégorie</label>
                     <select name="cat" id="cat" class="form-select" required>
                         <option value="">-- Choisir une catégorie --</option>
-                        <?php foreach ($categories as $cat) : ?>
+                        <?php foreach ($categories as $cat) { ?>
                             <option value="<?= $cat['id'] ?>">
                                 <?= $cat['nom'] ?>
                             </option>
-                        <?php endforeach; ?>
+                        <?php } ?>
                     </select>
                 </div>
 
