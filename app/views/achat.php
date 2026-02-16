@@ -21,9 +21,10 @@
             <div class="cards-grid">
                 <?php foreach ($allVilles as $ville) { ?>
                     <div class="card">
-                        <img src="../../public/assets/ $ville['image'] ?? 'default.jpg' ?>" 
-                             class="card-img-top" 
-                             alt="<?= htmlspecialchars($ville['nom']) ?>">
+                        <img src="assets/<?= htmlspecialchars($ville['nom'] ?? 'default') ?>.jpg"
+                            class="card-img-top"
+                            alt="<?= htmlspecialchars($ville['nom']) ?>">
+
                         <div class="card-body">
                             <h5 class="card-title"><?= htmlspecialchars($ville['nom']) ?></h5>
                             <a href="/formulaire_achat?idVille=<?= $ville['id'] ?>" class="btn-primary">
