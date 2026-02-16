@@ -33,8 +33,8 @@ insert into `besoin` (`idCategorie`, `idVille`, `idProduit`, `quantiteDemandee`)
 insert into `besoin` (`idCategorie`, `idVille`, `idProduit`, `quantiteDemandee`) values (1, 3, 3, 20);
 insert into `besoin` (`idCategorie`, `idVille`, `idProduit`, `quantiteDemandee`) values (3, 4, 4, 15);
 
-insert into `stockDons` (`idCategorie`, `idProduit`, `quantiteInitiale`, `quantiteFinale`) values (1, 1, 50, 50);
-insert into `stockDons` (`idCategorie`, `idProduit`, `quantiteInitiale`, `quantiteFinale`) values (1, 2, 30, 30);
+                                                        insert into `stockDons` (`idCategorie`, `idProduit`, `quantiteInitiale`, `quantiteFinale`) values (1, 1, 50, 50);
+                                                        insert into `stockDons` (`idCategorie`, `idProduit`, `quantiteInitiale`, `quantiteFinale`) values (1, 2, 30, 30);
 insert into `stockDons` (`idCategorie`, `idProduit`, `quantiteInitiale`, `quantiteFinale`) values (1, 3, 100, 100);
 insert into `stockDons` (`idCategorie`, `idProduit`, `quantiteInitiale`, `quantiteFinale`) values (2, 4, 40, 40);
 insert into `stockDons` (`idCategorie`, `idProduit`, `quantiteInitiale`, `quantiteFinale`) values (3, 5, 200000, 200000);
