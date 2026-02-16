@@ -14,3 +14,4 @@ Flight::route('GET /', function () {
 });
 
 Flight::route('GET /formulaire_dons', ['DonsController', 'showFormulaireDons']);
+Flight::route('GET /dashboard', ['DashboardController', 'showDashboard']);
