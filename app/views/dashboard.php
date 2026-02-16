@@ -24,7 +24,7 @@
             <tr>
                 <td><?= $objet['villeNom'] ?></td>
                 <td><?= $objet['nomProduit'] ?></td>
-                <td><?= $objet['quantiteDemande'] ?></td>
+                <td><?= $objet['quantiteDemandee'] ?></td>
                 <td><?= $objet['totalDonne'] ?></td>
             </tr>
             <?php } ?>

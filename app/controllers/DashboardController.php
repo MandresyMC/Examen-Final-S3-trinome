@@ -1,12 +1,12 @@
 <?php
     class DashboardController {
 
-        public function showDashboar() {
+        public function showDashboard() {
             $pdo  = Flight::db();
             $repo = new DashboardRepository($pdo);
             
             $besoin = $repo->findDashboardBesoin();
-            $achat = $repo->findDashboard();
+            $achat = $repo->findDashboardAchat();
 
             $success = null;
             if (isset(Flight::request()->query['success'])) {
@@ -15,7 +15,7 @@
 
             Flight::render("dashboard", [
                 'besoin' => $besoin,
-                'achat' => $besoin,
+                'achat' => $achat,
             ]);
         }
 
