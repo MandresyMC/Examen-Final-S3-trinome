@@ -1,14 +1,14 @@
 <?php
 
-    class BesoinRepository {
+    class DonsRepository {
         private $pdo;
         public function __construct(PDO $pdo) { $this->pdo = $pdo; }
 
-        public function create($idCategorie, $ville_id, $nomProduit, $quantiteDemandee) {
-            $sql = "INSERT INTO besoin(idCategorie, idVille, nomProduit, quantiteDemandee) VALUES(?, ?, ?, ?)";
+        public function create($idVille, $idStock, $quantiteDonnee) {
+            $sql = "INSERT INTO dons(idVille, idStock, quantiteDonnee) VALUES(?, ?, ?)";
             $st = $this->pdo->prepare($sql);
             try {
-                $st->execute([ (int)$idCategorie, (int)$ville_id, (string)$nomProduit, (double)$quantiteDemandee ]);
+                $st->execute([ (int)$idVille, (int)$idStock, (double)$quantiteDonnee ]);
             } catch (PDOException $e) {
                 // Ajoute des infos utiles pour le debug
                 $info = $st->errorInfo();
@@ -18,26 +18,13 @@
         }
 
         public function findAll() {
-            $sql = "SELECT * FROM besoin";
+            $sql = "SELECT * FROM dons";
             $st = $this->pdo->prepare($sql);
             try {
                 $st->execute();
             } catch (PDOException $e) {
                 $info = $st->errorInfo();
                 throw new RuntimeException('FINDALL : DB error in findAll(): ' . $e->getMessage() . ' - SQLSTATE: ' . ($info[0] ?? '') . ' - DriverMsg: ' . ($info[2] ?? ''));
-            }
-            
-            return $st->fetchAll();
-        }
-
-        public function findByVille($idVille) {
-            $sql = "SELECT * FROM besoin WHERE idVille = ?";
-            $st = $this->pdo->prepare($sql);
-            try {
-                $st->execute([ (int)$idVille ]);
-            } catch (PDOException $e) {
-                $info = $st->errorInfo();
-                throw new RuntimeException('FINDBYVILLE : DB error in findByVille(): ' . $e->getMessage() . ' - SQLSTATE: ' . ($info[0] ?? '') . ' - DriverMsg: ' . ($info[2] ?? ''));
             }
             
             return $st->fetchAll();

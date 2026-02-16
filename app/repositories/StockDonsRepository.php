@@ -1,14 +1,14 @@
 <?php
 
-    class DonRepository {
+    class StockDonsRepository {
         private $pdo;
         public function __construct(PDO $pdo) { $this->pdo = $pdo; }
 
-        public function create($idBesoin, $quantite) {
-            $sql = "INSERT INTO don(idBesoin, quantite) VALUES(?, ?)";
+        public function create($idCategorie, $ville_id, $nomProduit, $quantiteInitiale, $quantiteFinale) {
+            $sql = "INSERT INTO stockDons(idCategorie, nomProduit, quantiteInitiale, quantiteFinale) VALUES(?, ?, ?, ?)";
             $st = $this->pdo->prepare($sql);
             try {
-                $st->execute([ (int)$idBesoin, (int)$quantite ]);
+                $st->execute([ (int)$idCategorie, (int)$ville_id, (string)$nomProduit, (double)$quantiteInitiale, (double)$quantiteFinale ]);
             } catch (PDOException $e) {
                 // Ajoute des infos utiles pour le debug
                 $info = $st->errorInfo();
@@ -18,7 +18,7 @@
         }
 
         public function findAll() {
-            $sql = "SELECT * FROM don";
+            $sql = "SELECT * FROM stockDons";
             $st = $this->pdo->prepare($sql);
             try {
                 $st->execute();
