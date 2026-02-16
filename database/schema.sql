@@ -68,5 +68,6 @@ CREATE TABLE achat (
     idStock INT, -- stock (produit) hovidiana
     idDon INT, -- don (produit) hividianana
     quantite INT, -- Qte a achete
+    prix DOUBLE, -- prix de l'achat
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
