@@ -8,7 +8,7 @@
             $sql = "INSERT INTO besoin(idCategorie, idVille, nomProduit, quantiteDemandee) VALUES(?, ?, ?, ?)";
             $st = $this->pdo->prepare($sql);
             try {
-                $st->execute([ (int)$idCategorie, (int)$ville_id, (string)$nomProduit, (double)$quantiteDemandee ]);
+                $st->execute([ (int)$idCategorie, (int)$ville_id, (string)$nomProduit, (float)$quantiteDemandee ]);
             } catch (PDOException $e) {
                 // Ajoute des infos utiles pour le debug
                 $info = $st->errorInfo();

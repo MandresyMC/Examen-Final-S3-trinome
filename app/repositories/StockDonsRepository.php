@@ -8,13 +8,26 @@
             $sql = "INSERT INTO stockDons(idCategorie, nomProduit, quantiteInitiale, quantiteFinale) VALUES(?, ?, ?, ?)";
             $st = $this->pdo->prepare($sql);
             try {
-                $st->execute([ (int)$idCategorie, (int)$ville_id, (string)$nomProduit, (double)$quantiteInitiale, (double)$quantiteFinale ]);
+                $st->execute([ (int)$idCategorie, (int)$ville_id, (string)$nomProduit, (float)$quantiteInitiale, (float)$quantiteFinale ]);
             } catch (PDOException $e) {
                 // Ajoute des infos utiles pour le debug
                 $info = $st->errorInfo();
                 throw new RuntimeException('CREATE : DB error in create(): ' . $e->getMessage() . ' - SQLSTATE: ' . ($info[0] ?? '') . ' - DriverMsg: ' . ($info[2] ?? ''));
             }
             return $this->pdo->lastInsertId();
+        }
+
+        public function updateQuantiteFinale($quantiteFinale, $idStock) {
+            $sql = "UPDATE stockDons SET quantiteFinale = ? WHERE id = ?";
+            $st = $this->pdo->prepare($sql);
+            try {
+                $st->execute([ (float)$quantiteFinale, (int)$idStock ]);
+            } catch (PDOException $e) {
+                // Ajoute des infos utiles pour le debug
+                $info = $st->errorInfo();
+                throw new RuntimeException('UPDATE : DB error in updateQuantiteFinale(): ' . $e->getMessage() . ' - SQLSTATE: ' . ($info[0] ?? '') . ' - DriverMsg: ' . ($info[2] ?? ''));
+            }
+            return $st->rowCount();
         }
 
         public function findAll() {
@@ -28,5 +41,18 @@
             }
             
             return $st->fetchAll() ?? [];
+        }
+
+        public function findById($idStock) {
+            $sql = "SELECT * FROM stockDons WHERE id = ?";
+            $st = $this->pdo->prepare($sql);
+            try {
+                $st->execute([ (int)$idStock ]);
+            } catch (PDOException $e) {
+                $info = $st->errorInfo();
+                throw new RuntimeException('FINDBYID : DB error in findById(): ' . $e->getMessage() . ' - SQLSTATE: ' . ($info[0] ?? '') . ' - DriverMsg: ' . ($info[2] ?? ''));
+            }
+            
+            return $st->fetch();
         }
     }
