@@ -34,7 +34,7 @@
                     <span class="field-label">Produit</span>
                     <div class="produit-grid">
                         <?php
-                        $icons = ['Riz' => '🌾', 'Huile' => '🫙', 'Sucre' => '🍚', 'Farine' => '🌿', 'Argent' => '💰'];
+                        $icons = ['Riz' => '🌾', 'Argent' => '💰'];
                         foreach ($produits as $produit) {
                             $icon = $icons[$produit['nom']] ?? '📦';
                         ?>
