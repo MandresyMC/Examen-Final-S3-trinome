@@ -31,6 +31,7 @@
             $pdo = Flight::db();
             $repoDons = new DonsRepository($pdo);
             $repoStockDons = new StockDonsRepository($pdo);
+            $repoAchat = new AchatRepository($pdo);
 
             $idVille = (int)(Flight::request()->data['idVille'] ?? 0);
             $idStock = (int)(Flight::request()->data['idStock'] ?? 0);
@@ -51,7 +52,11 @@
                 $quantiteFinale = $stock['quantiteFinale'] - $quantiteDonnee;
                 $repoStockDons->updateQuantiteFinale($quantiteFinale, $idStock);
 
-                $repoDons->create($idVille, $idStock, $quantiteDonnee);
+                $idDon = $repoDons->create($idVille, $idStock, $quantiteDonnee);
+
+                if ($stock['nomProduit'] == 'Argent') {
+                    $repoAchat->create($idVille, $idStock, $idDon);
+                }
 
                 $pdo->commit();
                 Flight::redirect('/formulaire_dons?success=Don créé avec succès');
