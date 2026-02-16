@@ -1,13 +1,10 @@
-// Variables globales
 let totalBesoins = 0;
 let totalDons = 0;
 
-// Event listener pour le bouton actualiser
 document.getElementById("actualiser").addEventListener("click", function () {
     loadData();
 });
 
-// Fonction principale pour charger les données
 function loadData() {
     showLoading();
     
@@ -22,7 +19,6 @@ function loadData() {
                     let data = JSON.parse(xhr.responseText);
                     showBesoins(data["besoins"]);
                     showDons(data["dons"]);
-                    updateDifference();
                 } catch (e) {
                     console.error("Erreur de parsing JSON:", e);
                     showError("Erreur lors du chargement des données");
@@ -37,7 +33,6 @@ function loadData() {
     xhr.send();
 }
 
-// Fonction pour afficher les besoins
 function showBesoins(tabBesoins) {
     let divMere = document.getElementById("besoins");
     let totalMontantElt = document.getElementById("totalMontant");
@@ -46,7 +41,6 @@ function showBesoins(tabBesoins) {
     divMere.textContent = "";
     totalBesoins = 0;
 
-    // Mettre à jour le compteur
     countElt.textContent = tabBesoins.length;
 
     if (tabBesoins.length === 0) {
@@ -78,7 +72,6 @@ function showBesoins(tabBesoins) {
     totalMontantElt.textContent = formatMontant(totalBesoins);
 }
 
-// Fonction pour afficher les dons
 function showDons(tabDons) {
     let divMere = document.getElementById("dons");
     let totalMontantElt = document.getElementById("totalMontantDons");
@@ -87,7 +80,6 @@ function showDons(tabDons) {
     divMere.textContent = "";
     totalDons = 0;
 
-    // Mettre à jour le compteur
     countElt.textContent = tabDons.length;
 
     if (tabDons.length === 0) {
@@ -119,7 +111,6 @@ function showDons(tabDons) {
     totalMontantElt.textContent = formatMontant(totalDons);
 }
 
-// Fonction pour créer une card professionnelle
 function createCard(item, type) {
     let card = document.createElement("div");
     card.setAttribute("class", "card");
@@ -167,30 +158,6 @@ function createCard(item, type) {
     return card;
 }
 
-// Fonction pour mettre à jour la différence
-function updateDifference() {
-    let differenceElt = document.getElementById("difference");
-    let difference = totalDons - totalBesoins;
-    
-    let prefix = "";
-    let className = "";
-    
-    if (difference > 0) {
-        prefix = "+";
-        className = "text-success";
-    } else if (difference < 0) {
-        prefix = "";
-        className = "text-danger";
-    } else {
-        prefix = "";
-        className = "text-muted";
-    }
-    
-    differenceElt.textContent = prefix + formatMontant(difference);
-    differenceElt.className = "stat-value " + className;
-}
-
-// Fonction pour formater les montants
 function formatMontant(montant) {
     return new Intl.NumberFormat('fr-FR', {
         style: 'decimal',
@@ -199,17 +166,14 @@ function formatMontant(montant) {
     }).format(montant) + " Ar";
 }
 
-// Fonction pour afficher le loading
 function showLoading() {
     document.getElementById("loading").classList.add("active");
 }
 
-// Fonction pour masquer le loading
 function hideLoading() {
     document.getElementById("loading").classList.remove("active");
 }
 
-// Fonction pour afficher les erreurs
 function showError(message) {
     console.error(message);
     alert(message);

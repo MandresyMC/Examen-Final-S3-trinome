@@ -10,8 +10,7 @@
 <body>
     <div class="container-fluid">
         <div class="header-section">
-            <h1 class="main-title">Récapitulation Humanitaire</h1>
-            <p class="subtitle">Suivi en temps réel des besoins et des contributions</p>
+            <h1 class="main-title">Récapitulation</h1>
             <button class="btn btn-refresh" id="actualiser">
                 <span class="refresh-icon">↻</span>
                 Actualiser les données
@@ -31,13 +30,6 @@
                 <div class="stat-content">
                     <div class="stat-label">Total des dons</div>
                     <h3 id="totalMontantDons" class="stat-value">—</h3>
-                </div>
-            </div>
-            <div class="stat-card difference-card">
-                <div class="stat-icon">Δ</div>
-                <div class="stat-content">
-                    <div class="stat-label">Différence</div>
-                    <h3 id="difference" class="stat-value">—</h3>
                 </div>
             </div>
         </div>
