@@ -13,12 +13,12 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
     </head>
     <body>
-        <h1>Formulaire d'achat pour <?= $ville['nom'] ?></h1>
+        <h1>Formulaire d'achat pour <span class="fw-bold"><?= $ville['nom'] ?></span></h1>
 
-        <?php if ($success) { ?>
+        <?php if (isset($success)) { ?>
             <div class="alert alert-success"><?= $success ?></div>
         <?php } ?>
-        <?php if ($error) { ?>
+        <?php if (isset($error)) { ?>
             <div class="alert alert-danger"><?= $error ?></div>
         <?php } ?>
 
@@ -31,9 +31,11 @@
                     <select name="idProduit" id="produit" class="form-select" required>
                         <option value="">-- Choisir un produit --</option>
                         <?php foreach ($allProduits as $produit) { ?>
-                            <option value="<?= $produit['id'] ?>">
-                                <?= $produit['nom'] ?>
-                            </option>
+                            <?php if ($produit['nom'] != 'Argent') { ?>
+                                <option value="<?= $produit['id'] ?>">
+                                    <?= $produit['nom'] ?>
+                                </option>
+                            <?php } ?>
                         <?php } ?>
                     </select>
                 </div>
