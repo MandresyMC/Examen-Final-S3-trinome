@@ -2,14 +2,12 @@
 
     class RecapitulationController {
 
-        public function showRecapitulation() {
+        public function getAll() {
             $pdo  = Flight::db();
             $repo = new BesoinRepository($pdo);
             
             $besoins = $repo->findAll();
 
-            Flight::render("recapitulation", [
-                'besoins' => $besoins,
-            ]);
+            Flight::json($besoins);
         }
     }

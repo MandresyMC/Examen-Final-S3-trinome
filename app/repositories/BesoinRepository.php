@@ -18,7 +18,10 @@
         }
 
         public function findAll() {
-            $sql = "SELECT * FROM besoin";
+            $sql = "
+                SELECT b.*, p.prixUnitaire, p.nom AS nomProduit, v.nom AS nomVille
+                FROM besoin b JOIN produit p ON b.idProduit = p.id JOIN ville v ON b.idVille = v.id
+            ";
             $st = $this->pdo->prepare($sql);
             try {
                 $st->execute();

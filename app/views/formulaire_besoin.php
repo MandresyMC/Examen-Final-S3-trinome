@@ -23,11 +23,11 @@
                     <label for="ville" class="form-label">Ville</label>
                     <select name="ville" id="ville" class="form-select" required>
                         <option value="">-- Choisir une ville --</option>
-                        <?php foreach ($villes as $ville) : ?>
-                            <option value="<?= htmlspecialchars($ville['id']) ?>">
-                                <?= htmlspecialchars($ville['nom']) ?>
+                        <?php foreach ($villes as $ville) { ?>
+                            <option value="<?= $ville['id'] ?>">
+                                <?= $ville['nom'] ?>
                             </option>
-                        <?php endforeach; ?>
+                        <?php } ?>
                     </select>
                 </div>
 
@@ -35,11 +35,11 @@
                     <label for="cat" class="form-label">Catégorie</label>
                     <select name="cat" id="cat" class="form-select" required>
                         <option value="">-- Choisir une catégorie --</option>
-                        <?php foreach ($categories as $cat) : ?>
-                            <option value="<?= htmlspecialchars($cat['id']) ?>">
-                                <?= htmlspecialchars($cat['nom']) ?>
+                        <?php foreach ($categories as $cat) { ?>
+                            <option value="<?= $cat['id'] ?>">
+                                <?= $cat['nom'] ?>
                             </option>
-                        <?php endforeach; ?>
+                        <?php } ?>
                     </select>
                 </div>
 
