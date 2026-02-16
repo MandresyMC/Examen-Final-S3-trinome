@@ -32,6 +32,7 @@
             $repoDons = new DonsRepository($pdo);
             $repoStockDons = new StockDonsRepository($pdo);
             $repoAchat = new AchatRepository($pdo);
+            $repoVille = new VilleRepository($pdo);
 
             $idVille = (int)(Flight::request()->data['idVille'] ?? 0);
             $idStock = (int)(Flight::request()->data['idStock'] ?? 0);
@@ -50,12 +51,12 @@
                 }
 
                 $quantiteFinale = $stock['quantiteFinale'] - $quantiteDonnee;
-                $repoStockDons->updateQuantiteFinale($quantiteFinale, $idStock);
+                $repoStockDons->updateQuantiteFinale($quantiteFinale, $idStock); // mettre à jour stock (qte finale)
 
-                $idDon = $repoDons->create($idVille, $idStock, $quantiteDonnee);
+                $idDon = $repoDons->create($idVille, $idStock, $quantiteDonnee); // creer don
 
                 if ($stock['nomProduit'] == 'Argent') {
-                    $repoAchat->create($idVille, $idStock, $idDon);
+                    $retour = $repoVille->updateFond($idVille, $quantiteDonnee); // mettre à jour fond de la ville
                 }
 
                 $pdo->commit();
