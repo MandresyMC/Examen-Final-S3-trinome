@@ -1,30 +1,16 @@
 <?php
 session_start();
-require_once __DIR__ . '/controllers/LoginController.php';
-require_once __DIR__ . '/controllers/AccueilController.php';
-require_once __DIR__ . '/controllers/EchangeController.php';
-require_once __DIR__ . '/controllers/ConfirmationEchangeController.php';
-require_once __DIR__ . '/repositories/UserRepository.php';
-require_once __DIR__ . '/repositories/ObjetRepository.php';
-require_once __DIR__ . '/repositories/EchangeRepository.php';
+require_once __DIR__ . '/controllers/DonsController.php';
+require_once __DIR__ . '/controllers/DashboardController.php';
+
+require_once __DIR__ . '/controllers/BesoinRepository.php';
+require_once __DIR__ . '/controllers/DashboardRepository.php';
+require_once __DIR__ . '/controllers/DonsRepository.php';
+require_once __DIR__ . '/controllers/StockDonsRepository.php';
+require_once __DIR__ . '/controllers/VilleRepository.php';
 
 Flight::route('GET /', function () {
-    Flight::redirect('/login');
+    Flight::redirect('/');
 });
 
-Flight::route('GET /login', ['LoginController', 'showLogin']);
-Flight::route('POST /login', ['LoginController', 'postLogin']);
-
-Flight::route('GET /accueil', ['AccueilController', 'showAccueil']);
-
-Flight::route('GET /echange', ['EchangeController', 'showEchange']);
-Flight::route('GET /echange/envoi_echange', ['EchangeController', 'createEchange']);
-
-Flight::route('GET /confirmation_echange', ['ConfirmationEchangeController', 'showConfirmationEchange']);
-Flight::route('GET /confirmation_echange/decline', ['ConfirmationEchangeController', 'declineEchange']); // decline
-Flight::route('GET /confirmation_echange/accept', ['ConfirmationEchangeController', 'acceptEchange']); // accept
-
-Flight::route('GET /deconnexion', function() {
-    session_destroy();
-    Flight::redirect('/login');
-});
+Flight::route('GET /formulaire_dons', ['DonsController', 'showFormulaireDons']);
