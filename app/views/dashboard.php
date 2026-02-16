@@ -61,11 +61,11 @@
                     
                     <!-- IMAGE PRODUIT -->
                     <img src="images/<?= strtolower($objet['nomProduit']) ?>.jpg"
-                         alt="<?= $objet['nomProduit'] ?>">
+                         alt="<?= $objet['villeNom'] ?>">
 
                     <div class="card-body text-center">
-                        <h5><?= $objet['nomProduit'] ?></h5>
-                        <p class="text-muted"><?= $objet['villeNom'] ?></p>
+                        <h5><?= $objet['villeNom'] ?></h5>
+                        <p class="text-muted"><?= $objet['nomProduit'] ?></p>
 
                         <p>
                             <span class="badge bg-primary badge-custom">
@@ -79,15 +79,6 @@
                             </span>
                         </p>
 
-                   
-
-                        <!-- BARRE DE PROGRESSION -->
-                        <div class="progress mt-3">
-                            <div class="progress-bar bg-success"
-                                 style="width: <?= $pourcentage ?>%">
-                                <?= round($pourcentage) ?>%
-                            </div>
-                        </div>
 
                     </div>
                 </div>
