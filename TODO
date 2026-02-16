@@ -25,3 +25,16 @@ Page 3 :
                - rediriger vers la page d'accueil
 
                test
+
+
+Le tableau de bord affichera aussi les montants dʼachat faits par ville
+Créer une page de récapitulation (avec un bouton actualiser en Ajax) qui affiche :
+les besoins totaux et satisfaits en montant
+les dons reçus et dons dispatché en montant
+
+historique des achats faits par une ville
+ par ex Tana a accheter 5 quantite de Riz
+
+
+
+select * from achat where ville = id
