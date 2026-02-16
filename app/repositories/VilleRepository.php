@@ -29,4 +29,16 @@
             
             return $st->fetchAll() ?? [];
         }
+
+        public function updateFond($idVille, $fond) {
+            $sql = "UPDATE ville SET fond = fond + ? WHERE id = ?";
+            $st = $this->pdo->prepare($sql);
+            try {
+                $st->execute([ (float)$fond, (int)$idVille ]);
+            } catch (PDOException $e) {
+                $info = $st->errorInfo();
+                throw new RuntimeException('UPDATE : DB error in updateFond(): ' . $e->getMessage() . ' - SQLSTATE: ' . ($info[0] ?? '') . ' - DriverMsg: ' . ($info[2] ?? ''));
+            }
+            return $st->rowCount();
+        }
     }
