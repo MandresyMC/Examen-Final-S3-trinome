@@ -16,15 +16,18 @@
         </div>
 
         <div class="card-body">
+
             <form action="/formulaire_besoin" method="POST">
 
                 <div class="mb-3">
                     <label for="ville" class="form-label">Ville</label>
                     <select name="ville" id="ville" class="form-select" required>
                         <option value="">-- Choisir une ville --</option>
-                        <?php foreach ($villes as $ville) { ?>
-                            <option value="<?= $ville['id'] ?>"><?= $ville['nom'] ?></option>
-                        <?php } ?>
+                        <?php foreach ($villes as $ville) : ?>
+                            <option value="<?= htmlspecialchars($ville['id']) ?>">
+                                <?= htmlspecialchars($ville['nom']) ?>
+                            </option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
 
@@ -32,9 +35,11 @@
                     <label for="cat" class="form-label">Catégorie</label>
                     <select name="cat" id="cat" class="form-select" required>
                         <option value="">-- Choisir une catégorie --</option>
-                        <?php foreach ($categories as $cat) { ?>
-                            <option value="<?= $cat['id'] ?>"><?= $cat['nom'] ?></option>
-                        <?php } ?>
+                        <?php foreach ($categories as $cat) : ?>
+                            <option value="<?= htmlspecialchars($cat['id']) ?>">
+                                <?= htmlspecialchars($cat['nom']) ?>
+                            </option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
 
@@ -49,10 +54,11 @@
                 </div>
 
                 <div class="d-flex justify-content-between">
-                    <button type="submit" class="btn btn-success">Ajouter</button>
+                    <button type="submit" class="btn btn-success w-100">Ajouter</button>
                 </div>
 
             </form>
+
         </div>
     </div>
 

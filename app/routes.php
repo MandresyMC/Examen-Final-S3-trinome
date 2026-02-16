@@ -11,12 +11,13 @@ require_once __DIR__ . '/repositories/DashboardRepository.php';
 require_once __DIR__ . '/repositories/DonsRepository.php';
 require_once __DIR__ . '/repositories/StockDonsRepository.php';
 require_once __DIR__ . '/repositories/VilleRepository.php';
+require_once __DIR__ . '/repositories/CategorieRepository.php';
 
 Flight::route('GET /', function () {
     Flight::redirect('/formulaire_dons');
 });
 
-Flight::route('GET /formulaire_besoin', ['BesoinController', 'showFormulaire']);
+Flight::route('GET /formulaire_besoin', ['BesoinController', 'showFormulaireBesoin']);
 Flight::route('POST /formulaire_besoin', ['BesoinController', 'saveBesoin']);
 
 Flight::route('GET /formulaire_stock', ['StockController', 'showFormulaireStock']);

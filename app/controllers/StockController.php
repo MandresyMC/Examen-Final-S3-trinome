@@ -1,27 +1,32 @@
 <?php
+
 class StockController {
 
     public static function showFormulaireStock() {
-        $categories = [
-            ['id' => 1, 'nom' => 'Alimentation'],
-            ['id' => 2, 'nom' => 'Boissons'],
-            ['id' => 3, 'nom' => 'Produits ménagers']
-        ];
+        $pdo = Flight::db();
+        $repoCategorie = new CategorieRepository($pdo);
 
-        Flight::render('formulaire_stock', ['categories' => $categories]);
+        $categories = $repoCategorie->findAll();
+
+        Flight::render('formulaire_stock', [
+            'categories' => $categories
+        ]);
     }
 
     public static function saveStock() {
+        $pdo = Flight::db();
+        $repoStock = new StockDonsRepository($pdo);
+
         $cat = $_POST['cat'];
         $nom = $_POST['nom'];
         $quantite_initiale = $_POST['quantite_initiale'];
-        $quantite_finale = $_POST['quantite_finale'];
+        $quantite_finale   = $_POST['quantite_finale'];
 
-        // Ici tu peux insérer les données dans la base
-        // Exemple : INSERT INTO stock (cat_id, nom, qte_init, qte_final) VALUES (...)
+        $id = $repoStock->create($cat, 0, $nom, $quantite_initiale, $quantite_finale); 
+        // ici 0 pour ville_id car stockDons n'a pas besoin de ville
 
         echo "<div class='alert alert-success text-center mt-3'>
-                Le produit '$nom' a été ajouté au stock avec succès !
+                Le produit '$nom' a été ajouté au stock avec succès ! (ID: $id)
               </div>";
     }
 }

@@ -1,18 +1,15 @@
 <?php
+
+
 class BesoinController {
 
-    public static function showFormulaire() {
-        $villes = [
-            ['id' => 1, 'nom' => 'Antananarivo'],
-            ['id' => 2, 'nom' => 'Fianarantsoa'],
-            ['id' => 3, 'nom' => 'Toamasina']
-        ];
+    public function showFormulaireBesoin() {
+        $pdo = Flight::db(); 
+        $repoVille = new VilleRepository($pdo);
+        $repoCategorie = new CategorieRepository($pdo);
 
-        $categories = [
-            ['id' => 1, 'nom' => 'Nature'],
-            ['id' => 2, 'nom' => 'Matériaux'],
-            ['id' => 3, 'nom' => 'Argents']
-        ];
+        $villes = $repoVille->findAll();
+        $categories = $repoCategorie->findAll();
 
         Flight::render('formulaire_besoin', [
             'villes' => $villes,
@@ -20,14 +17,19 @@ class BesoinController {
         ]);
     }
 
-    public static function saveBesoin() {
+    public function saveBesoin() {
+        $pdo = Flight::db();
+        $repoBesoin = new BesoinRepository($pdo);
+
         $ville = $_POST['ville'];
         $cat = $_POST['cat'];
-        $nom = $_POST['nom'];
-        $quantite = $_POST['quantite'];
+        $nomProduit = $_POST['nom'];
+        $quantiteDemandee = $_POST['quantite'];
+
+        $idBesoin = $repoBesoin->create($cat, $ville, $nomProduit, $quantiteDemandee);
 
         echo "<div class='alert alert-success text-center mt-3'>
-                Le besoin '$nom' a été ajouté avec succès !
+                Le besoin '$nomProduit' a été ajouté avec succès ! (ID: $idBesoin)
               </div>";
     }
 }

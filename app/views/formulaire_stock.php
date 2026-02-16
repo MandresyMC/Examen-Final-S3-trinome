@@ -16,17 +16,18 @@
         </div>
 
         <div class="card-body">
-            <form action="#" method="POST">
+
+            <form action="/formulaire_stock" method="POST">
 
                 <div class="mb-3">
                     <label for="cat" class="form-label">Catégorie</label>
                     <select name="cat" id="cat" class="form-select" required>
                         <option value="">-- Choisir une catégorie --</option>
-                        <?php foreach ($categories as $cat) { ?>
-                            <option value="<?= $cat['id'] ?>">
-                                <?= $cat['nom'] ?>
+                        <?php foreach ($categories as $cat) : ?>
+                            <option value="<?= htmlspecialchars($cat['id']) ?>">
+                                <?= htmlspecialchars($cat['nom']) ?>
                             </option>
-                        <?php } ?>
+                        <?php endforeach; ?>
                     </select>
                 </div>
 
@@ -46,10 +47,11 @@
                 </div>
 
                 <div class="d-flex justify-content-between">
-                    <button type="submit" class="btn btn-primary">Ajouter au stock</button>
+                    <button type="submit" class="btn btn-primary w-100">Ajouter au stock</button>
                 </div>
 
             </form>
+
         </div>
     </div>
 
