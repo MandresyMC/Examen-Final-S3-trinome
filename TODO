@@ -38,3 +38,9 @@ historique des achats faits par une ville
 
 
 select * from achat where ville = id
+
+
+
+action de vente
+
+une ville peux vendre ses dons si personne n en a besoin
