@@ -42,4 +42,17 @@
             
             return $st->fetchAll() ?? [];
         }
+
+        public function findById($idStock) {
+            $sql = "SELECT * FROM stockDons WHERE idStock = ?";
+            $st = $this->pdo->prepare($sql);
+            try {
+                $st->execute([ (int)$idStock ]);
+            } catch (PDOException $e) {
+                $info = $st->errorInfo();
+                throw new RuntimeException('FINDBYID : DB error in findById(): ' . $e->getMessage() . ' - SQLSTATE: ' . ($info[0] ?? '') . ' - DriverMsg: ' . ($info[2] ?? ''));
+            }
+            
+            return $st->fetch();
+        }
     }

@@ -25,10 +25,18 @@
         public function createDon() {
             $pdo = Flight::db();
             $repoDons = new DonsRepository($pdo);
+            $repoStockDons = new StockDonsRepository($pdo);
 
             $idVille = Flight::request()->data['idVille'] ?? null;
             $idStock = Flight::request()->data['idStock'] ?? null;
             $quantiteDonnee = Flight::request()->data['quantiteDonnee'] ?? null;
+
+            $stock = $repoStockDons->findById($idStock);
+            $quantiteFinale = 0;
+            if (!$stock) {
+                $quantiteFinale = $stock['quantiteFinale'] - $quantiteDonnee;
+                $repoStockDons->updateQuantiteFinale($quantiteFinale, $idStock);
+            }
 
             $success = null;
             try {
