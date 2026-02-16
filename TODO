@@ -1,0 +1,25 @@
+Page 3 :
+     - formulaire besoin
+     - formulaire dons
+     - affichage dons
+
+- accueil
+     - misafidy ville pour voir les dons faites avec leur date
+
+- formulaire_besoin :
+     - affichage
+          - champ : ville, categorie, nom(riz, huile, toile, ...), quantite
+          - bouton ajouter 
+               - renvoie des donnees
+               - insertion des donnees dans la base
+          - annuler
+               - rediriger vers la page d'accueil
+
+- formulaire_dons :
+     - misafidy ville alouh de mirediriger dans la meme page, et afficher ses besoins
+     - champ : besoin, quantite
+     - bouton ajouter 
+               - renvoie des donnees
+               - insertion des donnees dans la base
+          - annuler
+               - rediriger vers la page d'accueil
