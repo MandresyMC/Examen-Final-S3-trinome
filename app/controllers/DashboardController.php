@@ -5,7 +5,7 @@
             $pdo  = Flight::db();
             $repo = new DashboardRepository($pdo);
             
-            $allObjets = $repo->findAllDashboard();
+            $allObjets = $repo->findDashboard();
 
             $success = null;
             if (isset(Flight::request()->query['success'])) {

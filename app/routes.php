@@ -23,3 +23,4 @@ Flight::route('GET /formulaire_stock', ['StockController', 'showFormulaireStock'
 Flight::route('POST /formulaire_stock', ['StockController', 'saveStock']);
 
 Flight::route('GET /formulaire_dons', ['DonsController', 'showFormulaireDons']);
+Flight::route('GET /dashboard', ['DashboardController', 'showDashboard']);
