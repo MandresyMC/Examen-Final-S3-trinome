@@ -10,11 +10,14 @@
                        b.quantiteDemandee AS quantiteDemande,
                        p.nom AS nomProduit,
                        v.nom AS villeNom,
-                       d.quantiteDonnee AS quantiteDonne
+                       d.quantiteDonnee AS quantiteDonne,
+                       a.prix AS achat,
+                       a.create_at AS dateAchat
                 FROM besoin b
                 JOIN produit p ON b.idProduit = p.id
                 JOIN ville v ON b.idVille = v.id
                 JOIN dons d ON b.idVille = d.idVille
+                JOIN achat a ON a.idVille = d.idVille
             ";
             $st = $this->pdo->prepare($sql);
             try {
