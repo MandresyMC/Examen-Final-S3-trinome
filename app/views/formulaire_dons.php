@@ -12,52 +12,56 @@
         <link rel="stylesheet" href="css/formulaire_dons.css">
     </head>
     <body>
-        <div class="form-wrapper">
-            <h1>Formulaire Dons</h1>
+            <?php include('header/header.php') ?>
+            
+        <div class="page-content"> 
+            <div class="form-wrapper">
+                <h1>Formulaire Dons</h1>
 
-            <?php if ($success) { ?>
-                <div class="alert alert-success"><?= $success ?></div>
-            <?php } ?>
-            <?php if ($error) { ?>
-                <div class="alert alert-danger"><?= $error ?></div>
-            <?php } ?>
+                <?php if ($success) { ?>
+                    <div class="alert alert-success"><?= $success ?></div>
+                <?php } ?>
+                <?php if ($error) { ?>
+                    <div class="alert alert-danger"><?= $error ?></div>
+                <?php } ?>
 
-            <?php if (empty($villes) && empty($stocksDons)) { ?>
-                <p class="alert alert-info">Aucune ville ni stock de dons disponible.</p>
-            <?php } else { ?>
-                <form action="ajout_dons" method="post">
-                    <div class="mb-3">
-                        <label for="ville" class="form-label">Ville à donner</label>
-                        <select name="idVille" id="ville" class="form-select" required>
-                            <option value="">-- Choisir une ville --</option>
-                            <?php foreach ($villes as $ville) { ?>
-                                <option value="<?= $ville['id'] ?>">
-                                    <?= $ville['nom'] ?>
-                                </option>
-                            <?php } ?>
-                        </select>
-                    </div>
+                <?php if (empty($villes) && empty($stocksDons)) { ?>
+                    <p class="alert alert-info">Aucune ville ni stock de dons disponible.</p>
+                <?php } else { ?>
+                    <form action="ajout_dons" method="post">
+                        <div class="mb-3">
+                            <label for="ville" class="form-label">Ville à donner</label>
+                            <select name="idVille" id="ville" class="form-select" required>
+                                <option value="">-- Choisir une ville --</option>
+                                <?php foreach ($villes as $ville) { ?>
+                                    <option value="<?= $ville['id'] ?>">
+                                        <?= $ville['nom'] ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
+                        </div>
 
-                    <div class="mb-3">
-                        <label for="stock" class="form-label">Stock de dons</label>
-                        <select name="idStock" id="stock" class="form-select" required>
-                            <option value="">-- Choisir un stock de dons --</option>
-                            <?php foreach ($stocksDons as $stock) { ?>
-                                <option value="<?= $stock['id'] ?>">
-                                    <?= $stock['nomProduit'] ?> - <?= $stock['quantiteFinale'] ?> <?= $stock['nomProduit'] != 'Argent' ? ' kg' : ' Ar' ?>
-                                </option>
-                            <?php } ?>
-                        </select>
-                    </div>
+                        <div class="mb-3">
+                            <label for="stock" class="form-label">Stock de dons</label>
+                            <select name="idStock" id="stock" class="form-select" required>
+                                <option value="">-- Choisir un stock de dons --</option>
+                                <?php foreach ($stocksDons as $stock) { ?>
+                                    <option value="<?= $stock['id'] ?>">
+                                        <?= $stock['nomProduit'] ?> - <?= $stock['quantiteFinale'] ?> <?= $stock['nomProduit'] != 'Argent' ? ' kg' : ' Ar' ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
+                        </div>
 
-                    <div class="mb-3">
-                        <label for="quantite" class="form-label">Quantité à donner</label>
-                        <input type="number" class="form-control" id="quantite" name="quantiteDonnee" min="1" required>
-                    </div>
+                        <div class="mb-3">
+                            <label for="quantite" class="form-label">Quantité à donner</label>
+                            <input type="number" class="form-control" id="quantite" name="quantiteDonnee" min="1" required>
+                        </div>
 
-                    <button type="submit" class="btn btn-primary">Soumettre le don</button>
-                </form>
-            <?php } ?>
+                        <button type="submit" class="btn btn-primary">Soumettre le don</button>
+                    </form>
+                <?php } ?>
+            </div>
         </div>
     </body>
 </html>
