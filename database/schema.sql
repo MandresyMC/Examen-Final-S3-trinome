@@ -66,7 +66,6 @@ CREATE TABLE achat (
     id INT PRIMARY KEY AUTO_INCREMENT,
     idVille INT, -- ville manao achat
     idStock INT, -- stock (produit) hovidiana
-    idDon INT, -- don (produit) hividianana
     quantite INT, -- Qte a achete
     prix DOUBLE, -- prix de l'achat
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP

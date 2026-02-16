@@ -28,6 +28,8 @@
             <h3>Montant : <?= $ville['fond'] ?> Ar</h3>
             
             <form action="/formulaire_achat" method="post">
+                <input type="hidden" name="idVille" value="<?= $ville['id'] ?>">
+                
                 <div class="mb-3">
                     <label for="stock" class="form-label">Stock de dons</label>
                     <select name="idStock" id="stock" class="form-select" required>
