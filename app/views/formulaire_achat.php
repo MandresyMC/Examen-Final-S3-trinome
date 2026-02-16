@@ -35,7 +35,7 @@
                         <?php foreach ($allStocksDons as $stock) { ?>
                             <?php if ($stock['nomProduit'] != 'Argent' ) { ?>
                                 <option value="<?= $stock['id'] ?>">
-                                    <?= $stock['nomProduit'] ?> - <?= $stock['quantiteFinale'] ?> kg
+                                    <?= $stock['nomProduit'] ?> - <?= $stock['quantiteFinale'] ?> kg - PU : <?= $stock['prixUnitaire'] ?> Ar/kg
                                 </option>
                             <?php } ?>
                         <?php } ?>
@@ -43,7 +43,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="quantite" class="form-label">Quantité à acheter</label>
+                    <label for="quantite" class="form-label">Quantité à acheter (en kg)</label>
                     <input type="number" class="form-control" id="quantite" name="quantiteAchetee" min="1" required>
                 </div>
 

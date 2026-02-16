@@ -31,7 +31,7 @@
         }
 
         public function findAll() {
-            $sql = "SELECT sd.*, p.nom AS nomProduit FROM stockDons sd JOIN produit p ON sd.idProduit = p.id";
+            $sql = "SELECT sd.*, p.nom AS nomProduit, p.prixUnitaire AS prixUnitaire FROM stockDons sd JOIN produit p ON sd.idProduit = p.id";
             $st = $this->pdo->prepare($sql);
             try {
                 $st->execute();
