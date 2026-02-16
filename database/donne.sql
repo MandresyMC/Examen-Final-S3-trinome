@@ -22,7 +22,7 @@ insert into `stockDons` (`idCategorie`, `idProduit`, `quantiteInitiale`, `quanti
 insert into `stockDons` (`idCategorie`, `idProduit`, `quantiteInitiale`, `quantiteFinale`) values (1, 2, 30, 30);
 insert into `stockDons` (`idCategorie`, `idProduit`, `quantiteInitiale`, `quantiteFinale`) values (1, 3, 100, 100);
 insert into `stockDons` (`idCategorie`, `idProduit`, `quantiteInitiale`, `quantiteFinale`) values (2, 4, 40, 40);
-insert into `stockDons` (`idCategorie`, `idProduit`, `quantiteInitiale`, `quantiteFinale`) values (3, 5, 20, 20);
+insert into `stockDons` (`idCategorie`, `idProduit`, `quantiteInitiale`, `quantiteFinale`) values (3, 5, 200000, 200000);
 insert into `dons` (`idVille`, `idStock`, `quantiteDonnee`) values (1, 1, 5);
 insert into `dons` (`idVille`, `idStock`, `quantiteDonnee`) values (2, 2, 3);
 
