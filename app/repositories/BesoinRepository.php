@@ -29,4 +29,17 @@
             
             return $st->fetchAll();
         }
+
+        public function findByVille($idVille) {
+            $sql = "SELECT * FROM besoin WHERE idVille = ?";
+            $st = $this->pdo->prepare($sql);
+            try {
+                $st->execute([ (int)$idVille ]);
+            } catch (PDOException $e) {
+                $info = $st->errorInfo();
+                throw new RuntimeException('FINDBYVILLE : DB error in findByVille(): ' . $e->getMessage() . ' - SQLSTATE: ' . ($info[0] ?? '') . ' - DriverMsg: ' . ($info[2] ?? ''));
+            }
+            
+            return $st->fetchAll();
+        }
     }
