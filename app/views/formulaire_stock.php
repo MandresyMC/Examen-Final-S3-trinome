@@ -24,8 +24,8 @@
                     <select name="cat" id="cat" class="form-select" required>
                         <option value="">-- Choisir une catégorie --</option>
                         <?php foreach ($categories as $cat) : ?>
-                            <option value="<?= htmlspecialchars($cat['id']) ?>">
-                                <?= htmlspecialchars($cat['nom']) ?>
+                            <option value="<?= $cat['id'] ?>">
+                                <?= $cat['nom'] ?>
                             </option>
                         <?php endforeach; ?>
                     </select>
