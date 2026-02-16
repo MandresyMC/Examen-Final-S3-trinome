@@ -14,13 +14,17 @@
     <body>
         <h1>Formulaire Dons</h1>
 
+        <?php if ($success) { ?>
+            <div class="alert alert-success"><?= $success ?></div>
+        <?php } ?>
+
         <?php if (empty($villes) && empty($stocksDons)) { ?>
-            <p>Aucune ville ni stock de dons disponible.</p>
+            <p class="alert alert-info">Aucune ville ni stock de dons disponible.</p>
         <?php } else { ?>
-            <form action="">
+            <form action="ajout_dons" method="post">
                 <div class="mb-3">
                     <label for="ville" class="form-label">Ville</label>
-                    <select name="ville" id="ville" class="form-select" required>
+                    <select name="idVille" id="ville" class="form-select" required>
                         <option value="">-- Choisir une ville --</option>
                         <?php foreach ($villes as $ville) { ?>
                             <option value="<?= $ville['id'] ?>">
@@ -32,7 +36,7 @@
 
                 <div class="mb-3">
                     <label for="stock" class="form-label">Stock de dons</label>
-                    <select name="stock" id="stock" class="form-select" required>
+                    <select name="idStock" id="stock" class="form-select" required>
                         <option value="">-- Choisir un stock de dons --</option>
                         <?php foreach ($stocksDons as $stock) { ?>
                             <option value="<?= $stock['id'] ?>">

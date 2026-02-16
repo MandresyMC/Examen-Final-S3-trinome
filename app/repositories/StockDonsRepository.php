@@ -17,6 +17,19 @@
             return $this->pdo->lastInsertId();
         }
 
+        public function updateQuantiteFinale($quantiteFinale, $idStock) {
+            $sql = "UPDATE stockDons SET quantiteFinale = ? WHERE idStock = ?";
+            $st = $this->pdo->prepare($sql);
+            try {
+                $st->execute([ (double)$quantiteFinale, (int)$idStock ]);
+            } catch (PDOException $e) {
+                // Ajoute des infos utiles pour le debug
+                $info = $st->errorInfo();
+                throw new RuntimeException('UPDATE : DB error in updateQuantiteFinale(): ' . $e->getMessage() . ' - SQLSTATE: ' . ($info[0] ?? '') . ' - DriverMsg: ' . ($info[2] ?? ''));
+            }
+            return $st->rowCount();
+        }
+
         public function findAll() {
             $sql = "SELECT * FROM stockDons";
             $st = $this->pdo->prepare($sql);
