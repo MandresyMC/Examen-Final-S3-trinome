@@ -29,4 +29,4 @@ Flight::route('GET /dashboard', ['DashboardController', 'showDashboard']);
 Flight::route('GET /formulaire_dons', ['DonsController', 'showFormulaireDons']);
 Flight::route('POST /ajout_dons', ['DonsController', 'createDon']);
 
-Flight::route('GET /tableau_de_bord', ['DashboardController', 'showDashboard']);
+Flight::route('GET /tableau_de_bord', ['TableauController', 'showAchats']);
