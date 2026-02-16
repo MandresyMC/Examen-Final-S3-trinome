@@ -9,9 +9,9 @@ class BesoinController {
         ];
 
         $categories = [
-            ['id' => 1, 'nom' => 'Alimentation'],
-            ['id' => 2, 'nom' => 'Boissons'],
-            ['id' => 3, 'nom' => 'Produits ménagers']
+            ['id' => 1, 'nom' => 'Nature'],
+            ['id' => 2, 'nom' => 'Matériaux'],
+            ['id' => 3, 'nom' => 'Argents']
         ];
 
         Flight::render('formulaire_besoin', [
@@ -25,9 +25,6 @@ class BesoinController {
         $cat = $_POST['cat'];
         $nom = $_POST['nom'];
         $quantite = $_POST['quantite'];
-
-        // Ici tu peux insérer les données dans la base, par exemple :
-        // INSERT INTO besoins (ville_id, cat_id, nom, quantite) VALUES (...)
 
         echo "<div class='alert alert-success text-center mt-3'>
                 Le besoin '$nom' a été ajouté avec succès !
