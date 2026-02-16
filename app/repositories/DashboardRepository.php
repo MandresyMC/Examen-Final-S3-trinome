@@ -6,8 +6,15 @@
 
         public function findDashboard() {
             $sql = "
-                SELECT b.idCategorie, b.quantiteDemandee, b.nomProduit, b.idVille, d.quantiteDonnee 
-                FROM besoin b join dons d on b.idVille = d.idVille
+                SELECT b.idCategorie AS idCat,
+                       b.quantiteDemandee AS quantiteDemande,
+                       p.nom AS nomProduit,
+                       v.nom AS villeNom,
+                       d.quantiteDonnee AS quantiteDonne
+                FROM besoin b
+                JOIN produit p ON b.idProduit = p.id
+                JOIN ville v ON b.idVille = v.id
+                JOIN dons d ON b.idVille = d.idVille
             ";
             $st = $this->pdo->prepare($sql);
             try {

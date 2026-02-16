@@ -4,29 +4,34 @@ class StockController {
 
     public static function showFormulaireStock() {
         $pdo = Flight::db();
-        $repoCategorie = new CategorieRepository($pdo);
+        $repoProduit = new ProduitRepository($pdo);
 
-        $categories = $repoCategorie->findAll();
+        $produits = $repoProduit->findAll();
 
         Flight::render('formulaire_stock', [
-            'categories' => $categories
+            'produits' => $produits
         ]);
     }
 
     public static function saveStock() {
         $pdo = Flight::db();
         $repoStock = new StockDonsRepository($pdo);
+        $repoProduit = new ProduitRepository($pdo);
 
-        $cat = $_POST['cat'];
-        $nom = $_POST['nom'];
+        $idProduit = $_POST['idProduit'];
         $quantite_initiale = $_POST['quantite_initiale'];
         $quantite_finale   = $_POST['quantite_finale'];
 
-        $id = $repoStock->create($cat, 0, $nom, $quantite_initiale, $quantite_finale); 
-        // ici 0 pour ville_id car stockDons n'a pas besoin de ville
+        $produit = $repoProduit->findById($idProduit);
+        if (!$produit) {
+            echo "<div class='alert alert-danger text-center mt-3'>Produit introuvable.</div>";
+            return;
+        }
+
+        $id = $repoStock->create($produit['idCategorie'], $idProduit, $quantite_initiale, $quantite_finale);
 
         echo "<div class='alert alert-success text-center mt-3'>
-                Le produit '$nom' a été ajouté au stock avec succès ! (ID: $id)
+                Le produit '{$produit['nom']}' a été ajouté au stock avec succès ! (ID: $id)
               </div>";
     }
 }

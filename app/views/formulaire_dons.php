@@ -43,7 +43,7 @@
                         <option value="">-- Choisir un stock de dons --</option>
                         <?php foreach ($stocksDons as $stock) { ?>
                             <option value="<?= $stock['id'] ?>">
-                                <?= $stock['nomProduit'] ?> - <?= $stock['quantiteInitiale'] ?>
+                                <?= $stock['nomProduit'] ?> - <?= $stock['quantiteFinale'] ?>
                             </option>
                         <?php } ?>
                     </select>
