@@ -10,7 +10,7 @@ require_once __DIR__ . '/controllers/StockDonsRepository.php';
 require_once __DIR__ . '/controllers/VilleRepository.php';
 
 Flight::route('GET /', function () {
-    Flight::redirect('/');
+    Flight::redirect('/formulaire_dons');
 });
 
 Flight::route('GET /formulaire_dons', ['DonsController', 'showFormulaireDons']);
