@@ -8,7 +8,6 @@
         ['href' => '/formulaire_stock',   'label' => 'Stocks'],
         ['href' => '/formulaire_dons',    'label' => 'Dons'],
         ['href' => '/achat',              'label' => 'Achats'],
-        ['href' => '/tableau',            'label' => 'Tableau'],
         ['href' => '/recapitulation',     'label' => 'Récapitulation'],
     ];
 ?>

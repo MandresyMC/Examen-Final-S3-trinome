@@ -4,25 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajouter un stock</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/formulaire_stock.css">
 </head>
-<body class="bg-light">
+<body>
 
-<div class="container mt-5">
+    <?php include('header/header.php') ?>
 
-    <div class="card shadow">
-        <div class="card-header bg-primary text-white text-center">
-            <h3 class="mb-0">Ajouter un stock</h3>
-        </div>
+    <div class="page-content">
+        <div class="form-wrapper">
+            <h1>Ajouter un stock</h1>
 
-        <?php if (isset($success)) { ?>
-            <div class="alert alert-success mt-3 mx-3"><?= $success ?></div>
-        <?php } ?>
-        <?php if ($error) { ?>
-            <div class="alert alert-danger mt-3 mx-3"><?= $error ?></div>
-        <?php } ?>
-        
-        <div class="card-body">
+            <?php if (isset($success)) { ?>
+                <div class="alert alert-success"><?= $success ?></div>
+            <?php } ?>
+            <?php if ($error) { ?>
+                <div class="alert alert-danger"><?= $error ?></div>
+            <?php } ?>
 
             <form action="/formulaire_stock" method="POST">
 
@@ -31,9 +28,7 @@
                     <select name="idProduit" id="idProduit" class="form-select" required>
                         <option value="">-- Choisir un produit --</option>
                         <?php foreach ($produits as $produit) { ?>
-                            <option value="<?= $produit['id'] ?>">
-                                <?= $produit['nom'] ?>
-                            </option>
+                            <option value="<?= $produit['id'] ?>"><?= $produit['nom'] ?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -43,17 +38,11 @@
                     <input type="number" class="form-control" id="quantite_initiale" name="quantite_initiale" min="0" required>
                 </div>
 
-                <div class="d-flex justify-content-between">
-                    <button type="submit" class="btn btn-primary w-100">Ajouter au stock</button>
-                </div>
+                <button type="submit" class="btn-primary">Ajouter au stock</button>
 
             </form>
-
         </div>
     </div>
 
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
