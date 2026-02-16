@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajouter un besoin</title>
-
     <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
@@ -17,16 +16,14 @@
         </div>
 
         <div class="card-body">
-            <form action="#" method="POST">
+            <form action="/formulaire_besoin" method="POST">
 
                 <div class="mb-3">
                     <label for="ville" class="form-label">Ville</label>
                     <select name="ville" id="ville" class="form-select" required>
                         <option value="">-- Choisir une ville --</option>
                         <?php foreach ($villes as $ville) { ?>
-                            <option value="<?= $ville['id'] ?>">
-                                <?= $ville['nom'] ?>
-                            </option>
+                            <option value="<?= $ville['id'] ?>"><?= $ville['nom'] ?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -36,9 +33,7 @@
                     <select name="cat" id="cat" class="form-select" required>
                         <option value="">-- Choisir une catégorie --</option>
                         <?php foreach ($categories as $cat) { ?>
-                            <option value="<?= $cat['id'] ?>">
-                                <?= $cat['nom'] ?>
-                            </option>
+                            <option value="<?= $cat['id'] ?>"><?= $cat['nom'] ?></option>
                         <?php } ?>
                     </select>
                 </div>
