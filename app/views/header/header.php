@@ -6,7 +6,7 @@
         ['href' => '/dashboard',         'label' => 'Tableau de bord'],
         ['href' => '/formulaire_besoin',  'label' => 'Besoins'],
         ['href' => '/formulaire_stock',   'label' => 'Stocks'],
-        ['href' => '/formulaire_dons',    'label' => 'Dons'],
+        ['href' => '/dons',    'label' => 'Dons'],
         ['href' => '/achat',              'label' => 'Achats'],
         ['href' => '/recapitulation',     'label' => 'Récapitulation'],
     ];

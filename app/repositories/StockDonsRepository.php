@@ -55,4 +55,21 @@
             
             return $st->fetch();
         }
+
+        public function findByProduit($idProduit) {
+            $sql = "
+                SELECT sd.*, p.nom AS nomProduit, p.prixUnitaire AS prixUnitaire 
+                FROM stockDons sd JOIN produit p ON sd.idProduit = p.id 
+                WHERE sd.idProduit = ?
+            ";
+            $st = $this->pdo->prepare($sql);
+            try {
+                $st->execute([ (int)$idProduit ]);
+            } catch (PDOException $e) {
+                $info = $st->errorInfo();
+                throw new RuntimeException('FINDBYPRODUIT : DB error in findByProduit(): ' . $e->getMessage() . ' - SQLSTATE: ' . ($info[0] ?? '') . ' - DriverMsg: ' . ($info[2] ?? ''));
+            }
+            
+            return $st->fetch() ?? null;
+        }
     }
