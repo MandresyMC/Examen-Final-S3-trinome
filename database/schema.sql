@@ -16,12 +16,12 @@ CREATE TABLE besoin (
     idCategorie INT,
     idVille INT,
     nom VARCHAR(255) NOT NULL,
-    quantinte DOUBLE NOT NULL
+    quantite DOUBLE NOT NULL
 );
 
 CREATE TABLE don (
     id INT PRIMARY KEY AUTO_INCREMENT,
     idBesoin INT,
-    quantinte DOUBLE NOT NULL,
+    quantite DOUBLE NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
