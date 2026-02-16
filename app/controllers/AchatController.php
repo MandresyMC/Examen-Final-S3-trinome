@@ -23,9 +23,21 @@
             $ville = $repoVille->findById($idVille);
             $stocksDons = $repoStockDons->findAll();
 
+            $success = null;
+            if (isset(Flight::request()->query['success'])) {
+                $success = Flight::request()->query['success'];
+            }
+            
+            $error = null;
+            if (isset(Flight::request()->query['error'])) {
+                $error = Flight::request()->query['error'];
+            }
+            
             Flight::render("formulaire_achat", [
                 'ville' => $ville,
-                'allStocksDons' => $stocksDons
+                'allStocksDons' => $stocksDons,
+                'error' => $error,
+                'success' => $success
             ]);
         }
 
@@ -43,18 +55,24 @@
                 $pdo->beginTransaction();
 
                 $stock = $repoStockDons->findById($idStock);
+                $error = null;
                 if (!$stock) {
-                    throw new Exception("Stock introuvable.");
+                    $error = "Stock introuvable.";
+                    Flight::redirect('/formulaire_achat?error=' . urlencode($error));
+                    exit;
                 }
 
                 if ($stock['quantiteFinale'] < $quantiteAchetee) {
-                    throw new Exception("Quantité achetée dépasse la quantité disponible.");
+                    $error = "Quantité achetée dépasse la quantité disponible.";
+                    Flight::redirect('/formulaire_achat?error=' . urlencode($error));
+                    exit;
                 }
 
                 $quantiteFinale = $stock['quantiteFinale'] - $quantiteAchetee;
                 $repoStockDons->updateQuantiteFinale($quantiteFinale, $idStock); // mettre à jour stock (qte finale)
 
-                $idAchat = $repoAchat->create($idVille, $idStock, null, $quantiteAchetee); // creer achat
+                $prix = $quantiteAchetee * $stock['prixUnitaire'];
+                $idAchat = $repoAchat->create($idVille, $idStock, $quantiteAchetee, $prix); // creer achat
 
                 if ($stock['nomProduit'] == 'Argent') {
                     $retour = $repoVille->updateFond($idVille, -$quantiteAchetee); // mettre à jour fond de la ville
