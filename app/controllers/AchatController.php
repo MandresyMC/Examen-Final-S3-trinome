@@ -58,13 +58,13 @@
                 $error = null;
                 if (!$stock) {
                     $error = "Stock introuvable.";
-                    Flight::redirect('/formulaire_achat?error=' . urlencode($error));
+                    Flight::redirect('/formulaire_achat?idVille=' . $idVille . '&error=' . urlencode($error));
                     exit;
                 }
 
                 if ($stock['quantiteFinale'] < $quantiteAchetee) {
                     $error = "Quantité achetée dépasse la quantité disponible.";
-                    Flight::redirect('/formulaire_achat?error=' . urlencode($error));
+                    Flight::redirect('/formulaire_achat?idVille=' . $idVille . '&error=' . urlencode($error));
                     exit;
                 }
 
@@ -72,20 +72,24 @@
                 $repoStockDons->updateQuantiteFinale($quantiteFinale, $idStock); // mettre à jour stock (qte finale)
 
                 $prix = $quantiteAchetee * $stock['prixUnitaire'];
+                if ($prix > $repoVille->findById($idVille)['fond']) {
+                    $error = "Montant insuffisant pour cet achat.";
+                    Flight::redirect('/formulaire_achat?idVille=' . $idVille . '&error=' . urlencode($error));
+                    exit;
+                }
+                
                 $idAchat = $repoAchat->create($idVille, $idStock, $quantiteAchetee, $prix); // creer achat
 
-                if ($stock['nomProduit'] == 'Argent') {
-                    $retour = $repoVille->updateFond($idVille, -$quantiteAchetee); // mettre à jour fond de la ville
-                }
+                $retour = $repoVille->updateFond($idVille, -$prix); // mettre à jour fond de la ville
 
                 $pdo->commit();
 
-                Flight::redirect('/achat?success=' . urlencode("Achat enregistré avec succès."));
+                Flight::redirect('/formulaire_achat?idVille=' . $idVille . '&success=' . urlencode("Achat enregistré avec succès."));
             } catch (Exception $e) {
                 if ($pdo->inTransaction()) {
                     $pdo->rollBack();
                 }
-                Flight::redirect('/achat?error=' . urlencode("Erreur lors de l'enregistrement de l'achat : " . $e->getMessage()));
+                Flight::redirect('/formulaire_achat?idVille=' . $idVille . '&error=' . urlencode("Erreur lors de l'enregistrement de l'achat : " . $e->getMessage()));
             }
         }
     }
