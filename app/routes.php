@@ -12,6 +12,7 @@ require_once __DIR__ . '/repositories/DonsRepository.php';
 require_once __DIR__ . '/repositories/StockDonsRepository.php';
 require_once __DIR__ . '/repositories/VilleRepository.php';
 require_once __DIR__ . '/repositories/CategorieRepository.php';
+require_once __DIR__ . '/repositories/ProduitRepository.php';
 
 Flight::route('GET /', function () {
     Flight::redirect('/dashboard');

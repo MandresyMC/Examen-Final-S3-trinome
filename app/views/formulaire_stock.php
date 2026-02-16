@@ -15,35 +15,32 @@
             <h3 class="mb-0">Ajouter un stock</h3>
         </div>
 
+        <?php if (isset($success)) { ?>
+            <div class="alert alert-success mt-3 mx-3"><?= $success ?></div>
+        <?php } ?>
+        <?php if ($error) { ?>
+            <div class="alert alert-danger mt-3 mx-3"><?= $error ?></div>
+        <?php } ?>
+        
         <div class="card-body">
 
             <form action="/formulaire_stock" method="POST">
 
                 <div class="mb-3">
-                    <label for="cat" class="form-label">Catégorie</label>
-                    <select name="cat" id="cat" class="form-select" required>
-                        <option value="">-- Choisir une catégorie --</option>
-                        <?php foreach ($categories as $cat) { ?>
-                            <option value="<?= $cat['id'] ?>">
-                                <?= $cat['nom'] ?>
+                    <label for="idProduit" class="form-label">Produit</label>
+                    <select name="idProduit" id="idProduit" class="form-select" required>
+                        <option value="">-- Choisir un produit --</option>
+                        <?php foreach ($produits as $produit) { ?>
+                            <option value="<?= $produit['id'] ?>">
+                                <?= $produit['nom'] ?>
                             </option>
                         <?php } ?>
                     </select>
                 </div>
 
                 <div class="mb-3">
-                    <label for="nom" class="form-label">Nom du produit</label>
-                    <input type="text" class="form-control" id="nom" name="nom" required>
-                </div>
-
-                <div class="mb-3">
                     <label for="quantite_initiale" class="form-label">Quantité initiale</label>
                     <input type="number" class="form-control" id="quantite_initiale" name="quantite_initiale" min="0" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="quantite_finale" class="form-label">Quantité finale</label>
-                    <input type="number" class="form-control" id="quantite_finale" name="quantite_finale" min="0" required>
                 </div>
 
                 <div class="d-flex justify-content-between">

@@ -15,8 +15,14 @@
             <h3 class="mb-0">Ajouter un besoin</h3>
         </div>
 
+        <?php if (isset($success)) { ?>
+            <div class="alert alert-success mt-3 mx-3"><?= $success ?></div>
+        <?php } ?>
+        <?php if ($error) { ?>
+            <div class="alert alert-danger mt-3 mx-3"><?= $error ?></div>
+        <?php } ?>
+        
         <div class="card-body">
-
             <form action="/formulaire_besoin" method="POST">
 
                 <div class="mb-3">
@@ -32,20 +38,15 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="cat" class="form-label">Catégorie</label>
-                    <select name="cat" id="cat" class="form-select" required>
-                        <option value="">-- Choisir une catégorie --</option>
-                        <?php foreach ($categories as $cat) : ?>
-                            <option value="<?= htmlspecialchars($cat['id']) ?>">
-                                <?= htmlspecialchars($cat['nom']) ?>
+                    <label for="idProduit" class="form-label">Produit</label>
+                    <select name="idProduit" id="idProduit" class="form-select" required>
+                        <option value="">-- Choisir un produit --</option>
+                        <?php foreach ($produits as $produit) : ?>
+                            <option value="<?= htmlspecialchars($produit['id']) ?>">
+                                <?= htmlspecialchars($produit['nom']) ?>
                             </option>
                         <?php endforeach; ?>
                     </select>
-                </div>
-
-                <div class="mb-3">
-                    <label for="nom" class="form-label">Nom du produit</label>
-                    <input type="text" class="form-control" id="nom" name="nom" required>
                 </div>
 
                 <div class="mb-3">

@@ -4,11 +4,11 @@
         private $pdo;
         public function __construct(PDO $pdo) { $this->pdo = $pdo; }
 
-        public function create($idCategorie, $ville_id, $nomProduit, $quantiteInitiale, $quantiteFinale) {
-            $sql = "INSERT INTO stockDons(idCategorie, nomProduit, quantiteInitiale, quantiteFinale) VALUES(?, ?, ?, ?)";
+        public function create($idCategorie, $idProduit, $quantiteInitiale, $quantiteFinale) {
+            $sql = "INSERT INTO stockDons(idCategorie, idProduit, quantiteInitiale, quantiteFinale) VALUES(?, ?, ?, ?)";
             $st = $this->pdo->prepare($sql);
             try {
-                $st->execute([ (int)$idCategorie, (int)$ville_id, (string)$nomProduit, (float)$quantiteInitiale, (float)$quantiteFinale ]);
+                $st->execute([ (int)$idCategorie, (int)$idProduit, (float)$quantiteInitiale, (float)$quantiteFinale ]);
             } catch (PDOException $e) {
                 // Ajoute des infos utiles pour le debug
                 $info = $st->errorInfo();
@@ -31,7 +31,7 @@
         }
 
         public function findAll() {
-            $sql = "SELECT * FROM stockDons";
+            $sql = "SELECT sd.*, p.nom AS nomProduit FROM stockDons sd JOIN produit p ON sd.idProduit = p.id";
             $st = $this->pdo->prepare($sql);
             try {
                 $st->execute();

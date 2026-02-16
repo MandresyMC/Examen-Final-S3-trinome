@@ -4,11 +4,11 @@
         private $pdo;
         public function __construct(PDO $pdo) { $this->pdo = $pdo; }
 
-        public function create($idCategorie, $ville_id, $nomProduit, $quantiteDemandee) {
-            $sql = "INSERT INTO besoin(idCategorie, idVille, nomProduit, quantiteDemandee) VALUES(?, ?, ?, ?)";
+        public function create($idCategorie, $ville_id, $idProduit, $quantiteDemandee) {
+            $sql = "INSERT INTO besoin(idCategorie, idVille, idProduit, quantiteDemandee) VALUES(?, ?, ?, ?)";
             $st = $this->pdo->prepare($sql);
             try {
-                $st->execute([ (int)$idCategorie, (int)$ville_id, (string)$nomProduit, (float)$quantiteDemandee ]);
+                $st->execute([ (int)$idCategorie, (int)$ville_id, (int)$idProduit, (float)$quantiteDemandee ]);
             } catch (PDOException $e) {
                 // Ajoute des infos utiles pour le debug
                 $info = $st->errorInfo();

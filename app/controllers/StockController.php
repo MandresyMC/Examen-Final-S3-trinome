@@ -4,29 +4,50 @@ class StockController {
 
     public static function showFormulaireStock() {
         $pdo = Flight::db();
-        $repoCategorie = new CategorieRepository($pdo);
+        $repoProduit = new ProduitRepository($pdo);
 
-        $categories = $repoCategorie->findAll();
+        $produits = $repoProduit->findAll();
+
+        $success = null;
+        if (isset(Flight::request()->query['success'])) {
+            $success = Flight::request()->query['success'];
+        }
+
+        $error = null;
+        if (isset(Flight::request()->query['error'])) {
+            $error = Flight::request()->query['error'];
+        }
 
         Flight::render('formulaire_stock', [
-            'categories' => $categories
+            'produits' => $produits,
+            'success' => $success,
+            'error' => $error,
         ]);
     }
 
     public static function saveStock() {
         $pdo = Flight::db();
         $repoStock = new StockDonsRepository($pdo);
+        $repoProduit = new ProduitRepository($pdo);
 
-        $cat = $_POST['cat'];
-        $nom = $_POST['nom'];
+        $idProduit = $_POST['idProduit'];
         $quantite_initiale = $_POST['quantite_initiale'];
-        $quantite_finale   = $_POST['quantite_finale'];
+        $quantite_finale   = $quantite_initiale;;
 
-        $id = $repoStock->create($cat, 0, $nom, $quantite_initiale, $quantite_finale); 
-        // ici 0 pour ville_id car stockDons n'a pas besoin de ville
+        $produit = $repoProduit->findById($idProduit);
+        if (!$produit) {
+            $error = "Produit introuvable.";
+        }
 
-        echo "<div class='alert alert-success text-center mt-3'>
-                Le produit '$nom' a été ajouté au stock avec succès ! (ID: $id)
-              </div>";
+        if ($error) {
+            Flight::redirect('/formulaire_stock?error=' . urlencode($error));
+            return;
+        }
+
+        $id = $repoStock->create($produit['idCategorie'], $idProduit, $quantite_initiale, $quantite_finale);
+
+        $success = "Le produit '{$produit['nom']}' a été ajouté au stock avec succès";
+
+        Flight::redirect('/formulaire_stock?success=' . urlencode($success));
     }
 }

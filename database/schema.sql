@@ -43,7 +43,7 @@ CREATE TABLE produit (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(255) NOT NULL,
     idCategorie INT,
-    prixUnitaire DOUBLE NOT NULL
+    prixUnitaire DOUBLE -- par kg
 );
 
 CREATE TABLE besoin (

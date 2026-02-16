@@ -17,8 +17,8 @@
             <tr>
                 <th>idCat</th>
                 <th>quantiteDemande</th>
-                <th>nomProduit</th>
-                <th>idVille</th>
+                <th>produit</th>
+                <th>ville</th>
                 <th>quantiteDonne</th>
             </tr>
             <?php foreach ($allObjets as $objet) { ?>
@@ -26,7 +26,7 @@
                     <td><?= $objet['idCat'] ?></td>
                     <td><?= $objet['quantiteDemande'] ?></td>
                     <td><?= $objet['nomProduit'] ?></td>
-                    <td><?= $objet['idVille'] ?></td>
+                    <td><?= $objet['villeNom'] ?></td>
                     <td><?= $objet['quantiteDonne'] ?></td>
                 </tr>
             <?php } ?>

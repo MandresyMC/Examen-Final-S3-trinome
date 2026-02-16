@@ -6,30 +6,53 @@ class BesoinController {
     public function showFormulaireBesoin() {
         $pdo = Flight::db(); 
         $repoVille = new VilleRepository($pdo);
-        $repoCategorie = new CategorieRepository($pdo);
+        $repoProduit = new ProduitRepository($pdo);
 
         $villes = $repoVille->findAll();
-        $categories = $repoCategorie->findAll();
+        $produits = $repoProduit->findAll();
+
+        $success = null;
+        if (isset(Flight::request()->query['success'])) {
+            $success = Flight::request()->query['success'];
+        }
+
+        $error = null;
+        if (isset(Flight::request()->query['error'])) {
+            $error = Flight::request()->query['error'];
+        }
 
         Flight::render('formulaire_besoin', [
             'villes' => $villes,
-            'categories' => $categories
+            'produits' => $produits,
+            'success' => $success,
+            'error' => $error,
         ]);
     }
 
     public function saveBesoin() {
         $pdo = Flight::db();
         $repoBesoin = new BesoinRepository($pdo);
+        $repoProduit = new ProduitRepository($pdo);
 
         $ville = $_POST['ville'];
-        $cat = $_POST['cat'];
-        $nomProduit = $_POST['nom'];
+        $idProduit = $_POST['idProduit'];
         $quantiteDemandee = $_POST['quantite'];
 
-        $idBesoin = $repoBesoin->create($cat, $ville, $nomProduit, $quantiteDemandee);
+        $produit = $repoProduit->findById($idProduit);
+        $error = null;
+        if (!$produit) {
+            $error = "Produit introuvable.";
+        }
 
-        echo "<div class='alert alert-success text-center mt-3'>
-                Le besoin '$nomProduit' a été ajouté avec succès ! (ID: $idBesoin)
-              </div>";
+        if ($error) {
+            Flight::redirect('/formulaire_besoin?error=' . urlencode($error));
+            return;
+        }
+
+        $idBesoin = $repoBesoin->create($produit['idCategorie'], $ville, $idProduit, $quantiteDemandee);
+
+        $success = "Besoin ajouté avec succès";
+
+        Flight::redirect('/formulaire_besoin?success=' . urlencode($success));
     }
 }
