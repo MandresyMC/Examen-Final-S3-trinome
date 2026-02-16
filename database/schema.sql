@@ -14,14 +14,23 @@ CREATE TABLE categorie (
 CREATE TABLE besoin (
     id INT PRIMARY KEY AUTO_INCREMENT,
     idCategorie INT,
-    idVille INT,
-    nom VARCHAR(255) NOT NULL,
-    quantite DOUBLE NOT NULL
+    idVille INT, -- ville mangataka
+    nomProduit VARCHAR(255) NOT NULL, -- ex : riz, huile, tole
+    quantiteDemandee DOUBLE NOT NULL
 );
 
-CREATE TABLE don (
+CREATE TABLE stockDons (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    idBesoin INT,
-    quantite DOUBLE NOT NULL,
+    idCategorie INT,
+    nomProduit VARCHAR(255) NOT NULL, -- ex : riz, huile, tole
+    quantiteInitiale DOUBLE NOT NULL,
+    quantiteFinale DOUBLE NOT NULL
+);
+
+CREATE TABLE dons (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    idVille INT, -- ville omena
+    idStock INT,
+    quantiteDonnee DOUBLE NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
