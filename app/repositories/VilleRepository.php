@@ -30,6 +30,32 @@
             return $st->fetchAll() ?? [];
         }
 
+        public function findVilleWithFond() {
+            $sql = "SELECT * FROM ville WHERE fond > 0";
+            $st = $this->pdo->prepare($sql);
+            try {
+                $st->execute();
+            } catch (PDOException $e) {
+                $info = $st->errorInfo();
+                throw new RuntimeException('FINDVILLEWITHFOND : DB error in findVilleWithFond(): ' . $e->getMessage() . ' - SQLSTATE: ' . ($info[0] ?? '') . ' - DriverMsg: ' . ($info[2] ?? ''));
+            }
+            
+            return $st->fetchAll() ?? [];
+        }
+
+        public function findById($idVille) {
+            $sql = "SELECT * FROM ville WHERE id = ?";
+            $st = $this->pdo->prepare($sql);
+            try {
+                $st->execute([ (int)$idVille ]);
+            } catch (PDOException $e) {
+                $info = $st->errorInfo();
+                throw new RuntimeException('FINDBYID : DB error in findById(): ' . $e->getMessage() . ' - SQLSTATE: ' . ($info[0] ?? '') . ' - DriverMsg: ' . ($info[2] ?? ''));
+            }
+            
+            return $st->fetch();
+        }
+
         public function updateFond($idVille, $fond) {
             $sql = "UPDATE ville SET fond = fond + ? WHERE id = ?";
             $st = $this->pdo->prepare($sql);
