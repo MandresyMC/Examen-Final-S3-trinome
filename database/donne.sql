@@ -8,10 +8,10 @@ insert into `stockDons` (`idCategorie`, `nomProduit`, `quantiteInitiale`, `quant
 insert into `stockDons` (`idCategorie`, `nomProduit`, `quantiteInitiale`, `quantiteFinale`) values (1, 'Riz', 100, 100);
 insert into `stockDons` (`idCategorie`, `nomProduit`, `quantiteInitiale`, `quantiteFinale`) values (3, 'Tôle', 40, 40);
 
-insert into `ville` (`nom`) values ('Antananarivo');
-insert into `ville` (`nom`) values ('Toamasina');
-insert into `ville` (`nom`) values ('Fianarantsoa');
-insert into `ville` (`nom`) values ('Mahajanga');
+insert into `ville` (`nom`,) values ('Antananarivo');
+insert into `ville` (`nom`,) values ('Toamasina');
+insert into `ville` (`nom`,) values ('Fianarantsoa');
+insert into `ville` (`nom`,) values ('Mahajanga');
 
 insert into `categorie` (`nom`) values ('nature');
 insert into `categorie` (`nom`) values ('materiaux');
