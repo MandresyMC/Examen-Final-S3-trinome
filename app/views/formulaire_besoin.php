@@ -21,7 +21,14 @@
 
                 <div class="mb-3">
                     <label for="ville" class="form-label">Ville</label>
-                    <input type="text" class="form-control" id="ville" name="ville" required>
+                    <select name="ville" id="ville" class="form-select" required>
+                        <option value="">-- Choisir une ville --</option>
+                        <?php foreach ($villes as $ville) { ?>
+                            <option value="<?= $ville['id'] ?>">
+                                <?= $ville['nom'] ?>
+                            </option>
+                        <?php } ?>
+                    </select>
                 </div>
 
                 <div class="mb-3">
@@ -37,12 +44,12 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="nom" class="form-label">Nom du besoin</label>
+                    <label for="nom" class="form-label">Nom du produit</label>
                     <input type="text" class="form-control" id="nom" name="nom" required>
                 </div>
 
                 <div class="mb-3">
-                    <label for="quantite" class="form-label">Quantité</label>
+                    <label for="quantite" class="form-label">Quantité demandée</label>
                     <input type="number" class="form-control" id="quantite" name="quantite" min="1" required>
                 </div>
 
@@ -57,5 +64,5 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-</bo
+</body>
+</html>
