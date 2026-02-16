@@ -5,7 +5,7 @@
         public function __construct(PDO $pdo) { $this->pdo = $pdo; }
 
         public function create($nom) {
-            $sql = "INSERT INTO villes(nom) VALUES(?)";
+            $sql = "INSERT INTO ville(nom) VALUES(?)";
             $st = $this->pdo->prepare($sql);
             try {
                 $st->execute([ (string)$nom ]);
@@ -18,7 +18,7 @@
         }
 
         public function findAll() {
-            $sql = "SELECT * FROM villes";
+            $sql = "SELECT * FROM ville";
             $st = $this->pdo->prepare($sql);
             try {
                 $st->execute();

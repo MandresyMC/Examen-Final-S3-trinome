@@ -36,14 +36,14 @@
                         <option value="">-- Choisir un stock de dons --</option>
                         <?php foreach ($stocksDons as $stock) { ?>
                             <option value="<?= $stock['id'] ?>">
-                                <?= $stock['nom'] ?>
+                                <?= $stock['nomProduit'] ?> - <?= $stock['quantiteInitiale'] ?>
                             </option>
                         <?php } ?>
                     </select>
                 </div>
 
                 <div class="mb-3">
-                    <label for="quantite" class="form-label">Quantité donnée</label>
+                    <label for="quantite" class="form-label">Quantité à donner</label>
                     <input type="number" class="form-control" id="quantite" name="quantite" min="1" required>
                 </div>
 
