@@ -1,133 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
 
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
+<style>
 
-        .section-title {
-            margin: 40px 0 20px;
-            font-weight: bold;
-            text-align: center;
-        }
+<style>
+body {
+    margin: 0;
+    background-color: #f4f4f4;
+    font-family: 'Segoe UI', sans-serif;
+}
 
-        .card {
-            border-radius: 15px;
-            transition: 0.3s;
-        }
+/* MARGE UNIQUEMENT SUR LES CÔTÉS */
+.side-padding {
+    padding-left: 40px;
+    padding-right: 40px;
+}
 
-        .card:hover {
-            transform: translateY(-5px);
-        }
+/* TITRES */
+.section-title {
+    text-align: center;
+    margin: 60px 0 30px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
 
-        .card img {
-            height: 200px;
-            object-fit: cover;
-            border-top-left-radius: 15px;
-            border-top-right-radius: 15px;
-        }
+/* RECTANGLES */
+.modern-card {
+    position: relative;
+    height: 450px;
+    width: 100%;
+    overflow: hidden;
+}
 
-        .badge-custom {
-            font-size: 14px;
-        }
-    </style>
+/* IMAGE FULL */
+.modern-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.modern-card:hover img {
+    transform: scale(1.05);
+}
+
+/* OVERLAY */
+.modern-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.85),
+        rgba(0,0,0,0.4),
+        rgba(0,0,0,0.1)
+    );
+}
+
+/* TEXTE */
+.card-content {
+    position: absolute;
+    bottom: 0;
+    padding: 40px;
+    color: white;
+    z-index: 2;
+}
+
+.card-content h4 {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.card-content p {
+    margin: 0;
+    font-size: 15px;
+    opacity: 0.9;
+}
+
+.badge-neutral {
+    background: rgba(255,255,255,0.15);
+    padding: 6px 14px;
+    font-size: 13px;
+    margin-right: 8px;
+}
+</style>
+
+
+</style>
+
+
+
+</style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="container-fluid side-padding">
+ 
+
 
     <!-- ================= BESOINS ================= -->
-    <h2 class="section-title">Besoins & Dons des Villes</h2>
+    <h2 class="section-title">BESOINS & DONS</h2>
 
     <?php if(!$besoin) { ?>
         <p class="alert alert-info text-center">Aucun besoin disponible</p>
     <?php } else { ?>
-        <div class="row">
-            <?php foreach ($besoin as $objet) { 
-                $reste = $objet['quantiteDemandee'] - $objet['totalDonne'];
-                $pourcentage = $objet['quantiteDemandee'] > 0 
-                    ? ($objet['totalDonne'] / $objet['quantiteDemandee']) * 100 
-                    : 0;
-            ?>
-            <div class="col-md-4 mb-4">
-                <div class="card shadow-sm h-100">
-                    
-                    <!-- IMAGE PRODUIT -->
-                    <img src="images/<?= strtolower($objet['nomProduit']) ?>.jpg"
-                         alt="<?= $objet['villeNom'] ?>">
+    <div class="row g-0">
+        <?php foreach ($besoin as $objet) { 
+            $reste = $objet['quantiteDemandee'] - $objet['totalDonne'];
+        ?>
+        <div class="col-md-6 custom-col">
 
-                    <div class="card-body text-center">
-                        <h5><?= $objet['villeNom'] ?></h5>
-                        <p class="text-muted"><?= $objet['nomProduit'] ?></p>
+            <div class="modern-card shadow">
 
-                        <p>
-                            <span class="badge bg-primary badge-custom">
-                                Demandé : <?= $objet['quantiteDemandee'] ?>
-                            </span>
-                        </p>
+                <img src="images/<?= strtolower($objet['nomProduit']) ?>.jpg"
+                     alt="<?= $objet['nomProduit'] ?>">
 
-                        <p>
-                            <span class="badge bg-success badge-custom">
-                                Reçu : <?= $objet['totalDonne'] ?>
-                            </span>
-                        </p>
+                <div class="card-content">
+                    <h4><?= $objet['nomProduit'] ?></h4>
+                    <p><?= $objet['villeNom'] ?></p>
 
-
+                    <div class="mt-2">
+                        <span class="badge-neutral">
+                            Demandé : <?= $objet['quantiteDemandee'] ?>
+                        </span>
+                        <span class="badge-neutral">
+                            Reçu : <?= $objet['totalDonne'] ?>
+                        </span>
+                             
                     </div>
                 </div>
+
             </div>
-            <?php } ?>
         </div>
+        <?php } ?>
+    </div>
     <?php } ?>
 
 
     <!-- ================= ACHATS ================= -->
-    <h2 class="section-title">Achats Effectués</h2>
+    <h2 class="section-title">ACHATS EFFECTUÉS</h2>
 
     <?php if(!$achat) { ?>
         <p class="alert alert-info text-center">Aucun achat disponible</p>
     <?php } else { ?>
-        <div class="row">
-            <?php foreach ($achat as $objet) { ?>
-            <div class="col-md-4 mb-4">
-                <div class="card shadow-sm h-100">
+    <div class="row">
+        <?php foreach ($achat as $objet) { ?>
+        <div class="col-md-6 custom-col">
 
-                    <!-- IMAGE PRODUIT -->
-                    <img src="images/<?= strtolower($objet['nomProduit']) ?>.jpg"
-                         alt="<?= $objet['nomProduit'] ?>">
+            <div class="modern-card shadow">
 
-                    <div class="card-body text-center">
-                        <h5><?= $objet['nomProduit'] ?></h5>
-                        <p class="text-muted"><?= $objet['villeNom'] ?></p>
+                <img src="images/<?= strtolower($objet['nomProduit']) ?>.jpg"
+                     alt="<?= $objet['nomProduit'] ?>">
 
-                        <p>
-                            <span class="badge bg-info">
-                                Quantité : <?= $objet['quantiteAchetee'] ?>
-                            </span>
-                        </p>
+                <div class="card-content">
+                    <h4><?= $objet['nomProduit'] ?></h4>
+                    <p><?= $objet['villeNom'] ?></p>
 
-                        <p>
-                            <span class="badge bg-warning text-dark">
-                                Dépense : <?= number_format($objet['prixAchat'], 2) ?> Ar
-                            </span>
-                        </p>
-
-                        <p class="text-muted mt-2">
-                            <small><?= $objet['dateAchat'] ?></small>
-                        </p>
-
+                    <div class="mt-2">
+                        <span class="badge-neutral">
+                            Qté : <?= $objet['quantiteAchetee'] ?>
+                        </span>
+                        <span class="badge-neutral">
+                            Dépense : <?= number_format($objet['prixAchat'], 2) ?> Ar
+                        </span>
                     </div>
+
+                    <p class="mt-2" style="font-size:12px;">
+                        <?= $objet['dateAchat'] ?>
+                    </p>
                 </div>
+
             </div>
-            <?php } ?>
         </div>
+        <?php } ?>
+    </div>
     <?php } ?>
 
 </div>
