@@ -1,17 +1,19 @@
 <?php
 
-class StockController {
+class TableauController {
 
     public static function showAchats() {
         $pdo = Flight::db();
         $repoAchat = new TableauRepository($pdo);
 
-        $achats = $repoAchat->findAll();
+        try {
+            $achats = $repoAchat->findAll();
+        } catch (RuntimeException $e) {
+            $achats = []; // éviter le crash côté vue
+        }
 
-        Flight::render('tableau_de_bord', [
+        Flight::render('tableau', [
             'achats' => $achats
         ]);
     }
-
-
 }

@@ -71,4 +71,5 @@ CREATE TABLE achat (
     prix DOUBLE, -- prix de l'achat
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
 ALTER TABLE achat ADD COLUMN quantite INT DEFAULT 0;
