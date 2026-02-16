@@ -27,6 +27,6 @@
                 throw new RuntimeException('FINDALL : DB error in findAll(): ' . $e->getMessage() . ' - SQLSTATE: ' . ($info[0] ?? '') . ' - DriverMsg: ' . ($info[2] ?? ''));
             }
             
-            return $st->fetchAll();
+            return $st->fetchAll() ?? [];
         }
     }
