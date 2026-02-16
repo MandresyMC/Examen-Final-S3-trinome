@@ -4,7 +4,7 @@ class AchatRepository {
     private $pdo;
     public function __construct(PDO $pdo) { $this->pdo = $pdo; }
 
-    public function create($idVille, $idDons) {
+    public function create($idVille, $idDons, $commission) {
         $sql = "INSERT INTO vente(idVille, idDons, commission) VALUES(?, ?, 10)";
         $st = $this->pdo->prepare($sql);
         try {
