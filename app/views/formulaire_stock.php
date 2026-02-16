@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajouter un besoin</title>
-
+    <title>Ajouter un stock</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
@@ -12,24 +11,12 @@
 <div class="container mt-5">
 
     <div class="card shadow">
-        <div class="card-header bg-success text-white text-center">
-            <h3 class="mb-0">Ajouter un besoin</h3>
+        <div class="card-header bg-primary text-white text-center">
+            <h3 class="mb-0">Ajouter un stock</h3>
         </div>
 
         <div class="card-body">
             <form action="#" method="POST">
-
-                <div class="mb-3">
-                    <label for="ville" class="form-label">Ville</label>
-                    <select name="ville" id="ville" class="form-select" required>
-                        <option value="">-- Choisir une ville --</option>
-                        <?php foreach ($villes as $ville) { ?>
-                            <option value="<?= $ville['id'] ?>">
-                                <?= $ville['nom'] ?>
-                            </option>
-                        <?php } ?>
-                    </select>
-                </div>
 
                 <div class="mb-3">
                     <label for="cat" class="form-label">Catégorie</label>
@@ -49,12 +36,17 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="quantite" class="form-label">Quantité demandée</label>
-                    <input type="number" class="form-control" id="quantite" name="quantite" min="1" required>
+                    <label for="quantite_initiale" class="form-label">Quantité initiale</label>
+                    <input type="number" class="form-control" id="quantite_initiale" name="quantite_initiale" min="0" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="quantite_finale" class="form-label">Quantité finale</label>
+                    <input type="number" class="form-control" id="quantite_finale" name="quantite_finale" min="0" required>
                 </div>
 
                 <div class="d-flex justify-content-between">
-                    <button type="submit" class="btn btn-success">Ajouter</button>
+                    <button type="submit" class="btn btn-primary">Ajouter au stock</button>
                 </div>
 
             </form>
