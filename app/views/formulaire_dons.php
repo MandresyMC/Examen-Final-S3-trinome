@@ -51,7 +51,7 @@
 
                 <div class="mb-3">
                     <label for="quantite" class="form-label">Quantité à donner</label>
-                    <input type="number" class="form-control" id="quantite" name="quantite" min="1" required>
+                    <input type="number" class="form-control" id="quantite" name="quantiteDonnee" min="1" required>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Soumettre le don</button>

@@ -18,7 +18,7 @@
         }
 
         public function updateQuantiteFinale($quantiteFinale, $idStock) {
-            $sql = "UPDATE stockDons SET quantiteFinale = ? WHERE idStock = ?";
+            $sql = "UPDATE stockDons SET quantiteFinale = ? WHERE id = ?";
             $st = $this->pdo->prepare($sql);
             try {
                 $st->execute([ (float)$quantiteFinale, (int)$idStock ]);
