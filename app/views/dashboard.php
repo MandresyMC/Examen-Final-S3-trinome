@@ -22,13 +22,13 @@
                 <th>quantiteDonne</th>
             </tr>
             <?php foreach ($allObjets as $objet) { ?>
-                <tr>
-                    <td><?= $objet['idCat'] ?></td>
-                    <td><?= $objet['quantiteDemande'] ?></td>
-                    <td><?= $objet['nomProduit'] ?></td>
-                    <td><?= $objet['villeNom'] ?></td>
-                    <td><?= $objet['quantiteDonne'] ?></td>
-                </tr>
+            <tr>
+                <td><?= $objet['idVille'] ?></td>
+                <td><?= $objet['idStock'] ?></td>
+                <td><?= $objet['quantite'] ?></td>
+                <td><?= $objet['prix'] ?></td>
+                <td><?= $objet['created_at'] ?></td>
+            </tr>
             <?php } ?>
         <?php } ?>
     </table>
