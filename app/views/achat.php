@@ -22,7 +22,7 @@
             <div class="cards-grid">
                 <?php foreach ($allVilles as $ville) { ?>
                     <div class="card">
-                        <img src="<?= $ville['image'] ?? 'img/default.jpg' ?>" 
+                        <img src="assets/<?= $ville['image'] ?? 'default.jpg' ?>" 
                              class="card-img-top" 
                              alt="<?= htmlspecialchars($ville['nom']) ?>">
                         <div class="card-body">
