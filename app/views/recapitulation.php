@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="css/recapitulation.css">
 </head>
 <body>
+    <?php include ('header/header.php') ?>
+    
     <div class="container-fluid">
         <div class="header-section">
             <h1 class="main-title">Récapitulation</h1>
