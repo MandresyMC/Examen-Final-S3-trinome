@@ -21,7 +21,7 @@ function loadData() {
                     showDons(data["dons"]);
                 } catch (e) {
                     console.error("Erreur de parsing JSON:", e);
-                    showError("Erreur lors du chargement des données");
+                    showError("Erreur lors du chargement des données" + (e.message ? ": " + e.message : ""));
                 }
             } else {
                 showError("Erreur de connexion au serveur");
