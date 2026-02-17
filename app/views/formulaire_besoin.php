@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajouter un besoin</title>
+    <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/formulaire_besoin.css">
 </head>
 <body>
@@ -16,28 +17,38 @@
 
             <form action="/formulaire_besoin" method="POST">
 
-                <div class="mb-3">
-                    <label for="ville" class="form-label">Ville</label>
-                    <select name="ville" id="ville" class="form-select" required>
-                        <option value="">-- Choisir une ville --</option>
+                <div class="field-group">
+                    <span class="field-label">Ville</span>
+                    <div class="ville-grid">
                         <?php foreach ($villes as $ville) { ?>
-                            <option value="<?= $ville['id'] ?>"><?= $ville['nom'] ?></option>
+                            <input type="radio" name="ville" id="ville_<?= $ville['id'] ?>" value="<?= $ville['id'] ?>" required>
+                            <label for="ville_<?= $ville['id'] ?>">
+                                <img src="/assets/<?= strtolower($ville['nom']) ?>.jpg" alt="<?= $ville['nom'] ?>">
+                                <span><?= $ville['nom'] ?></span>
+                            </label>
                         <?php } ?>
-                    </select>
+                    </div>
                 </div>
 
-                <div class="mb-3">
-                    <label for="cat" class="form-label">Produit</label>
-                    <select name="cat" id="cat" class="form-select" required>
-                        <option value="">-- Choisir un produit --</option>
-                        <?php foreach ($produits as $produit) { ?>
-                            <option value="<?= $produit['id'] ?>"><?= $produit['nom'] ?></option>
+                <div class="field-group">
+                    <span class="field-label">Produit</span>
+                    <div class="produit-grid">
+                        <?php
+                        $icons = ['Riz' => '🌾', 'Huile' => '🫙', 'Sucre' => '🍚', 'Farine' => '🌿', 'Argent' => '💰'];
+                        foreach ($produits as $produit) {
+                            $icon = $icons[$produit['nom']] ?? '📦';
+                        ?>
+                            <input type="radio" name="cat" id="cat_<?= $produit['id'] ?>" value="<?= $produit['id'] ?>" required>
+                            <label for="cat_<?= $produit['id'] ?>">
+                                <span class="icon"><?= $icon ?></span>
+                                <span><?= $produit['nom'] ?></span>
+                            </label>
                         <?php } ?>
-                    </select>
+                    </div>
                 </div>
 
-                <div class="mb-3">
-                    <label for="quantite" class="form-label">Quantité demandée (en Ar ou en kg)</label>
+                <div class="field-group">
+                    <label for="quantite" class="field-label">Quantité (Ar ou kg)</label>
                     <input type="number" class="form-control" id="quantite" name="quantite" min="1" required>
                 </div>
 
