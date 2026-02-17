@@ -25,7 +25,7 @@ body {
     color: var(--text-primary);
     font-size: 14px;
     line-height: 1.6;
-    min-height: 50vh;
+    /* min-height: 100vh; */
     /* Colonne : header en haut, contenu en dessous */
     display: flex;
     flex-direction: column;
@@ -35,15 +35,19 @@ body {
 .page-main {
     flex: 1;
     display: flex;
-    flex-direction: column; /* ← */
-}
-
-.page-content {
-    flex: 1;
-    display: flex;
     align-items: center;
     justify-content: center;
     padding: 2.5rem 1.5rem;
+}
+
+.form-wrapper {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: 2rem;
+    width: 100%;
+    max-width: 480px;
 }
 
 h1 {
@@ -67,16 +71,6 @@ h1 {
 .alert-info    { background: #E0E7FF; color: var(--primary-color); }
 
 .mb-3 { margin-bottom: 1rem; }
-
-.form-wrapper {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
-    padding: 2rem;
-    width: 100%;
-    max-width: 480px;
-}
 
 .form-label {
     display: block;
