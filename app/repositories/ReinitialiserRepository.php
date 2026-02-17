@@ -94,6 +94,16 @@ class ReinitialiserRepository {
             INSERT INTO commission (pourcentage) VALUES (10.0)
         ");
 
+        $this->pdo->exec("
+            INSERT INTO stockDons (idcategorie, idproduit, quantiteInitiale, quantiteFinale) VALUES
+            (3, 'Argent', 39500000, 39500000),
+            (1, 'Riz (kg)', 2400, 2400),
+            (1, 'Eau (L)', 5600, 5600),
+            (1, 'Haricots', 188, 188),
+            (2, 'Tôle', 350, 350),
+            (2, 'Bâche', 570, 570)
+        ");
+
     } catch (PDOException $e) {
         die("Erreur lors de la réinitialisation : " . $e->getMessage());
     }
