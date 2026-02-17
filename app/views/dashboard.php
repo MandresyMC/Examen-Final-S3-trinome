@@ -8,7 +8,6 @@
 
 <style>
 
-<style>
 body {
     margin: 0;
     background-color: #f4f4f4;
@@ -92,11 +91,6 @@ body {
 </style>
 
 
-</style>
-
-
-
-</style>
 </head>
 
 <body>
