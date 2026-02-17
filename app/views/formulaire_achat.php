@@ -31,7 +31,6 @@
                 <p class="alert alert-info">Aucune ville ou stock disponible pour faire des achats.</p>
             <?php } else { ?>
 
-                <!-- Info ville -->
                 <div class="info-block">
                     <div class="info-block__row">
                         <span class="info-block__label">Ville</span>
@@ -67,6 +66,8 @@
 
                     <button type="submit" class="btn-primary">Soumettre l'achat</button>
                 </form>
+
+                <a href="/achat" class="btn-outline-secondary">← Retour aux achats</a>
 
             <?php } ?>
         </div>

@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulaire Dons</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/formulaire_dons.css">
 </head>
 <body>
@@ -34,11 +34,11 @@
             <div class="info-block">
                 <div class="info-block__row">
                     <span class="info-block__label">Ville à donner</span>
-                    <span class="info-block__value"><?= $besoin['nomVille'] ?></span>
+                    <span class="info-block__value"><?= htmlspecialchars($besoin['nomVille']) ?></span>
                 </div>
                 <div class="info-block__row">
                     <span class="info-block__label">Produit demandé</span>
-                    <span class="info-block__value"><?= $besoin['nomProduit'] ?></span>
+                    <span class="info-block__value"><?= htmlspecialchars($besoin['nomProduit']) ?></span>
                 </div>
                 <div class="info-block__row">
                     <span class="info-block__label">Quantité demandée</span>
@@ -60,16 +60,17 @@
                 <input type="hidden" name="idBesoin" value="<?= $besoin['id'] ?>">
                 <input type="hidden" name="idVille" value="<?= $besoin['idVille'] ?>">
                 <input type="hidden" name="idStock" value="<?= $stockDons['id'] ?>">
-                
+
                 <div class="mb-3">
                     <label for="quantite" class="form-label">Quantité à donner</label>
                     <input type="number" class="form-control" id="quantite"
                            name="quantiteDonnee" min="1" required>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Soumettre le don</button>
-                <a href="/dons" class="btn btn-outline-secondary w-100">Annuler</a>
+                <button type="submit" class="btn-primary">Soumettre le don</button>
             </form>
+
+            <a href="/dons" class="btn-outline-secondary">← Retour aux dons</a>
 
         <?php } ?>
     </div>
