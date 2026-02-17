@@ -14,18 +14,18 @@
 </head>
 <body>
 
-<?php include('header/header.php') ?>
+<?php include('header/header.php'); ?>
 
 <main class="page-main">
-    <div class="form-wrapper">
-        <h1>Formulaire Dons</h1>
 
-        <?php if ($success) { ?>
-            <div class="alert alert-success"><?= $success ?></div>
-        <?php } ?>
-        <?php if ($error) { ?>
-            <div class="alert alert-danger"><?= $error ?></div>
-        <?php } ?>
+    <h1 class="section-title">Formulaire Dons Moderne</h1>
+
+    <?php if ($success) { ?>
+        <div class="alert alert-success"><?= $success ?></div>
+    <?php } ?>
+    <?php if ($error) { ?>
+        <div class="alert alert-danger"><?= $error ?></div>
+    <?php } ?>
 
         <?php if (!$besoin) { ?>
             <p class="alert alert-info">Besoin introuvable.</p>

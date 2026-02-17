@@ -79,3 +79,12 @@ CREATE TABLE achat (
     prix DOUBLE, -- prix de l'achat
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+
+CREATE TABLE vente (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    idVille INT, -- ville manao vente
+    idDons INT, -- dons a vendre
+    commission DOUBLE, -- commission
+    prixVente --prix vente
+);
