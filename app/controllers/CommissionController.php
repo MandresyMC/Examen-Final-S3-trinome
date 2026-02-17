@@ -32,8 +32,13 @@ class CommissionController {
         $pourcentage = (float)(Flight::request()->data['pourcentage'] ?? 0);
 
         try {
-            $repoCommission->update($id, $pourcentage);
-            Flight::redirect('/commission?success=' . urlencode('Commission mise à jour avec succès'));
+            if ($id > 0) {
+                $repoCommission->update($id, $pourcentage);
+                Flight::redirect('/commission?success=' . urlencode('Commission mise à jour avec succès'));
+            } else {
+                $repoCommission->create($pourcentage);
+                Flight::redirect('/commission?success=' . urlencode('Commission créée avec succès'));
+            }
         } catch (Exception $e) {
             Flight::redirect('/commission?error=' . urlencode($e->getMessage()));
         }
