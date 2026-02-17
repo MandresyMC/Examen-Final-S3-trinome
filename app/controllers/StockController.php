@@ -30,11 +30,12 @@ class StockController {
         $repoStock = new StockDonsRepository($pdo);
         $repoProduit = new ProduitRepository($pdo);
 
-        $idProduit = $_POST['idProduit'];
-        $quantite_initiale = $_POST['quantite_initiale'];
+        $idProduit = Flight::request()->data['idProduit'];
+        $quantite_initiale = Flight::request()->data['quantite_initiale'];
         $quantite_finale   = $quantite_initiale;;
 
         $produit = $repoProduit->findById($idProduit);
+        $error = null;
         if (!$produit) {
             $error = "Produit introuvable.";
         }
@@ -44,7 +45,7 @@ class StockController {
             return;
         }
 
-        $id = $repoStock->create($produit['idCategorie'], $idProduit, $quantite_initiale, $quantite_finale);
+        // $id = $repoStock->create($produit['idCategorie'], $idProduit, $quantite_initiale, $quantite_finale);
 
         $success = "Le produit '{$produit['nom']}' a été ajouté au stock avec succès";
 

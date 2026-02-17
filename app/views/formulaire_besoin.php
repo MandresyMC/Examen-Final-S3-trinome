@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajouter un besoin</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/formulaire_besoin.css">
 </head>
@@ -14,6 +15,13 @@
     <div class="page-content">
         <div class="form-wrapper">
             <h1>Ajouter un besoin</h1>
+
+            <?php if (isset($success)) { ?>
+                <div class="alert alert-success"><?= $success ?></div>
+            <?php } ?>
+            <?php if (isset($error)) { ?>
+                <div class="alert alert-danger"><?= $error ?></div>
+            <?php } ?>
 
             <form action="/formulaire_besoin" method="POST">
 
@@ -38,8 +46,8 @@
                         foreach ($produits as $produit) {
                             $icon = $icons[$produit['nom']] ?? '📦';
                         ?>
-                            <input type="radio" name="cat" id="cat_<?= $produit['id'] ?>" value="<?= $produit['id'] ?>" required>
-                            <label for="cat_<?= $produit['id'] ?>">
+                            <input type="radio" name="idProduit" id="produit_<?= $produit['id'] ?>" value="<?= $produit['id'] ?>" required>
+                            <label for="produit_<?= $produit['id'] ?>">
                                 <span class="icon"><?= $icon ?></span>
                                 <span><?= $produit['nom'] ?></span>
                             </label>
