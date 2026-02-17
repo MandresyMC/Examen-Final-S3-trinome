@@ -41,7 +41,7 @@
                     <input type="number" class="form-control" id="quantite" name="quantite" min="1" required>
                 </div>
 
-                <button type="submit" class="btn-success">Ajouter</button>
+                <button type="submit" class="btn-danger">Ajouter</button>
 
             </form>
         </div>
