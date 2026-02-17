@@ -35,7 +35,7 @@
                 <div class="info-block">
                     <div class="info-block__row">
                         <span class="info-block__label">Ville</span>
-                        <span class="info-block__value"><?= htmlspecialchars($ville['nom']) ?></span>
+                        <span class="info-block__value"><?= $ville['nom'] ?></span>
                     </div>
                     <div class="info-block__row">
                         <span class="info-block__label">Fonds disponibles</span>
