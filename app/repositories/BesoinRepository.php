@@ -62,4 +62,32 @@
             
             return $st->fetchAll();
         }
+
+        public function findAllWithDons() {
+            $sql = "
+                SELECT
+                    b.id,
+                    b.idCategorie,
+                    b.idVille,
+                    b.idProduit,
+                    v.nom AS nomVille,
+                    p.nom AS nomProduit,
+                    b.quantiteDemandee,
+                    COALESCE(SUM(d.quantiteDonnee), 0) AS totalDonne
+                FROM besoin b
+                JOIN produit p ON b.idProduit = p.id
+                JOIN ville v ON b.idVille = v.id
+                LEFT JOIN dons d ON d.idBesoin = b.id
+                GROUP BY b.id, v.nom, p.nom, b.quantiteDemandee, b.idCategorie, b.idVille, b.idProduit
+            ";
+            $st = $this->pdo->prepare($sql);
+            try {
+                $st->execute();
+            } catch (PDOException $e) {
+                $info = $st->errorInfo();
+                throw new RuntimeException('FINDALLWITHDONS : DB error in findAllWithDons(): ' . $e->getMessage() . ' - SQLSTATE: ' . ($info[0] ?? '') . ' - DriverMsg: ' . ($info[2] ?? ''));
+            }
+            
+            return $st->fetchAll() ?? [];
+        }
     }

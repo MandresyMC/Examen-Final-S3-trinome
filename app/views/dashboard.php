@@ -48,10 +48,10 @@
                 ?>
                 <div class="img-card">
                     <img src="/assets/<?= strtolower($objet['nomProduit']) ?>.jpg"
-                         alt="<?= htmlspecialchars($objet['nomProduit']) ?>">
+                         alt="<?= $objet['nomProduit'] ?>">
                     <div class="img-card__content">
-                        <span class="img-card__tag tag-blue"><?= htmlspecialchars($objet['villeNom']) ?></span>
-                        <div class="img-card__title"><?= htmlspecialchars($objet['nomProduit']) ?></div>
+                        <span class="img-card__tag tag-blue"><?= $objet['villeNom'] ?></span>
+                        <div class="img-card__title"><?= $objet['nomProduit'] ?></div>
                         <div class="img-card__stats">
                             <span class="stat-badge">Demandé : <strong><?= $demande ?> <?= $unite ?></strong></span>
                             <span class="stat-badge">Reçu : <strong><?= $recu ?> <?= $unite ?></strong></span>
@@ -87,10 +87,10 @@
                 ?>
                 <div class="img-card">
                     <img src="/assets/<?= strtolower($objet['nomProduit']) ?>.jpg"
-                         alt="<?= htmlspecialchars($objet['nomProduit']) ?>">
+                         alt="<?= $objet['nomProduit'] ?>">
                     <div class="img-card__content">
-                        <span class="img-card__tag tag-green"><?= htmlspecialchars($objet['villeNom']) ?></span>
-                        <div class="img-card__title"><?= htmlspecialchars($objet['nomProduit']) ?></div>
+                        <span class="img-card__tag tag-green"><?= $objet['villeNom'] ?></span>
+                        <div class="img-card__title"><?= $objet['nomProduit'] ?></div>
                         <div class="img-card__stats">
                             <span class="stat-badge">Qté : <strong><?= $objet['quantiteAchetee'] ?> <?= $unite ?></strong></span>
                             <span class="stat-badge">Dépense : <strong><?= number_format($objet['prixAchat'], 0, ',', ' ') ?> Ar</strong></span>
