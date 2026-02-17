@@ -4,7 +4,6 @@ require_once __DIR__ . '/controllers/DonsController.php';
 require_once __DIR__ . '/controllers/DashboardController.php';
 require_once __DIR__ . '/controllers/BesoinController.php';
 require_once __DIR__ . '/controllers/StockController.php';
-require_once __DIR__ . '/controllers/TableauController.php';
 require_once __DIR__ . '/controllers/AchatController.php';
 require_once __DIR__ . '/controllers/RecapitulationController.php';
 
