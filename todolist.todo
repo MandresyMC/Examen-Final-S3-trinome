@@ -1,18 +1,59 @@
-dashboard v1
-affichage
-    -listeBesoin
-    -listeDons
-repository
-    -findDashboardBesoin() 
-        select from produit/ville/besoin
-    -findDashboardAchat()
-        select from ville/stockdons/produit
-    -findDashboardVente()
-        select from ville
-controller
+[418-OK] dashboard v1
+        affichage
+            -listeBesoin
+            -listeDons
+        repository
+            -findDashboardBesoin() 
+                select from produit/ville/besoin
+
+        controller
+            -envoi
+                besoin
 
 
+[418-OK]vente
+        affichage
+            -formulaire
+            -submit
+        repository
+            -findVilleDons()
+                select dons/produit/
+                    ville/stockdons
+            -create()
+                insert idDons,idCommision,prixVente
+        controller
+            -showVilleDons()
+            -createVente()
 
-vente
+[418-OK]        dashboard v2
+        affichage
+            -listeAchat
+        repository
+            -findDashboardAchat()
+                select from ville/stockdons/produit/achat
+        controller
+            -envoi
+                achat
+            
+[418-OK]dashboard v3
+        affichage
+            -liste Vente
+        repository
+            -findDashboardVente() 
+                select from produit/ville/besoin/vente
 
-formulaire_produit
+        controller
+            -envoi
+                achat
+
+[418-OK]formulaire_produit
+        affichage
+            -formulaire
+                -nom
+                -idCategorie
+                -prix prixUnitai
+        repository
+            -create()
+                -insert idDons/idCommision/prixVente
+        controller
+            -saveProduit()
