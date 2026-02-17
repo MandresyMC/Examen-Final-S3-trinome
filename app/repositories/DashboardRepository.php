@@ -13,7 +13,7 @@
                 b.quantiteDemandee AS quantiteDemandee,
                 COALESCE(SUM(d.quantiteDonnee), 0) AS totalDonne
             FROM besoin b
-            JOIN produit p ON b.idProduit = p.id
+            JOIN produit p ON b.idProduit = p.nom
             JOIN ville v ON b.idVille = v.id
             LEFT JOIN dons d 
                 ON d.idVille = b.idVille
