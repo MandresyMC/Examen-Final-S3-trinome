@@ -32,7 +32,6 @@ body {
     flex-direction: column;
 }
 
-/* ── Page principale ── */
 .page-main {
     flex: 1;
     padding: 2rem 2rem;
@@ -58,7 +57,6 @@ body {
     color: var(--text-muted);
 }
 
-/* ── Alertes ── */
 .alert {
     padding: 0.75rem 1rem;
     border-radius: var(--radius-md);
@@ -70,14 +68,12 @@ body {
 .alert-success { background: #D1FAE5; color: var(--success-color); }
 .alert-danger  { background: #FEE2E2; color: var(--danger-color);  }
 
-/* ── Grille de cards ── */
 .cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 1.5rem;
 }
 
-/* ── Card ── */
 .don-card {
     background: var(--bg-secondary);
     border: 1px solid var(--border-color);
@@ -101,7 +97,6 @@ body {
     box-shadow: var(--shadow-sm);
 }
 
-/* ── Image ── */
 .don-card__image-wrap {
     position: relative;
     height: 200px;
@@ -146,7 +141,6 @@ body {
     text-transform: uppercase;
 }
 
-/* ── Corps de la card ── */
 .don-card__body {
     padding: 1.25rem;
 }
@@ -159,7 +153,6 @@ body {
     margin-bottom: 1rem;
 }
 
-/* ── Infos tabulaires ── */
 .don-card__info {
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
@@ -198,8 +191,6 @@ body {
 .don-card__info-row.is-total .don-card__info-value {
     color: var(--primary-dark);
 }
-
-/* ── Bouton vendre ── */
 .btn-sell {
     width: 100%;
     background: var(--danger-color);
@@ -218,7 +209,6 @@ body {
 .btn-sell:hover  { background: var(--danger-dark); box-shadow: var(--shadow-md); }
 .btn-sell:active { transform: translateY(1px); }
 
-/* ── Responsive ── */
 @media (max-width: 768px) {
     .page-main  { padding: 1.5rem 1rem; }
     .cards-grid { grid-template-columns: 1fr; }
