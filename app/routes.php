@@ -5,6 +5,7 @@ require_once __DIR__ . '/controllers/DashboardController.php';
 require_once __DIR__ . '/controllers/BesoinController.php';
 require_once __DIR__ . '/controllers/StockController.php';
 require_once __DIR__ . '/controllers/AchatController.php';
+require_once __DIR__ . '/controllers/VenteController.php';
 require_once __DIR__ . '/controllers/RecapitulationController.php';
 require_once __DIR__ . '/controllers/ReinitialiserController.php';
 
@@ -16,6 +17,8 @@ require_once __DIR__ . '/repositories/VilleRepository.php';
 require_once __DIR__ . '/repositories/CategorieRepository.php';
 require_once __DIR__ . '/repositories/ProduitRepository.php';
 require_once __DIR__ . '/repositories/AchatRepository.php';
+require_once __DIR__ . '/repositories/VenteRepository.php';
+
 require_once __DIR__ . '/repositories/ReinitialiserRepository.php';
 
 
@@ -39,6 +42,10 @@ Flight::route('POST /ajout_dons', ['DonsController', 'createDon']);
 Flight::route('GET /achat', ['AchatController', 'showVilleAchat']);
 Flight::route('GET /formulaire_achat', ['AchatController', 'showFormulaireAchat']);
 Flight::route('POST /formulaire_achat', ['AchatController', 'saveAchat']);
+
+Flight::route('GET /achat', ['AchatController', 'showVilleAchat']);
+Flight::route('POST /formulaire_achat', ['VenteController', 'saveVente']);
+
 
 Flight::route('GET /recapitulation', function () {
     Flight::render('recapitulation');

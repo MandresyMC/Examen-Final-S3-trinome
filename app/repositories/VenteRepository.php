@@ -4,19 +4,31 @@ class AchatRepository {
     private $pdo;
     public function __construct(PDO $pdo) { $this->pdo = $pdo; }
 
-    public function create($idVille, $idDons, $commission, $prixProduit) {
-        $sql = "INSERT INTO vente(idVille, idDons, commission, prixVente) VALUES(?, ?, ?)";
-        $st = $this->pdo->prepare($sql);
 
-        $commission = 10 ;
-        $prixVente = (float)$prixProduit - ((float)$prixProduit * (float)$commission / 100);
-        
-        try {
-            $st->execute([ (int)$idVille, (int)$idDons, (float)$commission, (float)$prixVente ]);
-        } catch (PDOException $e) {
-            $info = $st->errorInfo();
-            throw new RuntimeException('CREATE : DB error in create(): ' . $e->getMessage() . ' - SQLSTATE: ' . ($info[0] ?? '') . ' - DriverMsg: ' . ($info[2] ?? ''));
+    public function findAll() {
+            $sql = "
+                select 
+                    v.nom as nomVille,
+                    d.id as idDons,
+                    sd.id , 
+                    p.nom as nomProduit,
+                    p.prixUnitaire * d.quantiteDonnee as prixDons
+                    from dons d 
+                    join stockDons sd on sd.id = d.idStock
+                    join produit p on sd.idProduit = p.id
+                    join ville v on v.id = d.idVille;
+            ";
+            $st = $this->pdo->prepare($sql);
+            try {
+                $st->execute();
+            } catch (PDOException $e) {
+                $info = $st->errorInfo();
+                throw new RuntimeException('FINDALL : DB error in findAll(): ' . $e->getMessage() . ' - SQLSTATE: ' . ($info[0] ?? '') . ' - DriverMsg: ' . ($info[2] ?? ''));
+            }
+            
+            return $st->fetchAll() ?? [];
         }
-        return $this->pdo->lastInsertId();
-    }
+
+
+
 }

@@ -13,8 +13,24 @@
 
     <div class="page-content">
 
-        <!-- ═══ BESOINS & DONS ═══ -->
-        <div class="section-heading">
+        <nav class="tabs-nav">
+            <a href="#besoins" class="tab-btn blue">
+                <span class="tab-dot tab-dot-blue"></span>
+                Besoins &amp; Dons
+                <?php if (!empty($besoin)) { ?>
+                    <span class="tab-count tab-count-blue"><?= count($besoin) ?></span>
+                <?php } ?>
+            </a>
+            <a href="#achats" class="tab-btn green">
+                <span class="tab-dot tab-dot-green"></span>
+                Achats effectués
+                <?php if (!empty($achat)) { ?>
+                    <span class="tab-count tab-count-green"><?= count($achat) ?></span>
+                <?php } ?>
+            </a>
+        </nav>
+
+        <div id="besoins" class="section-heading">
             <span class="section-heading__dot dot-blue"></span>
             <span class="section-heading__label">Besoins &amp; Dons</span>
             <span class="section-heading__line"></span>
@@ -33,16 +49,13 @@
                 <div class="img-card">
                     <img src="/assets/<?= strtolower($objet['nomProduit']) ?>.jpg"
                          alt="<?= htmlspecialchars($objet['nomProduit']) ?>">
-
                     <div class="img-card__content">
                         <span class="img-card__tag tag-blue"><?= htmlspecialchars($objet['villeNom']) ?></span>
                         <div class="img-card__title"><?= htmlspecialchars($objet['nomProduit']) ?></div>
-
                         <div class="img-card__stats">
                             <span class="stat-badge">Demandé : <strong><?= $demande ?> <?= $unite ?></strong></span>
                             <span class="stat-badge">Reçu : <strong><?= $recu ?> <?= $unite ?></strong></span>
                         </div>
-
                         <div class="progress-wrap">
                             <div class="progress-label">
                                 <span>Progression</span>
@@ -59,8 +72,7 @@
             </div>
         <?php } ?>
 
-        <!-- ═══ ACHATS ═══ -->
-        <div class="section-heading">
+        <div id="achats" class="section-heading">
             <span class="section-heading__dot dot-green"></span>
             <span class="section-heading__label">Achats effectués</span>
             <span class="section-heading__line"></span>
@@ -76,16 +88,13 @@
                 <div class="img-card">
                     <img src="/assets/<?= strtolower($objet['nomProduit']) ?>.jpg"
                          alt="<?= htmlspecialchars($objet['nomProduit']) ?>">
-
                     <div class="img-card__content">
                         <span class="img-card__tag tag-green"><?= htmlspecialchars($objet['villeNom']) ?></span>
                         <div class="img-card__title"><?= htmlspecialchars($objet['nomProduit']) ?></div>
-
                         <div class="img-card__stats">
                             <span class="stat-badge">Qté : <strong><?= $objet['quantiteAchetee'] ?> <?= $unite ?></strong></span>
                             <span class="stat-badge">Dépense : <strong><?= number_format($objet['prixAchat'], 0, ',', ' ') ?> Ar</strong></span>
                         </div>
-
                         <div class="img-card__date"><?= $objet['dateAchat'] ?></div>
                     </div>
                 </div>
