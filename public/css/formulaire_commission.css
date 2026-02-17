@@ -58,7 +58,6 @@ h1 {
     border-bottom: 1px solid var(--border-color);
 }
 
-/* ── Alertes ── */
 .alert {
     padding: 0.75rem 1rem;
     border-radius: var(--radius-md);
@@ -71,7 +70,6 @@ h1 {
 .alert-danger  { background: #FEE2E2; color: var(--danger-color);  }
 .alert-info    { background: #EFF6FF; color: var(--primary-color); }
 
-/* ── Bloc informatif ── */
 .info-block {
     background: var(--bg-primary);
     border: 1px solid var(--border-color);
@@ -113,7 +111,6 @@ h1 {
     text-align: right;
 }
 
-/* ── Champs ── */
 .field-group { margin-bottom: 1rem; }
 
 .field-label,
@@ -144,7 +141,6 @@ h1 {
     box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
 }
 
-/* ── Boutons ── */
 .btn-primary {
     width: 100%;
     background: var(--primary-color);
