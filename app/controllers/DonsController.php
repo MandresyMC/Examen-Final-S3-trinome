@@ -2,13 +2,24 @@
 
     class DonsController {
 
+        public function showDons() {
+            $pdo = Flight::db();
+            $repoBesoin = new BesoinRepository($pdo);
+            $besoins = $repoBesoin->findAll();
+
+            Flight::render('dons', [
+                'besoins' => $besoins
+            ]);
+        }
+
         public function showFormulaireDons() {
             $pdo = Flight::db();
-            $repoVille = new VilleRepository($pdo);
             $repoStockDons = new StockDonsRepository($pdo);
+            $repoBesoin = new BesoinRepository($pdo);
 
-            $villes = $repoVille->findAll();
-            $stocksDons = $repoStockDons->findAll();
+            $idBesoin = (int)(Flight::request()->query['idBesoin'] ?? 0);
+            $besoin = $repoBesoin->findById($idBesoin);
+            $stockDons = $repoStockDons->findByProduit($besoin['idProduit']);
 
             $success = null;
             $error = null;
@@ -20,8 +31,8 @@
             }
 
             Flight::render('formulaire_dons', [
-                'villes' => $villes,
-                'stocksDons' => $stocksDons,
+                'besoin' => $besoin,
+                'stockDons' => $stockDons,
                 'success' => $success,
                 'error' => $error
             ]);
