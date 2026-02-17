@@ -103,6 +103,12 @@
         <?php } ?>
 
 
+        <div id="achats" class="section-heading">
+            <span class="section-heading__dot dot-green"></span>
+            <span class="section-heading__label">vente effectue</span>
+            <span class="section-heading__line"></span>
+        </div>
+
         <?php if (empty($vente)) { ?>
             <p class="alert-info">Aucune vente disponible.</p>
         <?php } else { ?>
@@ -119,7 +125,6 @@
                         <div class="img-card__stats">
                             <span class="stat-badge">prix de vente: <strong><?= number_format($objet['prixVente'], 0, ',', ' ') ?> Ar</strong></span>
                         </div>
-                        <div class="img-card__date"><?= $objet['dateVente'] ?></div>
                     </div>
                 </div>
                 <?php } ?>
