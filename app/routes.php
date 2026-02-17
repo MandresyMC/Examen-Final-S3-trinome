@@ -15,7 +15,7 @@ require_once __DIR__ . '/repositories/VilleRepository.php';
 require_once __DIR__ . '/repositories/CategorieRepository.php';
 require_once __DIR__ . '/repositories/ProduitRepository.php';
 require_once __DIR__ . '/repositories/AchatRepository.php';
-require_once __DIR__ . '/repositories/TableauRepository.php';
+
 
 
 Flight::route('GET /', function () {
