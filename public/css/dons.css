@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-    --primary-color: #059669;
-    --primary-dark:  #047857;
+    --primary-color: #10B981;
+    --primary-dark:  #059669;
     --bg-primary:    #F8FAFC;
     --bg-secondary:  #FFFFFF;
     --text-primary:  #0F172A;
@@ -29,24 +29,27 @@ body {
 
 .page-content {
     flex: 1;
-    padding: 2.5rem 1.5rem;
+    padding: 2rem 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
 }
 
 h1 {
     font-size: 1.5rem;
     font-weight: 700;
     letter-spacing: -0.025em;
-    color: var(--primary-color);
-    margin-bottom: 2rem;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
 }
 
-.villes-grid {
+.cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1.5rem;
+    gap: 1.25rem;
 }
 
-.ville-card {
+.card {
     background: var(--bg-secondary);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
@@ -55,28 +58,28 @@ h1 {
     transition: all 0.2s ease;
 }
 
-.ville-card:hover {
+.card:hover {
     box-shadow: var(--shadow-md);
     border-color: var(--primary-color);
     transform: translateY(-2px);
 }
 
-.ville-card img {
+.card-img-top {
     width: 100%;
     height: 160px;
     object-fit: cover;
     display: block;
 }
 
-.ville-card-body {
+.card-body {
     padding: 1rem;
 }
 
-.ville-card-body h5 {
-    font-size: 1rem;
+.card-title {
+    font-size: 0.9375rem;
     font-weight: 600;
-    margin-bottom: 0.75rem;
     color: var(--text-primary);
+    margin-bottom: 0.75rem;
 }
 
 .btn-primary {
@@ -110,5 +113,5 @@ h1 {
 
 @media (max-width: 480px) {
     .page-content { padding: 1.5rem 1rem; }
-    .villes-grid  { grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .cards-grid   { grid-template-columns: 1fr 1fr; }
 }
