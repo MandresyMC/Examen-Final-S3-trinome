@@ -17,7 +17,7 @@
 <?php include('header/header.php'); ?>
 
 <main class="page-main">
-
+    <div class="form-wrapper">
     <h1 class="section-title">Formulaire Dons Moderne</h1>
 
     <?php if ($success) { ?>
@@ -74,6 +74,7 @@
 
         <?php } ?>
     </div>
+     </div>
 </main>
 
 </body>
