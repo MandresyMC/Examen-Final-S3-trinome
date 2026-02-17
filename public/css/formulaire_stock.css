@@ -162,3 +162,13 @@ h1 {
     .form-wrapper { padding: 1.5rem; }
     .produit-grid { grid-template-columns: repeat(3, 1fr); }
 }
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-content {
+    flex: 1;
+}

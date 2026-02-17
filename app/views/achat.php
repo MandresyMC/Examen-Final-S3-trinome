@@ -36,6 +36,6 @@
             </div>
         <?php } ?>
     </div>
-
+        <?php include('footer/footer.php') ?>
 </body>
 </html>
