@@ -1,18 +1,15 @@
 <?php /* header.php — fragment PHP, à inclure DANS le <body> de chaque vue */
-
     $currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-
     $navLinks = [
-        ['href' => '/dashboard',         'label' => 'Tableau de bord'],
-        ['href' => '/formulaire_besoin',  'label' => 'Besoins'],
-        ['href' => '/formulaire_stock',   'label' => 'Stocks'],
-        ['href' => '/dons',    'label' => 'Dons'],
-        ['href' => '/achat',              'label' => 'Achats'],
-        ['href' => '/recapitulation',     'label' => 'Récapitulation'],
+        ['href' => '/dashboard',        'label' => 'Tableau de bord'],
+        ['href' => '/formulaire_besoin', 'label' => 'Besoins'],
+        ['href' => '/formulaire_stock',  'label' => 'Stocks'],
+        ['href' => '/dons',              'label' => 'Dons'],
+        ['href' => '/achat',             'label' => 'Achats'],
+        ['href' => '/recapitulation',    'label' => 'Récapitulation'],
     ];
 ?>
 <link rel="stylesheet" href="css/header.css">
-
 <header class="site-header mb-4">
     <div class="site-header__inner">
 
@@ -31,16 +28,20 @@
 
         <nav>
             <ul class="site-header__nav" id="site-main-nav">
-                <?php foreach ($navLinks as $link): ?>
+                <?php foreach ($navLinks as $link) { ?>
                     <li>
-                        <a href="<?= htmlspecialchars($link['href']) ?>"
+                        <a href="<?= $link['href'] ?>"
                            class="site-header__nav-link<?= $currentPath === $link['href'] ? ' is-active' : '' ?>">
-                            <?= htmlspecialchars($link['label']) ?>
+                            <?= $link['label'] ?>
                         </a>
                     </li>
-                <?php endforeach; ?>
+                <?php } ?>
             </ul>
         </nav>
+
+        <a href="/reinitialiser" class="site-header__btn-outline">
+            Réinitialiser
+        </a>
 
         <button class="site-header__burger" id="site-burger"
                 aria-label="Menu" aria-expanded="false">
