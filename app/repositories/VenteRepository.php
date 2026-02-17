@@ -1,6 +1,6 @@
 <?php
 
-class AchatRepository {
+class VenteRepository {
     private $pdo;
     public function __construct(PDO $pdo) { $this->pdo = $pdo; }
 
