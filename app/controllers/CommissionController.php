@@ -6,7 +6,15 @@ class CommissionController {
         $pdo = Flight::db();
         $repoCommission = new CommissionRepository($pdo);
 
-        $commission = $repoCommission->findAll();
+        $commission = ['id' => 0, 'pourcentage' => 0];
+        try {
+            $commissions = $repoCommission->findAll();
+            if (!empty($commissions)) {
+                $commission = $commissions[0];
+            }
+        } catch (Exception $e) {
+            // Valeurs par défaut si erreur
+        }
 
         $success = null;
         $error = null;
