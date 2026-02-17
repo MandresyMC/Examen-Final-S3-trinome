@@ -1,30 +1,41 @@
-<?php
-    $allVilles = $allVilles;
-?>
+<?php $allVilles = $allVilles; ?>
 
 <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Achat</title>
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-    </head>
-    <body>
-        <h1>Ville pouvant faire d'achat</h1>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achat</title>
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/achat.css">
+</head>
+<body>
+
+    <?php include('header/header.php') ?>
+
+    <div class="page-content">
+        <h1>Villes pouvant faire des achats</h1>
 
         <?php if (empty($allVilles)) { ?>
-            <p class="alert alert-info">Aucune ville disponible pour faire des achats.</p>
+            <p class="alert-info">Aucune ville disponible pour faire des achats.</p>
         <?php } else { ?>
-            <?php foreach ($allVilles as $ville) { ?>
-                <div class="card" style="width: 18rem;">
-                    <img src="<?= $ville['nom'] ?>" class="card-img-top" alt="<?= $ville['nom'] ?>">
-                    <div class="card-body">
-                        <h5 class="card-title"><?= $ville['nom'] ?></h5>
-                        <a href="/formulaire_achat?idVille=<?= $ville['id'] ?>" class="btn btn-primary mt-3 w-100">Effectuer un achat</a>
+            <div class="cards-grid">
+                <?php foreach ($allVilles as $ville) { ?>
+                    <div class="card">
+                        <img src="<?= $ville['image'] ?? 'img/default.jpg' ?>" 
+                             class="card-img-top" 
+                             alt="<?= htmlspecialchars($ville['nom']) ?>">
+                        <div class="card-body">
+                            <h5 class="card-title"><?= htmlspecialchars($ville['nom']) ?></h5>
+                            <a href="/formulaire_achat?idVille=<?= $ville['id'] ?>" class="btn-primary">
+                                Effectuer un achat
+                            </a>
+                        </div>
                     </div>
-                </div>
-            <?php } ?>
+                <?php } ?>
+            </div>
         <?php } ?>
-    </body>
+    </div>
+
+</body>
 </html>
