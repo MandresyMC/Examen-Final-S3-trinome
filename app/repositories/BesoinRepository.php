@@ -19,7 +19,7 @@
 
         public function findAll() {
             $sql = "
-                SELECT b.*, p.prixUnitaire, p.nom AS nomProduit, v.nom AS nomVille
+                SELECT b.*, p.prixUnitaire, p.nom AS nomProduit, v.nom AS nomVille, v.id AS idVille
                 FROM besoin b JOIN produit p ON b.idProduit = p.id JOIN ville v ON b.idVille = v.id
             ";
             $st = $this->pdo->prepare($sql);
@@ -35,7 +35,7 @@
 
         public function findById($id) {
             $sql = "
-                SELECT b.*, p.prixUnitaire, p.nom AS nomProduit, v.nom AS nomVille
+                SELECT b.*, p.prixUnitaire, p.nom AS nomProduit, v.nom AS nomVille, v.id AS idVille
                 FROM besoin b JOIN produit p ON b.idProduit = p.id JOIN ville v ON b.idVille = v.id
                 WHERE b.id = ?
             ";
@@ -51,7 +51,7 @@
         }
 
         public function findByVille($idVille) {
-            $sql = "SELECT b.*, p.prixUnitaire, p.nom AS nomProduit, v.nom AS nomVille FROM besoin b JOIN produit p ON b.idProduit = p.id JOIN ville v ON b.idVille = v.id WHERE b.idVille = ?";
+            $sql = "SELECT b.*, p.prixUnitaire, p.nom AS nomProduit, v.nom AS nomVille, v.id AS idVille FROM besoin b JOIN produit p ON b.idProduit = p.id JOIN ville v ON b.idVille = v.id WHERE b.idVille = ?";
             $st = $this->pdo->prepare($sql);
             try {
                 $st->execute([ (int)$idVille ]);

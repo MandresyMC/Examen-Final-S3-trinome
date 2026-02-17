@@ -57,6 +57,10 @@
             </div>
 
             <form action="ajout_dons" method="post">
+                <input type="hidden" name="idBesoin" value="<?= $besoin['id'] ?>">
+                <input type="hidden" name="idVille" value="<?= $besoin['idVille'] ?>">
+                <input type="hidden" name="idStock" value="<?= $stockDons['id'] ?>">
+                
                 <div class="mb-3">
                     <label for="quantite" class="form-label">Quantité à donner</label>
                     <input type="number" class="form-control" id="quantite"

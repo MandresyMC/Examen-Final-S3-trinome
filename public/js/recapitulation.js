@@ -6,13 +6,13 @@ document.getElementById("actualiser").addEventListener("click", function () {
 });
 
 function loadData() {
-    showLoading();
+    // showLoading();
     
     let xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
-            hideLoading();
+            // hideLoading();
             
             if (xhr.status === 200) {
                 try {
@@ -166,13 +166,13 @@ function formatMontant(montant) {
     }).format(montant) + " Ar";
 }
 
-function showLoading() {
-    document.getElementById("loading").classList.add("active");
-}
+// function showLoading() {
+//     document.getElementById("loading").classList.add("active");
+// }
 
-function hideLoading() {
-    document.getElementById("loading").classList.remove("active");
-}
+// function hideLoading() {
+//     document.getElementById("loading").classList.remove("active");
+// }
 
 function showError(message) {
     console.error(message);

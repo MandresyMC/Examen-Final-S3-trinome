@@ -27,13 +27,13 @@ CREATE TABLE categorie (
 --     quantiteFinale DOUBLE NOT NULL
 -- );
 
-CREATE TABLE dons (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    idVille INT, -- ville omena
-    idStock INT,
-    quantiteDonnee DOUBLE NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+-- CREATE TABLE dons (
+--     id INT PRIMARY KEY AUTO_INCREMENT,
+--     idVille INT, -- ville omena
+--     idStock INT,
+--     quantiteDonnee DOUBLE NOT NULL,
+--     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+-- );
 
 -- V2
 
@@ -54,6 +54,15 @@ CREATE TABLE besoin (
     quantiteDemandee DOUBLE NOT NULL
 );
 
+CREATE TABLE dons (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    idVille INT, -- ville omena
+    idStock INT,
+    idBesoin INT,
+    quantiteDonnee DOUBLE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 CREATE TABLE stockDons (
     id INT PRIMARY KEY AUTO_INCREMENT,
     idCategorie INT,
@@ -70,5 +79,3 @@ CREATE TABLE achat (
     prix DOUBLE, -- prix de l'achat
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
-ALTER TABLE achat ADD COLUMN quantite INT DEFAULT 0;
