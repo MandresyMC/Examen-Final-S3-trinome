@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajouter un stock</title>
+    <title>Ajouter un produit</title>
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/formulaire_stock.css">
 </head>
@@ -13,7 +13,7 @@
 
     <div class="page-content">
         <div class="form-wrapper">
-            <h1>Ajouter un stock</h1>
+            <h1>Ajouter un produit</h1>
 
             <?php if (isset($success)) { ?>
                 <div class="alert alert-success"><?= $success ?></div>
