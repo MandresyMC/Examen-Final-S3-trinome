@@ -6,6 +6,8 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <?php foreach($villeDons as $objets) { ?>
+        <p><?= $objets['nomVille'] ?> - <?= $objets['nomProduit'] ?> - <?= $objets['prixDons'] ?></p>
+    <?php } ?>
 </body>
 </html>
