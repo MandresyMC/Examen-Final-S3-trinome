@@ -43,14 +43,14 @@
                 <div class="info-block__row">
                     <span class="info-block__label">Quantité demandée</span>
                     <span class="info-block__value">
-                        <?= $besoin['quantiteDemandee'] ?>
+                        <?= number_format($besoin['quantiteDemandee'], 0, ',', ' ') ?>
                         <?= $besoin['nomProduit'] != 'Argent' ? 'kg' : 'Ar' ?>
                     </span>
                 </div>
                 <div class="info-block__row">
                     <span class="info-block__label">Stock disponible</span>
                     <span class="info-block__value">
-                        <?= $stockDons['quantiteFinale'] ?>
+                        <?= number_format($stockDons['quantiteFinale'], 0, ',', ' ') ?>
                         <?= $stockDons['nomProduit'] != 'Argent' ? 'kg' : 'Ar' ?>
                     </span>
                 </div>
