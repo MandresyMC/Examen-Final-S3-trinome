@@ -34,6 +34,7 @@ Flight::route('POST /formulaire_besoin', ['BesoinController', 'saveBesoin']);
 Flight::route('GET /formulaire_stock', ['StockController', 'showFormulaireStock']);
 Flight::route('POST /formulaire_stock', ['StockController', 'saveStock']);
 
+
 Flight::route('GET /dashboard', ['DashboardController', 'showDashboard']);
 
 Flight::route('GET /dons', ['DonsController', 'showDons']);
@@ -61,3 +62,5 @@ Flight::route('GET /reinitialiser', function () {
 
 Flight::route('GET /commission', ['CommissionController', 'showFormulaireCommission']);
 Flight::route('POST /commission', ['CommissionController', 'updateCommission']);
+
+Flight::route('POST /formulaire_produit', ['ProduitController', 'saveProduit']);

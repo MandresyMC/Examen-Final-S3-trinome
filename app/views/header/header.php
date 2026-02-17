@@ -9,6 +9,7 @@
         ['href' => '/vente',             'label' => 'Ventes'],
         ['href' => '/commission',             'label' => 'Commission de Vente'],
         ['href' => '/recapitulation',    'label' => 'Récapitulation'],
+        ['href' => '/formulaire_produit',    'label' => 'Produits'],
     ];
 ?>
 <link rel="stylesheet" href="css/header.css">
