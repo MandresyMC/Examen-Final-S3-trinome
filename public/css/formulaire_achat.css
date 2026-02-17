@@ -148,6 +148,32 @@ h1 {
     box-shadow: var(--shadow-sm);
 }
 
+.btn-outline-secondary {
+    display: block;
+    width: 100%;
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    padding: 0.625rem 1.25rem;
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    margin-top: 0.625rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-outline-secondary:hover {
+    background: var(--bg-primary);
+    border-color: var(--text-muted);
+    color: var(--text-primary);
+}
+
+.btn-outline-secondary:active { transform: translateY(1px); }
+
 .btn-primary:hover  { background: var(--primary-dark); box-shadow: var(--shadow-md); }
 .btn-primary:active { transform: translateY(1px); }
 
