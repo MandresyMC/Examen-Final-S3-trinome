@@ -48,6 +48,7 @@ Flight::route('GET /achat', ['AchatController', 'showVilleAchat']);
 Flight::route('POST /formulaire_achat', ['VenteController', 'saveVente']);
 
 Flight::route('GET /vente', ['VenteController', 'showVilleDons']);
+Flight::route('POST /vente/create', ['VenteController', 'createVente']);
 
 Flight::route('GET /recapitulation', function () {
     Flight::render('recapitulation');

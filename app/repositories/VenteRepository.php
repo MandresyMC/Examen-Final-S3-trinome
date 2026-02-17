@@ -30,6 +30,19 @@ class VenteRepository {
         return $st->fetchAll() ?? [];
     }
 
-    public function create() {}
+    public function create($idDons, $idCommission, $prixVente) {
+        $sql = "
+            INSERT INTO vente (idDons, idCommission, prixVente)
+            VALUES (?, ?, ?)
+        ";
+        $st = $this->pdo->prepare($sql);
+            try {
+                $st->execute([ (int)$idDons, (int)$idCommission, (float)$prixVente ]);
+            } catch (PDOException $e) {
+                $info = $st->errorInfo();
+                throw new RuntimeException('CREATE : DB error in create(): ' . $e->getMessage() . ' - SQLSTATE: ' . ($info[0] ?? '') . ' - DriverMsg: ' . ($info[2] ?? ''));
+            }
+            return $this->pdo->lastInsertId();
+    }
 
 }

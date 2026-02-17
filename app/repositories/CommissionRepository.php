@@ -17,7 +17,7 @@ class CommissionRepository {
     }
 
     public function findAll() {
-        $sql = "SELECT * FROM commission";
+        $sql = "SELECT * FROM commission LIMIT 1";
         $st = $this->pdo->prepare($sql);
         try {
             $st->execute();
@@ -26,20 +26,7 @@ class CommissionRepository {
             throw new RuntimeException('FINDALL : DB error in findAll(): ' . $e->getMessage() . ' - SQLSTATE: ' . ($info[0] ?? '') . ' - DriverMsg: ' . ($info[2] ?? ''));
         }
         
-        return $st->fetchAll(PDO::FETCH_ASSOC) ?? [];
-    }
-
-    public function findById($id) {
-        $sql = "SELECT * FROM commission WHERE id = ?";
-        $st = $this->pdo->prepare($sql);
-        try {
-            $st->execute([ (int)$id ]);
-        } catch (PDOException $e) {
-            $info = $st->errorInfo();
-            throw new RuntimeException('FINDBYID : DB error in findById(): ' . $e->getMessage() . ' - SQLSTATE: ' . ($info[0] ?? '') . ' - DriverMsg: ' . ($info[2] ?? ''));
-        }
-        
-        return $st->fetch(PDO::FETCH_ASSOC) ?: null;
+        return $st->fetch();
     }
 
     public function update($id, $pourcentage) {

@@ -25,55 +25,39 @@
             ]);
         }
 
-   /*     public function saveAchat() {
-            $pdo = Flight::db();
-            $repoAchat = new AchatRepository($pdo);
-            $repoStockDons = new StockDonsRepository($pdo);
+        public function createVente() {
+            $pdo  = Flight::db();
+            $repoVente = new VenteRepository($pdo);
+            $repoCommission = new CommissionRepository($pdo);
+            $repoDons = new DonsRepository($pdo);
             $repoVille = new VilleRepository($pdo);
 
-            $idVille = (int)(Flight::request()->data['idVille'] ?? 0);
-            $idStock = (int)(Flight::request()->data['idStock'] ?? 0);
-            $quantiteAchetee = (float)(Flight::request()->data['quantiteAchetee'] ?? 0);
+            $idDons = Flight::request()->data['idDons'] ?? null;
 
             try {
                 $pdo->beginTransaction();
+                $commission = $repoCommission->findAll();
+                $don = $repoDons->findById($idDons);
 
-                $stock = $repoStockDons->findById($idStock);
-                $error = null;
-                if (!$stock) {
-                    $error = "Stock introuvable.";
-                    Flight::redirect('/formulaire_achat?idVille=' . $idVille . '&error=' . urlencode($error));
-                    exit;
+                $prixUnitaire = $don['prixUnitaire'] ?? 1;
+                $prixVente = $don['quantiteDonnee'] * $prixUnitaire * $commission['pourcentage'] / 100;
+
+                $retour = $repoVente->create($idDons, $commission['id'], $prixVente);
+                if (!$retour) {
+                    throw new Exception("Erreur lors de la création de la vente.");
                 }
 
-                if ($stock['quantiteFinale'] < $quantiteAchetee) {
-                    $error = "Quantité achetée dépasse la quantité disponible.";
-                    Flight::redirect('/formulaire_achat?idVille=' . $idVille . '&error=' . urlencode($error));
-                    exit;
+                $retourVilleFond = $repoVille->updateFond($don['idVille'], $prixVente); // miampy ny volan'ny ville
+                if (!$retourVilleFond) {
+                    throw new Exception("Erreur lors de la mise à jour du fond de la ville.");
                 }
-
-                $quantiteFinale = $stock['quantiteFinale'] - $quantiteAchetee;
-                $repoStockDons->updateQuantiteFinale($quantiteFinale, $idStock); // mettre à jour stock (qte finale)
-
-                $prix = $quantiteAchetee * $stock['prixUnitaire'];
-                if ($prix > $repoVille->findById($idVille)['fond']) {
-                    $error = "Montant insuffisant pour cet achat.";
-                    Flight::redirect('/formulaire_achat?idVille=' . $idVille . '&error=' . urlencode($error));
-                    exit;
-                }
-                
-                $idAchat = $repoAchat->create($idVille, $idStock, $quantiteAchetee, $prix); // creer achat
-
-                $retour = $repoVille->updateFond($idVille, -$prix); // mettre à jour fond de la ville
 
                 $pdo->commit();
+                Flight::redirect('/vente?success=' . urlencode('Vente créée avec succès'));
 
-                Flight::redirect('/formulaire_achat?idVille=' . $idVille . '&success=' . urlencode("Achat enregistré avec succès."));
             } catch (Exception $e) {
-                if ($pdo->inTransaction()) {
-                    $pdo->rollBack();
-                }
-                Flight::redirect('/formulaire_achat?idVille=' . $idVille . '&error=' . urlencode("Erreur lors de l'enregistrement de l'achat : " . $e->getMessage()));
+                $pdo->rollBack();
+                Flight::redirect('/vente?error=' . urlencode($e->getMessage()));
             }
-        }*/
+        }
     }

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des Dons</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -93,10 +94,17 @@
 </head>
 <body>
     <h2>Liste des Dons par Ville</h2>
+
+    <?php if (isset($success)) { ?>
+        <div class="alert alert-success"><?= $success ?></div>
+    <?php } ?>
+    <?php if (isset($error)) { ?>
+        <div class="alert alert-danger"><?= $error ?></div>
+    <?php } ?>
+
     <div class="cards-container">
         <?php foreach($villeDons as $objet) { ?>
             <div class="card">
-                <!-- Image de la ville -->
                 <div style="position: relative;">
                     <img src="images/<?= strtolower($objet['nomVille']) ?>.jpg" alt="<?= $objet['nomVille'] ?>">
                     <div class="card-image-overlay">
@@ -104,7 +112,6 @@
                     </div>
                 </div>
 
-                <!-- Contenu de la carte -->
                 <div class="card-content">
                     <h4><?= $objet['nomProduit'] ?></h4>
                     <p>Quantité : <?= $objet['quantiteDonnee'] ?? 'N/A' ?></p>
@@ -113,7 +120,7 @@
 
                     <form action="/vente/create" method="POST">
                         <input type="hidden" name="idDons" value="<?= $objet['id'] ?>">
-                        <button type="submit" class="btn-vendre">Vendre ce don</button>
+                        <button type="submit" class="btn-vendre" onclick="return confirm('Voulez-vous vendre ce don ?')">Vendre ce don</button>
                     </form>
                 </div>
             </div>
