@@ -15,14 +15,13 @@
 
     <div class="page-content">
         <h1>Villes pouvant faire des achats</h1>
-
         <?php if (empty($allVilles)) { ?>
             <p class="alert-info">Aucune ville disponible pour faire des achats.</p>
         <?php } else { ?>
             <div class="cards-grid">
                 <?php foreach ($allVilles as $ville) { ?>
                     <div class="card">
-                        <img src="assets/<?= $ville['image'] ?? 'default.jpg' ?>" 
+                        <img src="../../public/assets/ $ville['image'] ?? 'default.jpg' ?>" 
                              class="card-img-top" 
                              alt="<?= htmlspecialchars($ville['nom']) ?>">
                         <div class="card-body">
