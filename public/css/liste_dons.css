@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --primary-color:  #10B981;
+    --primary-dark:   #059669;
+    --danger-color:   #DC2626;
+    --danger-dark:    #B91C1C;
+    --success-color:  #059669;
+    --bg-primary:     #F8FAFC;
+    --bg-secondary:   #FFFFFF;
+    --text-primary:   #0F172A;
+    --text-secondary: #475569;
+    --text-muted:     #94A3B8;
+    --border-color:   #E2E8F0;
+    --shadow-sm:      0 1px 2px 0 rgba(0,0,0,0.05);
+    --shadow-md:      0 4px 6px -1px rgba(0,0,0,0.1);
+    --shadow-lg:      0 10px 15px -3px rgba(0,0,0,0.1);
+    --radius-md:      8px;
+    --radius-lg:      12px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── Page principale ── */
+.page-main {
+    flex: 1;
+    padding: 2rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.page-header {
+    margin-bottom: 2rem;
+}
+
+.page-header h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.page-subtitle {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+/* ── Alertes ── */
+.alert {
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+}
+
+.alert-success { background: #D1FAE5; color: var(--success-color); }
+.alert-danger  { background: #FEE2E2; color: var(--danger-color);  }
+
+/* ── Grille de cards ── */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+/* ── Card ── */
+.don-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.don-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+}
+
+.don-card.is-sold {
+    opacity: 0.7;
+}
+
+.don-card.is-sold:hover {
+    transform: none;
+    box-shadow: var(--shadow-sm);
+}
+
+/* ── Image ── */
+.don-card__image-wrap {
+    position: relative;
+    height: 140px;
+    background: var(--bg-primary);
+    overflow: hidden;
+}
+
+.don-card__image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.don-card__image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
+    display: flex;
+    align-items: flex-end;
+    padding: 0.875rem 1rem;
+}
+
+.don-card__ville {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: -0.01em;
+}
+
+.don-card__sold-badge {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: rgba(0,0,0,0.55);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.625rem;
+    border-radius: 9999px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+/* ── Corps de la card ── */
+.don-card__body {
+    padding: 1.25rem;
+}
+
+.don-card__product {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.015em;
+    margin-bottom: 1rem;
+}
+
+/* ── Infos tabulaires ── */
+.don-card__info {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+}
+
+.don-card__info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0.875rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.don-card__info-row:last-child {
+    border-bottom: none;
+}
+
+.don-card__info-row.is-total {
+    background: var(--bg-primary);
+}
+
+.don-card__info-label {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.don-card__info-value {
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.don-card__info-row.is-total .don-card__info-value {
+    color: var(--primary-dark);
+}
+
+/* ── Bouton vendre ── */
+.btn-sell {
+    width: 100%;
+    background: var(--danger-color);
+    color: #fff;
+    border: none;
+    padding: 0.625rem 1.25rem;
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-sm);
+    font-family: 'Inter', -apple-system, sans-serif;
+}
+
+.btn-sell:hover  { background: var(--danger-dark); box-shadow: var(--shadow-md); }
+.btn-sell:active { transform: translateY(1px); }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .page-main  { padding: 1.5rem 1rem; }
+    .cards-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+    .cards-grid { gap: 1rem; }
+}
