@@ -62,3 +62,21 @@ INSERT INTO besoin VALUES
 (NULL, 2, 5, 'Bâche', 180),
 (NULL, 2, 5, 'Bois', 150),
 (NULL, 3, 5, 'Argent', 10000000);
+
+
+
+-----------
+-----------
+---stock dons ---------
+-----------
+-----------
+
+INSERT INTO stockDons (idCategorie, idProduit, quantiteInitiale, quantiteFinale) VALUES
+(3, 'Argent', 39500000, 39500000),
+
+(1, 'Riz (kg)', 2400, 2400),
+(1, 'Eau (L)', 5600, 5600),
+(1, 'Haricots', 188, 188),
+
+(2, 'Tôle', 350, 350),
+(2, 'Bâche', 570, 570);
