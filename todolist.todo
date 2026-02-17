@@ -1,0 +1,18 @@
+dashboard v1
+affichage
+    -listeBesoin
+    -listeDons
+repository
+    -findDashboardBesoin() 
+        select from produit/ville/besoin
+    -findDashboardAchat()
+        select from ville/stockdons/produit
+    -findDashboardVente()
+        select from ville
+controller
+
+
+
+vente
+
+formulaire_produit
