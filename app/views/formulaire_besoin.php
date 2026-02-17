@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajouter un besoin</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/formulaire_besoin.css">
 </head>
@@ -65,6 +64,8 @@
             </form>
         </div>
     </div>
+
+    <?php include('footer/footer.php') ?>
 
 </body>
 </html>

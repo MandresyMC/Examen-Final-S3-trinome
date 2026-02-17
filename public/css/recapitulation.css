@@ -500,3 +500,12 @@ body {
     border-radius: var(--radius-sm);
     font-weight: 600;
 }
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-content {
+    flex: 1;
+}
