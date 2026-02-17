@@ -104,7 +104,7 @@ body {
 /* ── Image ── */
 .don-card__image-wrap {
     position: relative;
-    height: 140px;
+    height: 200px;
     background: var(--bg-primary);
     overflow: hidden;
 }
