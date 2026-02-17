@@ -8,6 +8,7 @@ require_once __DIR__ . '/controllers/AchatController.php';
 require_once __DIR__ . '/controllers/VenteController.php';
 require_once __DIR__ . '/controllers/RecapitulationController.php';
 require_once __DIR__ . '/controllers/ReinitialiserController.php';
+require_once __DIR__ . '/controllers/CommissionController.php';
 
 require_once __DIR__ . '/repositories/BesoinRepository.php';
 require_once __DIR__ . '/repositories/DashboardRepository.php';
@@ -19,6 +20,7 @@ require_once __DIR__ . '/repositories/ProduitRepository.php';
 require_once __DIR__ . '/repositories/AchatRepository.php';
 require_once __DIR__ . '/repositories/VenteRepository.php';
 require_once __DIR__ . '/repositories/ReinitialiserRepository.php';
+require_once __DIR__ . '/repositories/CommissionRepository.php';
 
 
 
@@ -55,3 +57,6 @@ Flight::route('GET /recapitulation/actualiser', ['RecapitulationController', 'ge
 Flight::route('GET /reinitialiser', function () {
     Flight::render('reinitialiser');
 });
+
+Flight::route('GET /commission', ['CommissionController', 'showFormulaireCommission']);
+Flight::route('POST /commission', ['CommissionController', 'updateCommission']);

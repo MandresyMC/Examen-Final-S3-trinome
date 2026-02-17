@@ -19,7 +19,7 @@
 
         .card {
             position: relative;
-            width: 250px;
+            width: 500px;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
@@ -94,29 +94,30 @@
 <body>
     <h2>Liste des Dons par Ville</h2>
     <div class="cards-container">
-        <?php foreach($villeDons as $objet): ?>
+        <?php foreach($villeDons as $objet) { ?>
             <div class="card">
                 <!-- Image de la ville -->
                 <div style="position: relative;">
-                    <img src="images/<?= strtolower($objet['nomVille']) ?>.jpg" alt="<?= htmlspecialchars($objet['nomVille']) ?>">
+                    <img src="images/<?= strtolower($objet['nomVille']) ?>.jpg" alt="<?= $objet['nomVille'] ?>">
                     <div class="card-image-overlay">
-                        <strong><?= htmlspecialchars($objet['nomVille']) ?></strong>
+                        <strong><?= $objet['nomVille'] ?></strong>
                     </div>
                 </div>
 
                 <!-- Contenu de la carte -->
                 <div class="card-content">
-                    <h4><?= htmlspecialchars($objet['nomProduit']) ?></h4>
-                    <p>Prix total : <?= number_format($objet['prixDons'], 2, ',', ' ') ?> Ar</p>
-                    <p>Quantité : <?= $objet['totalDonne'] ?? 'N/A' ?></p>
+                    <h4><?= $objet['nomProduit'] ?></h4>
+                    <p>Quantité : <?= $objet['quantiteDonnee'] ?? 'N/A' ?></p>
+                    <p>PrixUnitaire du produit : <?= $objet['prixUnitaire'] ?? 'N/A' ?> Ar</p>
+                    <p>Prix total : <?= $objet['quantiteDonnee'] * $objet['prixUnitaire'] ?> Ar</p>
 
                     <form action="/vente/create" method="POST">
-                        <input type="hidden" name="idDons" value="<?= $objet['idDons'] ?>">
+                        <input type="hidden" name="idDons" value="<?= $objet['id'] ?>">
                         <button type="submit" class="btn-vendre">Vendre ce don</button>
                     </form>
                 </div>
             </div>
-        <?php endforeach; ?>
+        <?php } ?>
     </div>
 </body>
 </html>

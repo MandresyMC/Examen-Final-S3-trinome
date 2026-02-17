@@ -72,7 +72,7 @@
                 }
 
                 $pdo->commit();
-                Flight::redirect('/formulaire_dons?idBesoin=' . $idBesoin . 'success=Don créé avec succès');
+                Flight::redirect('/formulaire_dons?idBesoin=' . $idBesoin . '&success=Don créé avec succès');
                 exit;
 
             } catch (Exception $e) {

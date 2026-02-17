@@ -20,10 +20,10 @@
     <div class="form-wrapper">
     <h1 class="section-title">Formulaire Dons</h1>
 
-    <?php if ($success) { ?>
+    <?php if (isset($success)) { ?>
         <div class="alert alert-success"><?= $success ?></div>
     <?php } ?>
-    <?php if ($error) { ?>
+    <?php if (isset($error)) { ?>
         <div class="alert alert-danger"><?= $error ?></div>
     <?php } ?>
 

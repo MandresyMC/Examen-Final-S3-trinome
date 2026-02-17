@@ -84,13 +84,14 @@ CREATE TABLE achat (
 
 CREATE TABLE vente (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    idVille INT, -- ville manao vente
     idDons INT, -- dons a vendre
     idCommission INT, -- commission
-    prixVente DOUBLE--prix vente
+    prixVente DOUBLE
 );
 
 CREATE TABLE commission (
     id INT PRIMARY KEY AUTO_INCREMENT,
     pourcentage DOUBLE -- commission en pourcentage
 );
+
+INSERT INTO commission (pourcentage) VALUES (10.0);

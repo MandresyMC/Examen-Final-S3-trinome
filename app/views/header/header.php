@@ -6,6 +6,8 @@
         ['href' => '/formulaire_stock',  'label' => 'Stocks'],
         ['href' => '/dons',              'label' => 'Dons'],
         ['href' => '/achat',             'label' => 'Achats'],
+        ['href' => '/vente',             'label' => 'Ventes'],
+        ['href' => '/commission',             'label' => 'Commission de Vente'],
         ['href' => '/recapitulation',    'label' => 'Récapitulation'],
     ];
 ?>
