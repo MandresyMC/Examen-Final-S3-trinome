@@ -30,7 +30,7 @@
             </a>
              <a href="#ventes" class="tab-btn red">
                 <span class="tab-dot tab-dot-red"></span>
-                vente effectués
+                Vente effectués
                 <?php if (!empty($achat)) { ?>
                     <span class="tab-count tab-count-red"><?= count($vente) ?></span>
                 <?php } ?>
@@ -112,7 +112,7 @@
 
         <div id="ventes" class="section-heading">
             <span class="section-heading__dot dot-red"></span>
-            <span class="section-heading__label">vente effectue</span>
+            <span class="section-heading__label">Ventes effectuées</span>
             <span class="section-heading__line"></span>
         </div>
 
