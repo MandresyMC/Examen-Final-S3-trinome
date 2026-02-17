@@ -1,19 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-    --primary-color: #DC2626;
-    --primary-dark: #B91C1C;
+    --primary-color: #2563EB;
+    --primary-dark:  #1E40AF;
     --success-color: #059669;
-    --danger-color: #DC2626;
-    --bg-primary: #F8FAFC;
-    --bg-secondary: #FFFFFF;
-    --text-primary: #0F172A;
-    --text-muted: #94A3B8;
-    --border-color: #E2E8F0;
-    --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
-    --radius-md: 8px;
-    --radius-lg: 12px;
+    --danger-color:  #DC2626;
+    --bg-primary:    #F8FAFC;
+    --bg-secondary:  #FFFFFF;
+    --text-primary:  #0F172A;
+    --text-muted:    #94A3B8;
+    --border-color:  #E2E8F0;
+    --shadow-sm:     0 1px 2px 0 rgba(0,0,0,0.05);
+    --shadow-md:     0 4px 6px -1px rgba(0,0,0,0.1);
+    --radius-md:     8px;
+    --radius-lg:     12px;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -24,7 +24,6 @@ body {
     color: var(--text-primary);
     font-size: 14px;
     line-height: 1.6;
-    /* min-height: 100vh; */
     display: flex;
     flex-direction: column;
 }
@@ -94,7 +93,7 @@ h1 {
 .form-select:focus,
 .form-control:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(220,38,38,0.1);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
 }
 
 .btn-primary {
