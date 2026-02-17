@@ -34,9 +34,9 @@ class BesoinController {
         $repoBesoin = new BesoinRepository($pdo);
         $repoProduit = new ProduitRepository($pdo);
 
-        $ville = $_POST['ville'];
-        $idProduit = $_POST['idProduit'];
-        $quantiteDemandee = $_POST['quantite'];
+        $ville = Flight::request()->query['ville'];
+        $idProduit = Flight::request()->query['idProduit'];
+        $quantiteDemandee = Flight::request()->query['quantite'];
 
         $produit = $repoProduit->findById($idProduit);
         $error = null;
