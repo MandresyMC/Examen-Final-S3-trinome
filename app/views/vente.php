@@ -112,20 +112,22 @@ body {
                 <img src="images/<?= strtolower($objet['nomProduit']) ?>.jpg"
                      alt="<?= $objet['nomProduit'] ?>">
 
-                <div class="card-content">
-                    <h4><?= $objet['nomProduit'] ?></h4>
-                    <p><?= $objet['villeNom'] ?></p>
-
-                    <div class="mt-2">
-                        <span class="badge-neutral">
-                            quantite : <?= $objet['totalDonne'] ?>
-                        </span>
-                        <span>
-                            <button type="submit" class="btn-danger">vendre un dons</button>
-                        </span>
-                             
+                <form action="/vente" method="POST">
+                    <div class="card-content">
+                        <h4><?= $objet['nomProduit'] ?></h4>
+                        <p><?= $objet['villeNom'] ?></p>
+    
+                        <div class="mt-2">
+                            <span class="badge-neutral">
+                                quantite : <?= $objet['totalDonne'] ?>
+                            </span>
+                            <span>
+                                <button type="submit" class="btn-danger">vendre un dons</button>
+                            </span>
+                                
+                        </div>
                     </div>
-                </div>
+                </form>
 
             </div>
         </div>
