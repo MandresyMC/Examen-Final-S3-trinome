@@ -5,7 +5,7 @@
         public function showDons() {
             $pdo = Flight::db();
             $repoBesoin = new BesoinRepository($pdo);
-            $besoins = $repoBesoin->findAll();
+            $besoins = $repoBesoin->findAllWithDons();
 
             Flight::render('dons', [
                 'besoins' => $besoins
@@ -16,10 +16,16 @@
             $pdo = Flight::db();
             $repoStockDons = new StockDonsRepository($pdo);
             $repoBesoin = new BesoinRepository($pdo);
+            $repoDons = new DonsRepository($pdo);
 
             $idBesoin = (int)(Flight::request()->query['idBesoin'] ?? 0);
             $besoin = $repoBesoin->findById($idBesoin);
             $stockDons = $repoStockDons->findByProduit($besoin['idProduit']);
+            $dons = $repoDons->findByIdBesoin($idBesoin); // maka ny don rehetra mifandraiky amin'ny besoin
+            $donRealise = 0;
+            foreach ($dons as $don) {
+                $donRealise += $don['quantiteDonnee'];
+            }
 
             $success = null;
             $error = null;
@@ -34,7 +40,8 @@
                 'besoin' => $besoin,
                 'stockDons' => $stockDons,
                 'success' => $success,
-                'error' => $error
+                'error' => $error,
+                'donRealise' => $donRealise
             ]);
         }
 
