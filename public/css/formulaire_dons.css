@@ -1,20 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-    --primary-color: #2563EB;
-    --primary-dark: #1E40AF;
-    --success-color: #059669;
-    --danger-color: #DC2626;
-    --bg-primary: #F8FAFC;
-    --bg-secondary: #FFFFFF;
-    --text-primary: #0F172A;
+    --primary-color:  #2563EB;
+    --primary-dark:   #1E40AF;
+    --success-color:  #059669;
+    --danger-color:   #DC2626;
+    --bg-primary:     #F8FAFC;
+    --bg-secondary:   #FFFFFF;
+    --text-primary:   #0F172A;
     --text-secondary: #475569;
-    --text-muted: #94A3B8;
-    --border-color: #E2E8F0;
-    --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
-    --radius-md: 8px;
-    --radius-lg: 12px;
+    --text-muted:     #94A3B8;
+    --border-color:   #E2E8F0;
+    --shadow-sm:      0 1px 2px 0 rgba(0,0,0,0.05);
+    --shadow-md:      0 4px 6px -1px rgba(0,0,0,0.1);
+    --radius-md:      8px;
+    --radius-lg:      12px;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -25,11 +25,19 @@ body {
     color: var(--text-primary);
     font-size: 14px;
     line-height: 1.6;
-    min-height: 100vh;
+    min-height: 50vh;
+    /* Colonne : header en haut, contenu en dessous */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Zone sous le header — centre le formulaire */
+.page-main {
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
+    padding: 2.5rem 1.5rem;
 }
 
 .form-wrapper {
@@ -59,7 +67,7 @@ h1 {
 }
 
 .alert-success { background: #D1FAE5; color: var(--success-color); }
-.alert-danger  { background: #FEE2E2; color: var(--danger-color); }
+.alert-danger  { background: #FEE2E2; color: var(--danger-color);  }
 .alert-info    { background: #E0E7FF; color: var(--primary-color); }
 
 .mb-3 { margin-bottom: 1rem; }
@@ -110,3 +118,8 @@ h1 {
 
 .btn-primary:hover  { background: var(--primary-dark); box-shadow: var(--shadow-md); }
 .btn-primary:active { transform: translateY(1px); }
+
+@media (max-width: 480px) {
+    .page-main    { padding: 1.5rem 1rem; align-items: flex-start; }
+    .form-wrapper { padding: 1.5rem; }
+}
