@@ -4,18 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajouter un besoin</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/formulaire_besoin.css">
 </head>
-<body class="bg-light">
+<body>
 
-<div class="container mt-5">
+    <?php include('header/header.php') ?>
 
-    <div class="card shadow">
-        <div class="card-header bg-success text-white text-center">
-            <h3 class="mb-0">Ajouter un besoin</h3>
-        </div>
-
-        <div class="card-body">
+    <div class="page-content">
+        <div class="form-wrapper">
+            <h1>Ajouter un besoin</h1>
 
             <form action="/formulaire_besoin" method="POST">
 
@@ -24,9 +21,7 @@
                     <select name="ville" id="ville" class="form-select" required>
                         <option value="">-- Choisir une ville --</option>
                         <?php foreach ($villes as $ville) { ?>
-                            <option value="<?= $ville['id'] ?>">
-                                <?= $ville['nom'] ?>
-                            </option>
+                            <option value="<?= $ville['id'] ?>"><?= $ville['nom'] ?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -36,9 +31,7 @@
                     <select name="cat" id="cat" class="form-select" required>
                         <option value="">-- Choisir un produit --</option>
                         <?php foreach ($produits as $produit) { ?>
-                            <option value="<?= $produit['id'] ?>">
-                                <?= $produit['nom'] ?>
-                            </option>
+                            <option value="<?= $produit['id'] ?>"><?= $produit['nom'] ?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -48,17 +41,11 @@
                     <input type="number" class="form-control" id="quantite" name="quantite" min="1" required>
                 </div>
 
-                <div class="d-flex justify-content-between">
-                    <button type="submit" class="btn btn-success w-100">Ajouter</button>
-                </div>
+                <button type="submit" class="btn-success">Ajouter</button>
 
             </form>
-
         </div>
     </div>
 
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
