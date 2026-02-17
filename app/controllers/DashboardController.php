@@ -5,7 +5,8 @@
             $pdo  = Flight::db();
             $repo = new DashboardRepository($pdo);
             
-            $allObjets = $repo->findDashboard();
+            $besoin = $repo->findDashboardBesoin();
+            $achat = $repo->findDashboardAchat();
 
             $success = null;
             if (isset(Flight::request()->query['success'])) {
@@ -13,9 +14,11 @@
             }
 
             Flight::render("dashboard", [
-                'allObjets' => $allObjets,
+                'besoin' => $besoin,
+                'achat' => $achat,
             ]);
         }
+
     }
 
 ?>
