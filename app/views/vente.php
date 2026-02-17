@@ -27,7 +27,7 @@
             <div class="don-card <?= $objet['statut'] === 'vendu' ? 'is-sold' : '' ?>">
 
                 <div class="don-card__image-wrap">
-                    <img src="images/<?= strtolower($objet['nomVille']) ?>.jpg"
+                    <img src="assets/<?= $objet['nomVille'] ?>.jpg"
                          alt="<?= $objet['nomVille'] ?>"
                          onerror="this.style.display='none'">
                     <div class="don-card__image-overlay">
