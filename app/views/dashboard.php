@@ -125,12 +125,12 @@
                 ?>
                 <div class="img-card">
                     <img src="/assets/<?= strtolower($objet['nomProduit']) ?>.jpg"
-                         alt="<?= htmlspecialchars($objet['nomProduit']) ?>">
+                         alt="<?= $objet['nomProduit'] ?>">
                     <div class="img-card__content">
-                        <span class="img-card__tag tag-red"><?= htmlspecialchars($objet['villeNom']) ?></span>
-                        <div class="img-card__title"><?= htmlspecialchars($objet['nomProduit']) ?></div>
+                        <span class="img-card__tag tag-red"><?= $objet['villeNom'] ?></span>
+                        <div class="img-card__title"><?= $objet['nomProduit'] ?></div>
                         <div class="img-card__stats">
-                            <span class="stat-badge">prix de vente: <strong><?= number_format($objet['prixVente'], 0, ',', ' ') ?> Ar</strong></span>
+                            <span class="stat-badge">Prix de Vente: <strong><?= number_format($objet['prixVente'], 0, ',', ' ') ?> Ar</strong></span>
                         </div>
                     </div>
                 </div>
