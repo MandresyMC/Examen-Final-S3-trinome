@@ -72,4 +72,16 @@
             
             return $st->fetch() ?? null;
         }
+
+        public function updateQuantite($quantite, $idStock) {
+            $sql = "UPDATE stockDons SET quantiteInitiale = quantiteInitiale + ?, quantiteFinale = quantiteFinale + ? WHERE id = ?";
+            $st = $this->pdo->prepare($sql);
+            try {
+                $st->execute([ (float)$quantite, (float)$quantite, (int)$idStock ]);
+            } catch (PDOException $e) {
+                $info = $st->errorInfo();
+                throw new RuntimeException('UPDATE : DB error in updateQuantite(): ' . $e->getMessage() . ' - SQLSTATE: ' . ($info[0] ?? '') . ' - DriverMsg: ' . ($info[2] ?? ''));
+            }
+            return $st->rowCount();
+        }
     }

@@ -31,6 +31,7 @@
             $repoCommission = new CommissionRepository($pdo);
             $repoDons = new DonsRepository($pdo);
             $repoVille = new VilleRepository($pdo);
+            $repoStockDons = new StockDonsRepository($pdo);
 
             $idDons = Flight::request()->data['idDons'] ?? null;
 
@@ -50,6 +51,17 @@
                 $retourVilleFond = $repoVille->updateFond($don['idVille'], $prixVente); // miampy ny volan'ny ville
                 if (!$retourVilleFond) {
                     throw new Exception("Erreur lors de la mise à jour du fond de la ville.");
+                }
+
+                $quantite = $don['quantiteDonnee'];
+                $retourStockDons = $repoStockDons->updateQuantite($quantite, $don['idStock']);
+                if (!$retourStockDons) {
+                    throw new Exception("Erreur lors de la mise à jour du stock de dons.");
+                }
+
+                $retourDons = $repoDons->updateStatutVendu($idDons);
+                if (!$retourDons) {
+                    throw new Exception("Erreur lors de la mise à jour du statut du don.");
                 }
 
                 $pdo->commit();
