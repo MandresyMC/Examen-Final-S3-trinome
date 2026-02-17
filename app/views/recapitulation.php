@@ -59,7 +59,6 @@
         <div class="spinner"></div>
         <p>Chargement des données...</p>
     </div>
-
     <script src="js/recapitulation.js"></script>
 </body>
 </html>
