@@ -34,9 +34,9 @@ class BesoinController {
         $repoBesoin = new BesoinRepository($pdo);
         $repoProduit = new ProduitRepository($pdo);
 
-        $ville = Flight::request()->query['ville'];
-        $idProduit = Flight::request()->query['idProduit'];
-        $quantiteDemandee = Flight::request()->query['quantite'];
+        $ville = Flight::request()->data['ville'];
+        $idProduit = Flight::request()->data['idProduit'];
+        $quantiteDemandee = Flight::request()->data['quantite'];
 
         $produit = $repoProduit->findById($idProduit);
         $error = null;
@@ -45,7 +45,7 @@ class BesoinController {
         }
 
         if ($error) {
-            Flight::redirect('/formulaire_besoin?error=' . urlencode($error));
+            Flight::redirect('/formulaire_besoin?idProduit=' . $idProduit . '&error=' . urlencode($error));
             return;
         }
 

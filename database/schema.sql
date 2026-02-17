@@ -85,5 +85,6 @@ CREATE TABLE vente (
     id INT PRIMARY KEY AUTO_INCREMENT,
     idVille INT, -- ville manao vente
     idDons INT, -- dons a vendre
-    commission DOUBLE -- prix de la vente
+    commission DOUBLE, -- commission
+    prixVente --prix vente
 );
