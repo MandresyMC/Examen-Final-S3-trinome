@@ -1,0 +1,46 @@
+Formulaire_stock:
+    - Controller:
+        - showFormulaireStock()-> pour affichage formulaire
+        - saveStock()-> mijery produit, ajout du produit dans stock
+    - repositories
+        StockDonsRepository
+            - create: ajout nouveau produit dans stock
+            - findAll: maka produit rehetra
+            - findById: maka produit @ alalan'ny id
+            - updateQuantite: manampy quantité @ stock efa misy
+
+    - Css:
+
+    Formulaire_besoin:
+    - Controller: 
+        - showFormulaireBesoin() -> mampiseho formulaire
+        - saveBesoin() -> maka donnees via formulaire, alefa any anaty base
+    - repositories:
+        - BesoinRepository
+            - create($idCategorie, $ville_id, $idProduit, $quantiteDemandee) -> ajout de nouveau besoin dans la base, mamerina id
+            - findAll() -> maka besoin rehetra
+            - findById($id) -> maka besoin iray @alalan'ny id
+            - findByVille($idVille) -> maka besoin an'ny ville @ alalan'y id
+            - findAllWithDons() -> maka besoin + total dons efa vita t@ io besoin io
+    - view:
+        - Formulaire_besoin
+            - include header
+            - ajout ville,produit,quantité
+            - message d'erreur
+            - footer
+
+    Achats:
+        - Controller:
+            - AchatController:
+                - showVilleAchat() -> maka ny ville dispo misy fond
+                - showFormulaireAchat() -> mampiseho formulaire d'achat an'ny ville iray miaraka @ stock
+                - saveAchat()-> mi enregistre achat
+        - repositories:
+            - AchatRepository
+                - create($idVille, $idStock, $quantite, $prix) -> manampy achat anaty base miaraka @ stock, qte, prix
+        - view:
+            - achat
+                - include header
+                - nom de la ville
+                - bouton " effectuer un achat"-> anaovana achat
+                
