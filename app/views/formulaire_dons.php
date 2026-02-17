@@ -20,10 +20,10 @@
     <div class="form-wrapper">
     <h1 class="section-title">Formulaire Dons</h1>
 
-    <?php if ($success) { ?>
+    <?php if (isset($success)) { ?>
         <div class="alert alert-success"><?= $success ?></div>
     <?php } ?>
-    <?php if ($error) { ?>
+    <?php if (isset($error)) { ?>
         <div class="alert alert-danger"><?= $error ?></div>
     <?php } ?>
 
@@ -41,6 +41,13 @@
                     <span class="info-block__value"><?= htmlspecialchars($besoin['nomProduit']) ?></span>
                 </div>
                 <div class="info-block__row">
+                    <span class="info-block__label">Stock disponible</span>
+                    <span class="info-block__value">
+                        <?= number_format($stockDons['quantiteFinale'], 0, ',', ' ') ?>
+                        <?= $stockDons['nomProduit'] != 'Argent' ? 'kg' : 'Ar' ?>
+                    </span>
+                </div>
+                <div class="info-block__row">
                     <span class="info-block__label">Quantité demandée</span>
                     <span class="info-block__value">
                         <?= number_format($besoin['quantiteDemandee'], 0, ',', ' ') ?>
@@ -48,10 +55,10 @@
                     </span>
                 </div>
                 <div class="info-block__row">
-                    <span class="info-block__label">Stock disponible</span>
+                    <span class="info-block__label">Quantité reçue</span>
                     <span class="info-block__value">
-                        <?= number_format($stockDons['quantiteFinale'], 0, ',', ' ') ?>
-                        <?= $stockDons['nomProduit'] != 'Argent' ? 'kg' : 'Ar' ?>
+                        <?= number_format($donRealise, 0, ',', ' ') ?>
+                        <?= $besoin['nomProduit'] != 'Argent' ? 'kg' : 'Ar' ?>
                     </span>
                 </div>
             </div>

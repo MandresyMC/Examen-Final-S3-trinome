@@ -20,13 +20,28 @@
             <p class="alert-info">Aucune ville disponible pour faire des dons.</p>
         <?php } else { ?>
             <div class="cards-grid">
-                <?php foreach ($besoins as $besoin) { ?>
+                <?php foreach ($besoins as $besoin) {
+                    $demande = $besoin['quantiteDemandee'];
+                    $recu    = $besoin['totalDonne'];
+                    $pct     = $demande > 0 ? min(100, round($recu / $demande * 100)) : 0;
+                    $unite   = $besoin['nomProduit'] != 'Argent' ? 'kg' : 'Ar';
+                ?>
                     <div class="card">
                         <img src="/assets/<?= strtolower($besoin['nomVille']) ?>.jpg"
                              class="card-img-top"
-                             alt="<?= htmlspecialchars($besoin['nomVille']) ?>">
+                             alt="<?= $besoin['nomVille'] ?>">
                         <div class="card-body">
-                            <h5 class="card-title"><?= htmlspecialchars($besoin['nomVille']) ?></h5>
+                            <h5 class="card-title"><?= $besoin['nomVille'] ?></h5>
+                            <div class="progress-wrap">
+                                <div class="progress-label">
+                                    <span><?= $recu ?> / <?= $demande ?> <?= $unite ?></span>
+                                    <span><?= $pct ?>%</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill <?= $pct >= 100 ? 'over' : '' ?>"
+                                         style="width: <?= $pct ?>%"></div>
+                                </div>
+                            </div>
                             <a href="/formulaire_dons?idBesoin=<?= $besoin['id'] ?>" class="btn-primary">
                                 Effectuer un don
                             </a>
