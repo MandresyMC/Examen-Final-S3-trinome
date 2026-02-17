@@ -26,7 +26,7 @@ class CommissionRepository {
             throw new RuntimeException('FINDALL : DB error in findAll(): ' . $e->getMessage() . ' - SQLSTATE: ' . ($info[0] ?? '') . ' - DriverMsg: ' . ($info[2] ?? ''));
         }
         
-        return $st->fetch();
+        return $st->fetch() ?? null;
     }
 
     public function update($id, $pourcentage) {

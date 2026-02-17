@@ -58,6 +58,7 @@ h2 {
 
 .alert-success { background: #D1FAE5; color: var(--success-color); border-color: #A7F3D0; }
 .alert-danger  { background: #FEE2E2; color: var(--danger-color);  border-color: #FECACA; }
+.alert-info  { background: #cfe5ff; color: var(--text-primary);  border-color: #5680fd; }
 
 .cards-container {
     display: grid;
