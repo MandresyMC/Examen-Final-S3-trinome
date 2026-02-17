@@ -57,9 +57,8 @@ Flight::route('GET /recapitulation', function () {
 });
 Flight::route('GET /recapitulation/actualiser', ['RecapitulationController', 'getAll']);
 
-Flight::route('GET /reinitialiser', function () {
-    Flight::render('reinitialiser');
-});
+Flight::route('GET /reinitialiser', ['ReinitialiserController', 'showReinitialiser']);
+Flight::route('POST /reinitialiser/valider', ['ReinitialiserController', 'reinitialiser']);
 
 Flight::route('GET /commission', ['CommissionController', 'showFormulaireCommission']);
 Flight::route('POST /commission', ['CommissionController', 'updateCommission']);

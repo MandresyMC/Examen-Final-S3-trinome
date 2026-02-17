@@ -50,8 +50,7 @@ CREATE TABLE besoin (
     idCategorie INT,
     idVille INT, -- ville mangataka
     idProduit VARCHAR(255) NOT NULL,
-    quantiteDemandee DOUBLE NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    quantiteDemandee DOUBLE NOT NULL
 );
 
 CREATE TABLE dons (

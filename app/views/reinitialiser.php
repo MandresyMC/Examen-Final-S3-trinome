@@ -23,7 +23,7 @@
                 <div class="alert alert-danger"><?= $error ?></div>
             <?php } ?>
 
-            <form action="/formulaire_besoin" method="POST">
+            <form action="reinitialiser/valider" method="POST">
 
                 <div class="field-group">
                     <label for="quantite" class="field-label">Réinitialiser les données ?</label>

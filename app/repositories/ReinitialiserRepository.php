@@ -6,14 +6,15 @@ class ReinitialiserRepository {
 
     public function reinitialiser() {
     try {
+        $this->pdo->exec("TRUNCATE TABLE ville");
+        $this->pdo->exec("TRUNCATE TABLE categorie");
+        $this->pdo->exec("TRUNCATE TABLE produit");
         $this->pdo->exec("TRUNCATE TABLE besoin");
         $this->pdo->exec("TRUNCATE TABLE dons");
-        $this->pdo->exec("TRUNCATE TABLE achats");
-        $this->pdo->exec("TRUNCATE TABLE stocks");
-        $this->pdo->exec("TRUNCATE TABLE produit");
-        $this->pdo->exec("TRUNCATE TABLE categorie");
-        $this->pdo->exec("TRUNCATE TABLE ville");
+        $this->pdo->exec("TRUNCATE TABLE stockDons");
+        $this->pdo->exec("TRUNCATE TABLE achat");
         $this->pdo->exec("TRUNCATE TABLE commission");
+        $this->pdo->exec("TRUNCATE TABLE vente");
 
         $this->pdo->exec("
             INSERT INTO ville (nom) VALUES
