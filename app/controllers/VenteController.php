@@ -65,7 +65,7 @@
                 }
 
                 $pdo->commit();
-                Flight::redirect('/vente?success=' . urlencode('Vente créée avec succès'));
+                Flight::redirect('/vente?success=' . urlencode('Don vendu avec succès'));
 
             } catch (Exception $e) {
                 $pdo->rollBack();
