@@ -1,6 +1,6 @@
 <?php
 
-    class AchatController {
+    class VenteController {
 
         public function showVilleDons() {
             $pdo  = Flight::db();
