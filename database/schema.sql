@@ -60,6 +60,7 @@ CREATE TABLE dons (
     idStock INT,
     idBesoin INT,
     quantiteDonnee DOUBLE NOT NULL,
+    statut VARCHAR(50) DEFAULT 'attribuer',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -95,3 +96,4 @@ CREATE TABLE commission (
 );
 
 INSERT INTO commission (pourcentage) VALUES (10.0);
+-- ALTER TABLE dons ADD COLUMN statut VARCHAR(50) DEFAULT 'attribuer';

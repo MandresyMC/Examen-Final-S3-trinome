@@ -118,10 +118,14 @@
                     <p>PrixUnitaire du produit : <?= $objet['prixUnitaire'] ?? 'N/A' ?> Ar</p>
                     <p>Prix total : <?= $objet['quantiteDonnee'] * $objet['prixUnitaire'] ?> Ar</p>
 
-                    <form action="/vente/create" method="POST">
-                        <input type="hidden" name="idDons" value="<?= $objet['id'] ?>">
-                        <button type="submit" class="btn-vendre" onclick="return confirm('Voulez-vous vendre ce don ?')">Vendre ce don</button>
-                    </form>
+                    <?php if ($objet['statut'] != 'vendu') { ?>
+                        <form action="/vente/create" method="POST">
+                            <input type="hidden" name="idDons" value="<?= $objet['id'] ?>">
+                            <button type="submit" class="btn-vendre" onclick="return confirm('Voulez-vous vendre ce don ?')">Vendre ce don</button>
+                        </form>
+                    <?php } else { ?>
+                        <div class="alert alert-success">Dons déjà vendu</div>
+                    <?php } ?>
                 </div>
             </div>
         <?php } ?>
