@@ -3,7 +3,8 @@ USE exam_s3;
 
 CREATE TABLE ville (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    nom VARCHAR(255) NOT NULL
+    nom VARCHAR(255) NOT NULL,
+    fond DOUBLE DEFAULT 0
 );
 
 CREATE TABLE categorie (
@@ -36,8 +37,6 @@ CREATE TABLE categorie (
 -- );
 
 -- V2
-
-ALTER TABLE ville ADD COLUMN fond DOUBLE DEFAULT 0;
 
 CREATE TABLE produit (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -85,6 +84,12 @@ CREATE TABLE achat (
 
 -- V3
 
+CREATE TABLE commission (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    pourcentage DOUBLE -- commission en pourcentage
+);
+INSERT INTO commission (pourcentage) VALUES (10.0);
+
 CREATE TABLE vente (
     id INT PRIMARY KEY AUTO_INCREMENT,
     idDons INT, -- dons a vendre
@@ -92,10 +97,4 @@ CREATE TABLE vente (
     prixVente DOUBLE
 );
 
-CREATE TABLE commission (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    pourcentage DOUBLE -- commission en pourcentage
-);
-
--- INSERT INTO commission (pourcentage) VALUES (10.0);
 -- ALTER TABLE dons ADD COLUMN statut VARCHAR(50) DEFAULT 'attribuer';

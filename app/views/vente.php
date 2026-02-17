@@ -21,52 +21,56 @@
             <div class="alert alert-danger"><?= $error ?></div>
         <?php } ?>
 
-        <div class="cards-container">
-            <?php foreach ($villeDons as $objet) { ?>
-                <div class="card">
-                    <div class="card-img-wrap">
-                        <img src="/assets/<?= strtolower($objet['nomVille']) ?>.jpg"
-                             alt="<?= htmlspecialchars($objet['nomVille']) ?>">
-                        <span class="card-img-label"><?= htmlspecialchars($objet['nomVille']) ?></span>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="card-title"><?= htmlspecialchars($objet['nomProduit']) ?></div>
-
-                        <div class="card-rows">
-                            <div class="card-row">
-                                <span class="card-row__label">Quantité</span>
-                                <span class="card-row__value"><?= $objet['quantiteDonnee'] ?? 'N/A' ?> kg</span>
-                            </div>
-                            <div class="card-row">
-                                <span class="card-row__label">Prix unitaire</span>
-                                <span class="card-row__value"><?= $objet['prixUnitaire'] ?? 'N/A' ?> Ar/kg</span>
-                            </div>
-                            <div class="card-row">
-                                <span class="card-row__label">Prix total</span>
-                                <span class="card-row__value highlight">
-                                    <?= number_format($objet['quantiteDonnee'] * $objet['prixUnitaire'], 0, ',', ' ') ?> Ar
-                                </span>
-                            </div>
+        <?php if (empty($villeDons)) { ?>
+            <p class="alert alert-info">Aucun don disponible pour le moment.</p>
+        <?php } else { ?>
+            <div class="cards-container">
+                <?php foreach ($villeDons as $objet) { ?>
+                    <div class="card">
+                        <div class="card-img-wrap">
+                            <img src="/assets/<?= strtolower($objet['nomVille']) ?>.jpg"
+                                alt="<?= htmlspecialchars($objet['nomVille']) ?>">
+                            <span class="card-img-label"><?= htmlspecialchars($objet['nomVille']) ?></span>
                         </div>
 
-                        <?php if ($objet['statut'] !== 'vendu') { ?>
-                            <form action="/vente/create" method="POST">
-                                <input type="hidden" name="idDons" value="<?= $objet['id'] ?>">
-                                <button type="submit" class="btn-vendre"
-                                        onclick="return confirm('Voulez-vous vendre ce don ?')">
-                                    Vendre ce don
-                                </button>
-                            </form>
+                        <div class="card-body">
+                            <div class="card-title"><?= htmlspecialchars($objet['nomProduit']) ?></div>
+
+                            <div class="card-rows">
+                                <div class="card-row">
+                                    <span class="card-row__label">Quantité</span>
+                                    <span class="card-row__value"><?= $objet['quantiteDonnee'] ?? 'N/A' ?> kg</span>
+                                </div>
+                                <div class="card-row">
+                                    <span class="card-row__label">Prix unitaire</span>
+                                    <span class="card-row__value"><?= $objet['prixUnitaire'] ?? 'N/A' ?> Ar/kg</span>
+                                </div>
+                                <div class="card-row">
+                                    <span class="card-row__label">Prix total</span>
+                                    <span class="card-row__value highlight">
+                                        <?= number_format($objet['quantiteDonnee'] * $objet['prixUnitaire'], 0, ',', ' ') ?> Ar
+                                    </span>
+                                </div>
+                            </div>
+
+                            <?php if ($objet['statut'] !== 'vendu') { ?>
+                                <form action="/vente/create" method="POST">
+                                    <input type="hidden" name="idDons" value="<?= $objet['id'] ?>">
+                                    <button type="submit" class="btn-vendre"
+                                            onclick="return confirm('Voulez-vous vendre ce don ?')">
+                                        Vendre ce don
+                                    </button>
+                                </form>
+                            <?php } ?>
+                        </div>
+                        <?php if ($objet['statut'] === 'vendu') { ?>
+                            <div class="don-card__sold-badge">Vendu</div>
                         <?php } ?>
                     </div>
-                    <?php if ($objet['statut'] === 'vendu') { ?>
-                        <div class="don-card__sold-badge">Vendu</div>
-                    <?php } ?>
-                </div>
-            <?php } ?>
+                <?php } ?>
+            </div>
         </div>
-    </div>
+    <?php } ?>
 
     <?php include('footer/footer.php') ?>
 

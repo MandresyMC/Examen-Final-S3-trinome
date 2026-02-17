@@ -1,9 +1,9 @@
-INSERT INTO ville (nom, fond) VALUES
-('Toamasina', 0),
-('Mananjary', 0),
-('Farafangana', 0),
-('Nosy Be', 0),
-('Morondava', 0);
+INSERT INTO ville (nom) VALUES
+('Toamasina'),
+('Mananjary'),
+('Farafangana'),
+('Nosy Be'),
+('Morondava');
 
 INSERT INTO categorie (nom) VALUES
 ('nature'),
