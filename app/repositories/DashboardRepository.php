@@ -52,7 +52,28 @@
                 $info = $st->errorInfo();
                 throw new RuntimeException('FINDALL : DB error in findAll(): ' . $e->getMessage() . ' - SQLSTATE: ' . ($info[0] ?? '') . ' - DriverMsg: ' . ($info[2] ?? ''));
             }
-            
+
+        public function findDashboardVente() {
+            $sql = "
+                SELECT
+                    vi.nom AS villeNom,
+                    p.nom AS nomProduit,
+                    ve.prixVente AS prixVente
+                FROM vente ve
+                JOIN dons d ON ve.idDons = d.id
+                JOIN ville vi ON d.idVille = vi.id
+                JOIN stockDons sd ON d.idStock = sd.id
+                JOIN produit p ON sd.idProduit = p.id;
+            ";
+            $st = $this->pdo->prepare($sql);
+            try {
+                $st->execute();
+            } catch (PDOException $e) {
+                $info = $st->errorInfo();
+                throw new RuntimeException('FINDALL : DB error in findAll(): ' . $e->getMessage() . ' - SQLSTATE: ' . ($info[0] ?? '') . ' - DriverMsg: ' . ($info[2] ?? ''));
+            }
+        }
+        
             return $st->fetchAll();
         }
     }

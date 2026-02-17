@@ -7,6 +7,7 @@
             
             $besoin = $repo->findDashboardBesoin();
             $achat = $repo->findDashboardAchat();
+            $vente = $repo->findDashboardVente();
 
             $success = null;
             if (isset(Flight::request()->query['success'])) {
@@ -16,6 +17,7 @@
             Flight::render("dashboard", [
                 'besoin' => $besoin,
                 'achat' => $achat,
+                'vente' => $vente,
             ]);
         }
 
