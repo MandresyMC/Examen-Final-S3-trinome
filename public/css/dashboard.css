@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --primary-color: #2563EB;
+    --success-color: #10B981;
+    --danger-color:  #DC2626;
+    --bg-primary:    #F8FAFC;
+    --bg-secondary:  #FFFFFF;
+    --text-primary:  #0F172A;
+    --text-muted:    #94A3B8;
+    --border-color:  #E2E8F0;
+    --shadow-md:     0 4px 6px -1px rgba(0,0,0,0.1);
+    --shadow-lg:     0 10px 25px -3px rgba(0,0,0,0.15);
+    --radius-lg:     12px;
+    --radius-xl:     20px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 14px;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.page-content {
+    flex: 1;
+    padding: 2.5rem 2rem;
+    max-width: 1300px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* ── Section heading ── */
+.section-heading {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2.5rem 0 1.75rem;
+}
+
+.section-heading:first-child { margin-top: 0; }
+
+.section-heading__line {
+    flex: 1;
+    height: 1px;
+    background: var(--border-color);
+}
+
+.section-heading__label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+.section-heading__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.dot-blue   { background: var(--primary-color); }
+.dot-green  { background: var(--success-color); }
+
+/* ── Grille ── */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+}
+
+/* ── Carte image overlay ── */
+.img-card {
+    position: relative;
+    height: 320px;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: var(--shadow-md);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.img-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+}
+
+.img-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.img-card:hover img { transform: scale(1.06); }
+
+.img-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.88) 0%,
+        rgba(0,0,0,0.3) 55%,
+        rgba(0,0,0,0.05) 100%
+    );
+    transition: background 0.3s ease;
+}
+
+.img-card:hover::after {
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.92) 0%,
+        rgba(0,0,0,0.45) 55%,
+        rgba(0,0,0,0.1) 100%
+    );
+}
+
+/* ── Contenu carte ── */
+.img-card__content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+    z-index: 2;
+}
+
+.img-card__tag {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+}
+
+.tag-blue  { background: rgba(37,99,235,0.8);  color: white; }
+.tag-green { background: rgba(16,185,129,0.8); color: white; }
+
+.img-card__title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.02em;
+}
+
+.img-card__subtitle {
+    font-size: 0.8125rem;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 1rem;
+}
+
+/* ── Badges stats ── */
+.img-card__stats {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.stat-badge {
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    padding: 0.3rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+}
+
+.stat-badge strong {
+    font-weight: 700;
+    opacity: 1;
+}
+
+/* ── Barre de progression ── */
+.progress-wrap {
+    margin-top: 0.875rem;
+}
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 0.35rem;
+}
+
+.progress-bar-bg {
+    height: 4px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: var(--success-color);
+    transition: width 0.6s ease;
+}
+
+.progress-bar-fill.over { background: #F59E0B; }
+
+/* ── Date achat ── */
+.img-card__date {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    margin-top: 0.5rem;
+}
+
+/* ── Alert ── */
+.alert-info {
+    background: #EFF6FF;
+    color: var(--primary-color);
+    padding: 0.875rem 1.25rem;
+    border-radius: var(--radius-lg);
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: 1px solid #DBEAFE;
+}
+
+@media (max-width: 640px) {
+    .page-content { padding: 1.5rem 1rem; }
+    .cards-grid   { grid-template-columns: 1fr; }
+    .img-card     { height: 280px; }
+}
