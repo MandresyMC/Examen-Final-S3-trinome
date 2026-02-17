@@ -4,12 +4,9 @@
 
         public function showVilleDons() {
             $pdo  = Flight::db();
-            $repoVille = new VilleRepository($pdo);
-            $repoStockDons = new StockDonsRepository($pdo);
-
-            $idVille = (int)(Flight::request()->query['idVille'] ?? 0);
+            $repoVente = new VenteRepository($pdo);
             
-            $villeDons = $repoVille->findVilleDons();
+            $villeDons = $repoVente->findVilleDons();
 
             $success = null;
             if (isset(Flight::request()->query['success'])) {
@@ -21,9 +18,10 @@
                 $error = Flight::request()->query['error'];
             }
             
-            Flight::render("formulaire_achat", [
-                'ville' => $villeDons,
-      
+            Flight::render("vente", [
+                'villeDons' => $villeDons,
+                'success' => $success,
+                'error' => $error
             ]);
         }
 
