@@ -14,7 +14,7 @@
     <?php include('header/header.php') ?>
 
     <div class="page-content">
-        <h1>Villes pouvant avoir un don</h1>
+        <h1>Villes pouvant avoir un don / Liste des besoins</h1>
 
         <?php if (empty($besoins)) { ?>
             <p class="alert-info">Aucune ville disponible pour faire des dons.</p>
