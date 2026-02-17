@@ -87,4 +87,16 @@
             
             return $st->fetchAll() ?? [];
         }
+
+        public function updateStatutVendu($id) {
+            $sql = "UPDATE dons SET statut = 'vendu' WHERE id = ?";
+            $st = $this->pdo->prepare($sql);
+            try {
+                $st->execute([ (int)$id ]);
+            } catch (PDOException $e) {
+                $info = $st->errorInfo();
+                throw new RuntimeException('UPDATE : DB error in updateStatutVendu(): ' . $e->getMessage() . ' - SQLSTATE: ' . ($info[0] ?? '') . ' - DriverMsg: ' . ($info[2] ?? ''));
+            }
+            return $st->rowCount();
+        }
     }

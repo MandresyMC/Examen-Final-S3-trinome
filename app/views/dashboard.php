@@ -28,6 +28,13 @@
                     <span class="tab-count tab-count-green"><?= count($achat) ?></span>
                 <?php } ?>
             </a>
+             <a href="#ventes" class="tab-btn red">
+                <span class="tab-dot tab-dot-red"></span>
+                Vente effectués
+                <?php if (!empty($achat)) { ?>
+                    <span class="tab-count tab-count-red"><?= count($vente) ?></span>
+                <?php } ?>
+            </a>
         </nav>
 
         <div id="besoins" class="section-heading">
@@ -103,6 +110,12 @@
         <?php } ?>
 
 
+        <div id="ventes" class="section-heading">
+            <span class="section-heading__dot dot-red"></span>
+            <span class="section-heading__label">Ventes effectuées</span>
+            <span class="section-heading__line"></span>
+        </div>
+
         <?php if (empty($vente)) { ?>
             <p class="alert-info">Aucune vente disponible.</p>
         <?php } else { ?>
@@ -114,12 +127,11 @@
                     <img src="/assets/<?= strtolower($objet['nomProduit']) ?>.jpg"
                          alt="<?= htmlspecialchars($objet['nomProduit']) ?>">
                     <div class="img-card__content">
-                        <span class="img-card__tag tag-green"><?= htmlspecialchars($objet['villeNom']) ?></span>
+                        <span class="img-card__tag tag-red"><?= htmlspecialchars($objet['villeNom']) ?></span>
                         <div class="img-card__title"><?= htmlspecialchars($objet['nomProduit']) ?></div>
                         <div class="img-card__stats">
                             <span class="stat-badge">prix de vente: <strong><?= number_format($objet['prixVente'], 0, ',', ' ') ?> Ar</strong></span>
                         </div>
-                        <div class="img-card__date"><?= $objet['dateVente'] ?></div>
                     </div>
                 </div>
                 <?php } ?>
