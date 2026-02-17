@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulaire Dons</title>
-    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/formulaire_dons.css">
 </head>
 <body>
@@ -64,6 +64,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">Soumettre le don</button>
+                <a href="/dons" class="btn btn-outline-secondary w-100">Annuler</a>
             </form>
 
         <?php } ?>
