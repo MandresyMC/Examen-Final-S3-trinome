@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajouter un stock</title>
+    <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/formulaire_stock.css">
 </head>
 <body>
@@ -23,18 +24,25 @@
 
             <form action="/formulaire_stock" method="POST">
 
-                <div class="mb-3">
-                    <label for="idProduit" class="form-label">Produit</label>
-                    <select name="idProduit" id="idProduit" class="form-select" required>
-                        <option value="">-- Choisir un produit --</option>
-                        <?php foreach ($produits as $produit) { ?>
-                            <option value="<?= $produit['id'] ?>"><?= $produit['nom'] ?></option>
+                <div class="field-group">
+                    <span class="field-label">Produit</span>
+                    <div class="produit-grid">
+                        <?php
+                        $icons = ['Riz' => '🌾', 'Huile' => '🫙', 'Sucre' => '🍚', 'Farine' => '🌿', 'Argent' => '💰'];
+                        foreach ($produits as $produit) {
+                            $icon = $icons[$produit['nom']] ?? '📦';
+                        ?>
+                            <input type="radio" name="idProduit" id="prod_<?= $produit['id'] ?>" value="<?= $produit['id'] ?>" required>
+                            <label for="prod_<?= $produit['id'] ?>">
+                                <span class="icon"><?= $icon ?></span>
+                                <span><?= $produit['nom'] ?></span>
+                            </label>
                         <?php } ?>
-                    </select>
+                    </div>
                 </div>
 
-                <div class="mb-3">
-                    <label for="quantite_initiale" class="form-label">Quantité initiale</label>
+                <div class="field-group">
+                    <label for="quantite_initiale" class="field-label">Quantité initiale</label>
                     <input type="number" class="form-control" id="quantite_initiale" name="quantite_initiale" min="0" required>
                 </div>
 
