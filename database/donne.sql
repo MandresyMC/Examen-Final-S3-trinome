@@ -44,3 +44,12 @@ insert into `dons` (`idVille`, `idStock`, `quantiteDonnee`) values (2, 2, 3);
 
 INSERT INTO achat (idVille, idStock, quantite, prix)
 VALUES (1, 3, 10, 2500);
+
+
+
+
+
+
+
+
+
