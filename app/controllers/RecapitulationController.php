@@ -10,9 +10,10 @@
             $besoins = $repoBesoin->findAll();
             $dons = $repoDons->findAll();
 
-            Flight::json([
+            echo json_encode([
                 "besoins" => $besoins,
-                "dons" => $dons
-            ]);
+                "dons" => $dons,
+            ], JSON_PRETTY_PRINT);
+            exit;
         }
     }

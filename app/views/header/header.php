@@ -2,6 +2,7 @@
     $currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     $navLinks = [
         ['href' => '/dashboard',        'label' => 'Tableau de bord'],
+        ['href' => '/formulaire_produit',    'label' => 'Produits'],
         ['href' => '/formulaire_besoin', 'label' => 'Besoins'],
         ['href' => '/formulaire_stock',  'label' => 'Stocks'],
         ['href' => '/dons',              'label' => 'Dons'],
@@ -9,7 +10,6 @@
         ['href' => '/vente',             'label' => 'Ventes'],
         ['href' => '/commission',             'label' => 'Commission de Vente'],
         ['href' => '/recapitulation',    'label' => 'Récapitulation'],
-        ['href' => '/formulaire_produit',    'label' => 'Produits'],
     ];
 ?>
 <link rel="stylesheet" href="css/header.css">
