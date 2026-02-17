@@ -51,7 +51,8 @@ CREATE TABLE besoin (
     idCategorie INT,
     idVille INT, -- ville mangataka
     idProduit VARCHAR(255) NOT NULL,
-    quantiteDemandee DOUBLE NOT NULL
+    quantiteDemandee DOUBLE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE dons (
@@ -69,7 +70,8 @@ CREATE TABLE stockDons (
     idCategorie INT,
     idProduit VARCHAR(255) NOT NULL, -- ex : riz, huile, tole
     quantiteInitiale DOUBLE NOT NULL,
-    quantiteFinale DOUBLE NOT NULL
+    quantiteFinale DOUBLE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE achat (
@@ -95,5 +97,5 @@ CREATE TABLE commission (
     pourcentage DOUBLE -- commission en pourcentage
 );
 
-INSERT INTO commission (pourcentage) VALUES (10.0);
+-- INSERT INTO commission (pourcentage) VALUES (10.0);
 -- ALTER TABLE dons ADD COLUMN statut VARCHAR(50) DEFAULT 'attribuer';
