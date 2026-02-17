@@ -28,23 +28,71 @@ body {
     min-height: 100vh;
 }
 
+.tabs-nav {
+    position: fixed;        
+    top: 60px;              
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: var(--bg-primary);
+    padding: 0.75rem 2rem;
+    display: flex;
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
 .page-content {
     flex: 1;
-    padding: 2.5rem 2rem;
+    padding: 5.5rem 2rem 2.5rem;   
     max-width: 1300px;
     margin: 0 auto;
     width: 100%;
 }
 
-/* ── Section heading ── */
+.tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.25rem;
+    border-radius: 999px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+    color: var(--text-muted);
+}
+
+.tab-btn:hover { color: var(--text-primary); border-color: var(--text-muted); }
+.tab-btn.blue  { background: #EFF6FF; color: var(--primary-color); border-color: #BFDBFE; }
+.tab-btn.green { background: #ECFDF5; color: var(--success-color); border-color: #A7F3D0; }
+
+.tab-count {
+    padding: 0.1rem 0.5rem;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
+.tab-count-blue  { background: #BFDBFE; color: var(--primary-color); }
+.tab-count-green { background: #A7F3D0; color: var(--success-color); }
+
+.tab-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.tab-dot-blue  { background: var(--primary-color); }
+.tab-dot-green { background: var(--success-color); }
+
 .section-heading {
     display: flex;
     align-items: center;
     gap: 1rem;
     margin: 2.5rem 0 1.75rem;
+    scroll-margin-top: 70px;
 }
 
-.section-heading:first-child { margin-top: 0; }
+.section-heading:first-of-type { margin-top: 0; }
 
 .section-heading__line {
     flex: 1;
@@ -68,20 +116,18 @@ body {
     flex-shrink: 0;
 }
 
-.dot-blue   { background: var(--primary-color); }
-.dot-green  { background: var(--success-color); }
+.dot-blue  { background: var(--primary-color); }
+.dot-green { background: var(--success-color); }
 
-/* ── Grille ── */
 .cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.25rem;
 }
 
-/* ── Carte image overlay ── */
 .img-card {
     position: relative;
-    height: 320px;
+    height: 340px;
     border-radius: var(--radius-xl);
     overflow: hidden;
     cursor: pointer;
@@ -109,8 +155,8 @@ body {
     inset: 0;
     background: linear-gradient(
         to top,
-        rgba(0,0,0,0.88) 0%,
-        rgba(0,0,0,0.3) 55%,
+        rgba(0,0,0,0.92) 0%,
+        rgba(0,0,0,0.35) 50%,
         rgba(0,0,0,0.05) 100%
     );
     transition: background 0.3s ease;
@@ -119,19 +165,18 @@ body {
 .img-card:hover::after {
     background: linear-gradient(
         to top,
-        rgba(0,0,0,0.92) 0%,
-        rgba(0,0,0,0.45) 55%,
+        rgba(0,0,0,0.95) 0%,
+        rgba(0,0,0,0.5) 55%,
         rgba(0,0,0,0.1) 100%
     );
 }
 
-/* ── Contenu carte ── */
 .img-card__content {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 1.5rem;
+    padding: 1.75rem;
     z-index: 2;
 }
 
@@ -143,27 +188,20 @@ body {
     text-transform: uppercase;
     padding: 0.2rem 0.6rem;
     border-radius: 4px;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
 }
 
-.tag-blue  { background: rgba(37,99,235,0.8);  color: white; }
-.tag-green { background: rgba(16,185,129,0.8); color: white; }
+.tag-blue  { background: rgba(37,99,235,0.85);  color: white; }
+.tag-green { background: rgba(16,185,129,0.85); color: white; }
 
 .img-card__title {
-    font-size: 1.25rem;
+    font-size: 1.375rem;
     font-weight: 700;
     color: white;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.75rem;
     letter-spacing: -0.02em;
 }
 
-.img-card__subtitle {
-    font-size: 0.8125rem;
-    color: rgba(255,255,255,0.7);
-    margin-bottom: 1rem;
-}
-
-/* ── Badges stats ── */
 .img-card__stats {
     display: flex;
     gap: 0.5rem;
@@ -175,54 +213,46 @@ body {
     backdrop-filter: blur(4px);
     border: 1px solid rgba(255,255,255,0.2);
     color: white;
-    padding: 0.3rem 0.75rem;
+    padding: 0.35rem 0.875rem;
     border-radius: 6px;
     font-size: 0.8125rem;
     font-weight: 500;
 }
 
-.stat-badge strong {
-    font-weight: 700;
-    opacity: 1;
-}
+.stat-badge strong { font-weight: 700; }
 
-/* ── Barre de progression ── */
-.progress-wrap {
-    margin-top: 0.875rem;
-}
+.progress-wrap { margin-top: 1rem; }
 
 .progress-label {
     display: flex;
     justify-content: space-between;
     font-size: 0.75rem;
     color: rgba(255,255,255,0.65);
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.4rem;
 }
 
 .progress-bar-bg {
-    height: 4px;
+    height: 5px;
     background: rgba(255,255,255,0.15);
-    border-radius: 2px;
+    border-radius: 3px;
     overflow: hidden;
 }
 
 .progress-bar-fill {
     height: 100%;
-    border-radius: 2px;
+    border-radius: 3px;
     background: var(--success-color);
     transition: width 0.6s ease;
 }
 
 .progress-bar-fill.over { background: #F59E0B; }
 
-/* ── Date achat ── */
 .img-card__date {
     font-size: 0.75rem;
     color: rgba(255,255,255,0.5);
-    margin-top: 0.5rem;
+    margin-top: 0.625rem;
 }
 
-/* ── Alert ── */
 .alert-info {
     background: #EFF6FF;
     color: var(--primary-color);
@@ -233,8 +263,12 @@ body {
     border: 1px solid #DBEAFE;
 }
 
-@media (max-width: 640px) {
-    .page-content { padding: 1.5rem 1rem; }
+@media (max-width: 900px) {
+    .cards-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 580px) {
+    .page-content { padding: 0 1rem 1.5rem; }
     .cards-grid   { grid-template-columns: 1fr; }
     .img-card     { height: 280px; }
 }
