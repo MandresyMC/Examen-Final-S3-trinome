@@ -5,7 +5,7 @@ class VenteRepository {
     public function __construct(PDO $pdo) { $this->pdo = $pdo; }
 
 
-    public function findAll() {
+    public function findVilleDons() {
             $sql = "
                 select 
                     v.nom as nomVille,

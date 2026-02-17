@@ -9,8 +9,7 @@
 
             $idVille = (int)(Flight::request()->query['idVille'] ?? 0);
             
-            $ville = $repoVille->findById($idVille);
-            $stocksDons = $repoStockDons->findAll();
+            $villeDons = $repoVille->findVilleDons();
 
             $success = null;
             if (isset(Flight::request()->query['success'])) {
@@ -23,14 +22,12 @@
             }
             
             Flight::render("formulaire_achat", [
-                'ville' => $ville,
-                'allStocksDons' => $stocksDons,
-                'error' => $error,
-                'success' => $success
+                'ville' => $villeDons,
+      
             ]);
         }
 
-        public function saveAchat() {
+   /*     public function saveAchat() {
             $pdo = Flight::db();
             $repoAchat = new AchatRepository($pdo);
             $repoStockDons = new StockDonsRepository($pdo);
@@ -80,5 +77,5 @@
                 }
                 Flight::redirect('/formulaire_achat?idVille=' . $idVille . '&error=' . urlencode("Erreur lors de l'enregistrement de l'achat : " . $e->getMessage()));
             }
-        }
+        }*/
     }
