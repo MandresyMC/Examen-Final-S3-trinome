@@ -1,0 +1,200 @@
+/* =============================================
+   header.css — Styles du header uniquement
+   À inclure dans le <head> de chaque vue
+   ============================================= */
+
+/* ── Variables propres au header ──
+   Préfixées --hd- pour ne pas écraser les
+   variables de la page (--text-primary etc.) */
+:root {
+    --hd-bg:          #0F172A;
+    --hd-border:      #1E293B;
+    --hd-accent:      #2563EB;
+    --hd-text:        #94A3B8;
+    --hd-text-hover:  #F8FAFC;
+    --hd-active-bg:   rgba(37, 99, 235, 0.15);
+    --hd-active-line: #2563EB;
+    --hd-font:        'DM Sans', 'Segoe UI', system-ui, sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap');
+
+/* ── Élément header ── */
+.site-header {
+    background-color: var(--hd-bg);
+    border-bottom: 1px solid var(--hd-border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    font-family: var(--hd-font);
+}
+
+.site-header__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    height: 56px;
+    gap: 2rem;
+}
+
+/* ── Brand ── */
+.site-header__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.site-header__brand-mark {
+    width: 28px;
+    height: 28px;
+    background-color: var(--hd-accent);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.site-header__brand-mark svg {
+    width: 14px;
+    height: 14px;
+}
+
+.site-header__brand-name {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--hd-text-hover);
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+}
+
+/* ── Séparateur ── */
+.site-header__divider {
+    width: 1px;
+    height: 20px;
+    background-color: var(--hd-border);
+    flex-shrink: 0;
+}
+
+/* ── Navigation ── */
+.site-header__nav {
+    display: flex;
+    align-items: center;
+    gap: 0.125rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+}
+
+.site-header__nav li {
+    position: relative;
+}
+
+.site-header__nav-link {
+    display: block;
+    padding: 0.375rem 0.875rem;
+    font-family: var(--hd-font);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--hd-text);
+    text-decoration: none;
+    border-radius: 6px;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    transition: color 0.15s ease, background-color 0.15s ease;
+    /* Isolation — ne pas hériter du body */
+    line-height: 1.5;
+}
+
+.site-header__nav-link:hover {
+    color: var(--hd-text-hover);
+    background-color: rgba(255, 255, 255, 0.06);
+    text-decoration: none;
+}
+
+.site-header__nav-link.is-active {
+    color: var(--hd-text-hover);
+    background-color: var(--hd-active-bg);
+}
+
+.site-header__nav-link.is-active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 1.75rem);
+    height: 2px;
+    background-color: var(--hd-active-line);
+    border-radius: 2px 2px 0 0;
+}
+
+/* ── Burger (mobile) ── */
+.site-header__burger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.375rem;
+    margin-left: auto;
+    color: var(--hd-text);
+    border-radius: 6px;
+    line-height: 0;
+    transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.site-header__burger:hover {
+    color: var(--hd-text-hover);
+    background-color: rgba(255, 255, 255, 0.06);
+}
+
+.site-header__burger svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .site-header__divider {
+        display: none;
+    }
+
+    .site-header__burger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .site-header__nav {
+        display: none;
+        position: absolute;
+        top: 56px;
+        left: 0;
+        right: 0;
+        background-color: var(--hd-bg);
+        border-bottom: 1px solid var(--hd-border);
+        padding: 0.5rem 1rem 0.75rem;
+        flex-direction: column;
+        gap: 0.25rem;
+        align-items: stretch;
+    }
+
+    .site-header__nav.is-open {
+        display: flex;
+    }
+
+    .site-header__nav-link {
+        padding: 0.625rem 1rem;
+        font-size: 0.875rem;
+    }
+
+    .site-header__nav-link.is-active::after {
+        display: none;
+    }
+}
